@@ -28,7 +28,7 @@ namespace DropOut.Uc
             // 
             // ControlHeader
             // 
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.Gray;
             this.Controls.Add(this.lbTitle);
             this.Name = "ControlTitle";
             this.Size = new System.Drawing.Size(430, 20);
