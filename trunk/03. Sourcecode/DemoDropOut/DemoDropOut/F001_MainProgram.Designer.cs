@@ -47,7 +47,6 @@
             this.designToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.datasetOptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.featureSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.saveProcessDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +81,17 @@
             this.panelMainPage = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAnalysisPage = new System.Windows.Forms.TabPage();
+            this.panelAnalysisMainPage = new System.Windows.Forms.Panel();
+            this.c1RawDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle4 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
+            this.panelAnalysisReport = new System.Windows.Forms.Panel();
+            this.panelAnalysisReport2 = new System.Windows.Forms.Panel();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.controlTitle3 = new DropOut.Uc.ControlTitle();
             this.tabPreprocessingPage = new System.Windows.Forms.TabPage();
             this.panelProcessedData = new System.Windows.Forms.Panel();
             this.c1ProcessedDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -94,6 +104,8 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTargetLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTargetComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.controlTitle1 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.panelDataReport = new System.Windows.Forms.Panel();
             this.panelProcessedDataControl = new System.Windows.Forms.Panel();
             this.btnStop = new System.Windows.Forms.Button();
@@ -118,6 +130,7 @@
             this.panelProcessedDataInfo = new System.Windows.Forms.Panel();
             this.textProcessedDataReport = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.controlTitle2 = new DropOut.Uc.ControlTitle();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
             this.tabTestingPage = new System.Windows.Forms.TabPage();
             this.tabQueryPage = new System.Windows.Forms.TabPage();
@@ -153,24 +166,15 @@
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.panelAnalysisReport = new System.Windows.Forms.Panel();
-            this.panelAnalysisReport2 = new System.Windows.Forms.Panel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.panelAnalysisMainPage = new System.Windows.Forms.Panel();
-            this.c1RawDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
-            this.controlTitle4 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle3 = new DropOut.Uc.ControlTitle();
-            this.controlTitle1 = new DropOut.Uc.ControlTitle();
-            this.controlTitle2 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabAnalysisPage.SuspendLayout();
+            this.panelAnalysisMainPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1RawDataFlexGrid)).BeginInit();
+            this.toolStrip3.SuspendLayout();
+            this.panelAnalysisReport.SuspendLayout();
+            this.panelAnalysisReport2.SuspendLayout();
             this.tabPreprocessingPage.SuspendLayout();
             this.panelProcessedData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c1ProcessedDataFlexGrid)).BeginInit();
@@ -181,11 +185,6 @@
             this.tabQueryPage.SuspendLayout();
             this.toolStripQueryTab.SuspendLayout();
             this.toolStripMain.SuspendLayout();
-            this.panelAnalysisReport.SuspendLayout();
-            this.panelAnalysisReport2.SuspendLayout();
-            this.panelAnalysisMainPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.c1RawDataFlexGrid)).BeginInit();
-            this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // testToolStripMenuItem
@@ -259,37 +258,36 @@
             // visualizationToolStripMenuItem
             // 
             this.visualizationToolStripMenuItem.Name = "visualizationToolStripMenuItem";
-            this.visualizationToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.visualizationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.visualizationToolStripMenuItem.Text = "Visualization...";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(170, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(149, 6);
             // 
             // trainningToolStripMenuItem
             // 
             this.trainningToolStripMenuItem.Name = "trainningToolStripMenuItem";
-            this.trainningToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.trainningToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.trainningToolStripMenuItem.Text = "Trainning...";
             // 
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences...";
             // 
             // designToolStripMenuItem
             // 
             this.designToolStripMenuItem.Name = "designToolStripMenuItem";
-            this.designToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.designToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.designToolStripMenuItem.Text = "Design...";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.datasetOptionToolStripMenuItem,
-            this.featureSelectionToolStripMenuItem,
             this.toolStripMenuItem5,
             this.designToolStripMenuItem,
             this.trainningToolStripMenuItem,
@@ -303,19 +301,13 @@
             // datasetOptionToolStripMenuItem
             // 
             this.datasetOptionToolStripMenuItem.Name = "datasetOptionToolStripMenuItem";
-            this.datasetOptionToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.datasetOptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.datasetOptionToolStripMenuItem.Text = "Dataset...";
-            // 
-            // featureSelectionToolStripMenuItem
-            // 
-            this.featureSelectionToolStripMenuItem.Name = "featureSelectionToolStripMenuItem";
-            this.featureSelectionToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.featureSelectionToolStripMenuItem.Text = "Feature Selection...";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(170, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
             // 
             // saveProcessDataToolStripMenuItem
             // 
@@ -581,6 +573,121 @@
             this.tabAnalysisPage.Text = "Analysis";
             this.tabAnalysisPage.UseVisualStyleBackColor = true;
             // 
+            // panelAnalysisMainPage
+            // 
+            this.panelAnalysisMainPage.Controls.Add(this.c1RawDataFlexGrid);
+            this.panelAnalysisMainPage.Controls.Add(this.toolStrip3);
+            this.panelAnalysisMainPage.Controls.Add(this.controlTitle4);
+            this.panelAnalysisMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAnalysisMainPage.Location = new System.Drawing.Point(3, 3);
+            this.panelAnalysisMainPage.Name = "panelAnalysisMainPage";
+            this.panelAnalysisMainPage.Size = new System.Drawing.Size(620, 398);
+            this.panelAnalysisMainPage.TabIndex = 9;
+            // 
+            // c1RawDataFlexGrid
+            // 
+            this.c1RawDataFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
+            this.c1RawDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
+            this.c1RawDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 45);
+            this.c1RawDataFlexGrid.Name = "c1RawDataFlexGrid";
+            this.c1RawDataFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1RawDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1RawDataFlexGrid.Styles"));
+            this.c1RawDataFlexGrid.TabIndex = 2;
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton16});
+            this.toolStrip3.Location = new System.Drawing.Point(0, 20);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(620, 25);
+            this.toolStrip3.TabIndex = 5;
+            this.toolStrip3.Text = "toolStrip1";
+            // 
+            // toolStripButton16
+            // 
+            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
+            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton16.Name = "toolStripButton16";
+            this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton16.Text = "toolStripButton14";
+            // 
+            // controlTitle4
+            // 
+            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle4.Name = "controlTitle4";
+            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle4.TabIndex = 0;
+            this.controlTitle4.Title = "Raw Data";
+            // 
+            // collapsibleSplitter2
+            // 
+            this.collapsibleSplitter2.AnimationDelay = 20;
+            this.collapsibleSplitter2.AnimationStep = 20;
+            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
+            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter2.ExpandParentForm = false;
+            this.collapsibleSplitter2.Location = new System.Drawing.Point(623, 3);
+            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter2.TabIndex = 8;
+            this.collapsibleSplitter2.TabStop = false;
+            this.collapsibleSplitter2.UseAnimations = false;
+            // 
+            // panelAnalysisReport
+            // 
+            this.panelAnalysisReport.Controls.Add(this.panelAnalysisReport2);
+            this.panelAnalysisReport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelAnalysisReport.Location = new System.Drawing.Point(631, 3);
+            this.panelAnalysisReport.Name = "panelAnalysisReport";
+            this.panelAnalysisReport.Size = new System.Drawing.Size(200, 398);
+            this.panelAnalysisReport.TabIndex = 6;
+            // 
+            // panelAnalysisReport2
+            // 
+            this.panelAnalysisReport2.Controls.Add(this.textBox8);
+            this.panelAnalysisReport2.Controls.Add(this.toolStrip2);
+            this.panelAnalysisReport2.Controls.Add(this.controlTitle3);
+            this.panelAnalysisReport2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelAnalysisReport2.Location = new System.Drawing.Point(0, 0);
+            this.panelAnalysisReport2.Name = "panelAnalysisReport2";
+            this.panelAnalysisReport2.Size = new System.Drawing.Size(200, 275);
+            this.panelAnalysisReport2.TabIndex = 0;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox8.Location = new System.Drawing.Point(0, 45);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox8.Size = new System.Drawing.Size(200, 230);
+            this.textBox8.TabIndex = 2;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Location = new System.Drawing.Point(0, 20);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(200, 25);
+            this.toolStrip2.TabIndex = 3;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // controlTitle3
+            // 
+            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle3.Name = "controlTitle3";
+            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle3.TabIndex = 0;
+            this.controlTitle3.Title = "Tab Report";
+            // 
             // tabPreprocessingPage
             // 
             this.tabPreprocessingPage.Controls.Add(this.panelProcessedData);
@@ -602,7 +709,7 @@
             this.panelProcessedData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProcessedData.Location = new System.Drawing.Point(3, 3);
             this.panelProcessedData.Name = "panelProcessedData";
-            this.panelProcessedData.Size = new System.Drawing.Size(620, 398);
+            this.panelProcessedData.Size = new System.Drawing.Size(625, 398);
             this.panelProcessedData.TabIndex = 2;
             // 
             // c1ProcessedDataFlexGrid
@@ -612,7 +719,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
-            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
             // 
@@ -630,7 +737,7 @@
             this.toolStripTargetComboBox1});
             this.toolStripProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.toolStripProcessedDataFlexGrid.Name = "toolStripProcessedDataFlexGrid";
-            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 25);
+            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 25);
             this.toolStripProcessedDataFlexGrid.TabIndex = 5;
             this.toolStripProcessedDataFlexGrid.Text = "toolStrip1";
             // 
@@ -696,6 +803,30 @@
             this.toolStripTargetComboBox1.Name = "toolStripTargetComboBox1";
             this.toolStripTargetComboBox1.Size = new System.Drawing.Size(130, 25);
             this.toolStripTargetComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripTargetComboBox1_SelectedIndexChanged);
+            // 
+            // controlTitle1
+            // 
+            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle1.Name = "controlTitle1";
+            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle1.TabIndex = 0;
+            this.controlTitle1.Title = "Processed Data";
+            // 
+            // collapsibleSplitter1
+            // 
+            this.collapsibleSplitter1.AnimationDelay = 20;
+            this.collapsibleSplitter1.AnimationStep = 20;
+            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
+            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter1.ExpandParentForm = false;
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(628, 3);
+            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter1.TabIndex = 1;
+            this.collapsibleSplitter1.TabStop = false;
+            this.collapsibleSplitter1.UseAnimations = false;
             // 
             // panelDataReport
             // 
@@ -929,6 +1060,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(200, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // controlTitle2
+            // 
+            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle2.Name = "controlTitle2";
+            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle2.TabIndex = 0;
+            this.controlTitle2.Title = "Tab Report";
             // 
             // tabTrainingPage
             // 
@@ -1239,155 +1380,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // panelAnalysisReport
-            // 
-            this.panelAnalysisReport.Controls.Add(this.panelAnalysisReport2);
-            this.panelAnalysisReport.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelAnalysisReport.Location = new System.Drawing.Point(631, 3);
-            this.panelAnalysisReport.Name = "panelAnalysisReport";
-            this.panelAnalysisReport.Size = new System.Drawing.Size(200, 398);
-            this.panelAnalysisReport.TabIndex = 6;
-            // 
-            // panelAnalysisReport2
-            // 
-            this.panelAnalysisReport2.Controls.Add(this.textBox8);
-            this.panelAnalysisReport2.Controls.Add(this.toolStrip2);
-            this.panelAnalysisReport2.Controls.Add(this.controlTitle3);
-            this.panelAnalysisReport2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAnalysisReport2.Location = new System.Drawing.Point(0, 0);
-            this.panelAnalysisReport2.Name = "panelAnalysisReport2";
-            this.panelAnalysisReport2.Size = new System.Drawing.Size(200, 275);
-            this.panelAnalysisReport2.TabIndex = 0;
-            // 
-            // textBox8
-            // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(0, 45);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox8.Size = new System.Drawing.Size(200, 230);
-            this.textBox8.TabIndex = 2;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Location = new System.Drawing.Point(0, 20);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(200, 25);
-            this.toolStrip2.TabIndex = 3;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // panelAnalysisMainPage
-            // 
-            this.panelAnalysisMainPage.Controls.Add(this.c1RawDataFlexGrid);
-            this.panelAnalysisMainPage.Controls.Add(this.toolStrip3);
-            this.panelAnalysisMainPage.Controls.Add(this.controlTitle4);
-            this.panelAnalysisMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAnalysisMainPage.Location = new System.Drawing.Point(3, 3);
-            this.panelAnalysisMainPage.Name = "panelAnalysisMainPage";
-            this.panelAnalysisMainPage.Size = new System.Drawing.Size(620, 398);
-            this.panelAnalysisMainPage.TabIndex = 9;
-            // 
-            // c1RawDataFlexGrid
-            // 
-            this.c1RawDataFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
-            this.c1RawDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
-            this.c1RawDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 45);
-            this.c1RawDataFlexGrid.Name = "c1RawDataFlexGrid";
-            this.c1RawDataFlexGrid.Size = new System.Drawing.Size(620, 353);
-            this.c1RawDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1RawDataFlexGrid.Styles"));
-            this.c1RawDataFlexGrid.TabIndex = 2;
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton16});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 20);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(620, 25);
-            this.toolStrip3.TabIndex = 5;
-            this.toolStrip3.Text = "toolStrip1";
-            // 
-            // toolStripButton16
-            // 
-            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
-            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton16.Name = "toolStripButton16";
-            this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton16.Text = "toolStripButton14";
-            // 
-            // controlTitle4
-            // 
-            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle4.Name = "controlTitle4";
-            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle4.TabIndex = 0;
-            this.controlTitle4.Title = "Raw Data";
-            // 
-            // collapsibleSplitter2
-            // 
-            this.collapsibleSplitter2.AnimationDelay = 20;
-            this.collapsibleSplitter2.AnimationStep = 20;
-            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
-            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter2.ExpandParentForm = false;
-            this.collapsibleSplitter2.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter2.TabIndex = 8;
-            this.collapsibleSplitter2.TabStop = false;
-            this.collapsibleSplitter2.UseAnimations = false;
-            // 
-            // controlTitle3
-            // 
-            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle3.Name = "controlTitle3";
-            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle3.TabIndex = 0;
-            this.controlTitle3.Title = "Tab Report";
-            // 
-            // controlTitle1
-            // 
-            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle1.TabIndex = 0;
-            this.controlTitle1.Title = "Processed Data";
-            // 
-            // controlTitle2
-            // 
-            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle2.Name = "controlTitle2";
-            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle2.TabIndex = 0;
-            this.controlTitle2.Title = "Tab Report";
-            // 
-            // collapsibleSplitter1
-            // 
-            this.collapsibleSplitter1.AnimationDelay = 20;
-            this.collapsibleSplitter1.AnimationStep = 20;
-            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
-            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter1.TabIndex = 1;
-            this.collapsibleSplitter1.TabStop = false;
-            this.collapsibleSplitter1.UseAnimations = false;
-            // 
             // F001_MainProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1406,6 +1398,14 @@
             this.panelMainPage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabAnalysisPage.ResumeLayout(false);
+            this.panelAnalysisMainPage.ResumeLayout(false);
+            this.panelAnalysisMainPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1RawDataFlexGrid)).EndInit();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
+            this.panelAnalysisReport.ResumeLayout(false);
+            this.panelAnalysisReport2.ResumeLayout(false);
+            this.panelAnalysisReport2.PerformLayout();
             this.tabPreprocessingPage.ResumeLayout(false);
             this.panelProcessedData.ResumeLayout(false);
             this.panelProcessedData.PerformLayout();
@@ -1423,14 +1423,6 @@
             this.toolStripQueryTab.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
-            this.panelAnalysisReport.ResumeLayout(false);
-            this.panelAnalysisReport2.ResumeLayout(false);
-            this.panelAnalysisReport2.PerformLayout();
-            this.panelAnalysisMainPage.ResumeLayout(false);
-            this.panelAnalysisMainPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.c1RawDataFlexGrid)).EndInit();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1456,7 +1448,6 @@
         private System.Windows.Forms.ToolStripMenuItem designToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem datasetOptionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem featureSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem saveProcessDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
