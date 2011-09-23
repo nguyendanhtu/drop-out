@@ -94,8 +94,6 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTargetLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTargetComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.controlTitle1 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.panelDataReport = new System.Windows.Forms.Panel();
             this.panelProcessedDataControl = new System.Windows.Forms.Panel();
             this.btnStop = new System.Windows.Forms.Button();
@@ -120,7 +118,6 @@
             this.panelProcessedDataInfo = new System.Windows.Forms.Panel();
             this.textProcessedDataReport = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.controlTitle2 = new DropOut.Uc.ControlTitle();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
             this.tabTestingPage = new System.Windows.Forms.TabPage();
             this.tabQueryPage = new System.Windows.Forms.TabPage();
@@ -140,6 +137,8 @@
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.optionsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton6 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.networkPropertiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,8 +153,9 @@
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.networkPropertiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.controlTitle1 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
+            this.controlTitle2 = new DropOut.Uc.ControlTitle();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -402,30 +402,30 @@
             // toolBarToolStripMenuItem
             // 
             this.toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toolBarToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.toolBarToolStripMenuItem.Text = "Toolbar";
             // 
             // evenLogToolStripMenuItem
             // 
             this.evenLogToolStripMenuItem.Name = "evenLogToolStripMenuItem";
-            this.evenLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.evenLogToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.evenLogToolStripMenuItem.Text = "Even Log";
             // 
             // statusbarToolStripMenuItem
             // 
             this.statusbarToolStripMenuItem.Name = "statusbarToolStripMenuItem";
-            this.statusbarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusbarToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.statusbarToolStripMenuItem.Text = "Status Bar";
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(147, 6);
             // 
             // trainingLogToolStripMenuItem
             // 
             this.trainingLogToolStripMenuItem.Name = "trainingLogToolStripMenuItem";
-            this.trainingLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.trainingLogToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.trainingLogToolStripMenuItem.Text = "Training Log...";
             // 
             // dataToolStripMenuItem
@@ -484,24 +484,24 @@
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.contentsToolStripMenuItem.Text = "Content";
             // 
             // tipOfDayToolStripMenuItem
             // 
             this.tipOfDayToolStripMenuItem.Name = "tipOfDayToolStripMenuItem";
-            this.tipOfDayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tipOfDayToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.tipOfDayToolStripMenuItem.Text = "Tip Of Day";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(133, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.aboutToolStripMenuItem.Text = "About...";
             // 
             // toolStripButton9
@@ -676,30 +676,6 @@
             this.toolStripTargetComboBox1.Size = new System.Drawing.Size(130, 25);
             this.toolStripTargetComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripTargetComboBox1_SelectedIndexChanged);
             // 
-            // controlTitle1
-            // 
-            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle1.TabIndex = 0;
-            this.controlTitle1.Title = "Encoded Data";
-            // 
-            // collapsibleSplitter1
-            // 
-            this.collapsibleSplitter1.AnimationDelay = 20;
-            this.collapsibleSplitter1.AnimationStep = 20;
-            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
-            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter1.TabIndex = 1;
-            this.collapsibleSplitter1.TabStop = false;
-            this.collapsibleSplitter1.UseAnimations = false;
-            // 
             // panelDataReport
             // 
             this.panelDataReport.Controls.Add(this.panelProcessedDataControl);
@@ -825,9 +801,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Sigmoid\'s alpha";
+            this.label2.Text = "Momentum";
             // 
             // label1
             // 
@@ -876,7 +852,7 @@
             this.errorLimitBox.Name = "errorLimitBox";
             this.errorLimitBox.Size = new System.Drawing.Size(100, 21);
             this.errorLimitBox.TabIndex = 0;
-            this.errorLimitBox.Text = "0.1";
+            this.errorLimitBox.Text = "0.01";
             // 
             // alphaBox
             // 
@@ -884,7 +860,7 @@
             this.alphaBox.Name = "alphaBox";
             this.alphaBox.Size = new System.Drawing.Size(100, 21);
             this.alphaBox.TabIndex = 0;
-            this.alphaBox.Text = "2";
+            this.alphaBox.Text = "0.9";
             // 
             // learningRateBox
             // 
@@ -892,7 +868,7 @@
             this.learningRateBox.Name = "learningRateBox";
             this.learningRateBox.Size = new System.Drawing.Size(100, 21);
             this.learningRateBox.TabIndex = 0;
-            this.learningRateBox.Text = "0.1";
+            this.learningRateBox.Text = "0.7";
             // 
             // splitter1
             // 
@@ -932,16 +908,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(200, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // controlTitle2
-            // 
-            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle2.Name = "controlTitle2";
-            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle2.TabIndex = 0;
-            this.controlTitle2.Title = "Tab Report";
             // 
             // tabTrainingPage
             // 
@@ -1114,6 +1080,17 @@
             this.toolStripSplitButton6.Size = new System.Drawing.Size(66, 22);
             this.toolStripSplitButton6.Text = "Train";
             // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(181, 6);
+            // 
+            // networkPropertiesToolStripMenuItem1
+            // 
+            this.networkPropertiesToolStripMenuItem1.Name = "networkPropertiesToolStripMenuItem1";
+            this.networkPropertiesToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
+            this.networkPropertiesToolStripMenuItem1.Text = "Network Properties...";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -1203,7 +1180,7 @@
             // optionsToolStripMenuItem1
             // 
             this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.optionsToolStripMenuItem1.Text = "Options...";
             // 
             // toolStripButton2
@@ -1241,16 +1218,39 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // networkPropertiesToolStripMenuItem1
+            // controlTitle1
             // 
-            this.networkPropertiesToolStripMenuItem1.Name = "networkPropertiesToolStripMenuItem1";
-            this.networkPropertiesToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
-            this.networkPropertiesToolStripMenuItem1.Text = "Network Properties...";
+            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle1.Name = "controlTitle1";
+            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle1.TabIndex = 0;
+            this.controlTitle1.Title = "Encoded Data";
             // 
-            // toolStripMenuItem10
+            // collapsibleSplitter1
             // 
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(181, 6);
+            this.collapsibleSplitter1.AnimationDelay = 20;
+            this.collapsibleSplitter1.AnimationStep = 20;
+            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
+            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter1.ExpandParentForm = false;
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(623, 3);
+            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter1.TabIndex = 1;
+            this.collapsibleSplitter1.TabStop = false;
+            this.collapsibleSplitter1.UseAnimations = false;
+            // 
+            // controlTitle2
+            // 
+            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle2.Name = "controlTitle2";
+            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle2.TabIndex = 0;
+            this.controlTitle2.Title = "Tab Report";
             // 
             // F001_MainProgram
             // 
