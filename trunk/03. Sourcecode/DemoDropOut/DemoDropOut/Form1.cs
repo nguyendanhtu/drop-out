@@ -408,7 +408,7 @@ namespace DemoDropOut
                 epoch++;
 
                 // notify message
-                notifyMessage(currentErrorAvgBox, teacher.Error.ToString());
+                notifyMessage(currentErrorAvgBox, teacher.Error.ToString("0.00000"));
                 notifyMessage(currentIterationBox, epoch.ToString());
 
                 // stop ??
@@ -444,6 +444,7 @@ namespace DemoDropOut
                     // Gán tập mẫu: m_dt_samples
                     m_dt_samples = v_table;
                     // Load số cột vào combobox
+                    toolStripTargetComboBox1.Items.Clear();
                     foreach (var targetItem in m_list_dimension)
                     {
                         // var v_cboText = targetItem;

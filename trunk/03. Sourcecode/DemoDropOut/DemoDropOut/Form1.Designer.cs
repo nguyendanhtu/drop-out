@@ -84,12 +84,6 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.panelMainPage = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabQueryPage = new System.Windows.Forms.TabPage();
-            this.toolStripQueryTab = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton35 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton36 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton37 = new System.Windows.Forms.ToolStripButton();
             this.tabDataPage = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.c1RawDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -128,6 +122,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
             this.tabTestingPage = new System.Windows.Forms.TabPage();
+            this.tabQueryPage = new System.Windows.Forms.TabPage();
+            this.toolStripQueryTab = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton35 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton36 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton37 = new System.Windows.Forms.ToolStripButton();
             this.txtEvenLog = new System.Windows.Forms.TextBox();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -164,8 +164,6 @@
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabQueryPage.SuspendLayout();
-            this.toolStripQueryTab.SuspendLayout();
             this.tabDataPage.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c1RawDataFlexGrid)).BeginInit();
@@ -173,6 +171,8 @@
             this.panelDataReport.SuspendLayout();
             this.panelProcessedDataControl.SuspendLayout();
             this.panelProcessedDataInfo.SuspendLayout();
+            this.tabQueryPage.SuspendLayout();
+            this.toolStripQueryTab.SuspendLayout();
             this.toolStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -576,64 +576,6 @@
             this.tabControl1.Size = new System.Drawing.Size(842, 430);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabQueryPage
-            // 
-            this.tabQueryPage.Controls.Add(this.toolStripQueryTab);
-            this.tabQueryPage.Location = new System.Drawing.Point(4, 22);
-            this.tabQueryPage.Name = "tabQueryPage";
-            this.tabQueryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQueryPage.Size = new System.Drawing.Size(834, 404);
-            this.tabQueryPage.TabIndex = 5;
-            this.tabQueryPage.Text = "Query";
-            this.tabQueryPage.UseVisualStyleBackColor = true;
-            // 
-            // toolStripQueryTab
-            // 
-            this.toolStripQueryTab.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripQueryTab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton35,
-            this.toolStripSeparator12,
-            this.toolStripButton36,
-            this.toolStripButton37});
-            this.toolStripQueryTab.Location = new System.Drawing.Point(3, 3);
-            this.toolStripQueryTab.Name = "toolStripQueryTab";
-            this.toolStripQueryTab.Size = new System.Drawing.Size(828, 25);
-            this.toolStripQueryTab.TabIndex = 5;
-            this.toolStripQueryTab.Text = "toolStrip11";
-            this.toolStripQueryTab.Visible = false;
-            // 
-            // toolStripButton35
-            // 
-            this.toolStripButton35.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton35.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton35.Image")));
-            this.toolStripButton35.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton35.Name = "toolStripButton35";
-            this.toolStripButton35.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton35.Text = "Save";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton36
-            // 
-            this.toolStripButton36.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton36.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton36.Image")));
-            this.toolStripButton36.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton36.Name = "toolStripButton36";
-            this.toolStripButton36.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton36.Text = "Delete";
-            // 
-            // toolStripButton37
-            // 
-            this.toolStripButton37.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton37.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton37.Image")));
-            this.toolStripButton37.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton37.Name = "toolStripButton37";
-            this.toolStripButton37.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton37.Text = "Clear";
-            // 
             // tabDataPage
             // 
             this.tabDataPage.Controls.Add(this.panel1);
@@ -748,6 +690,7 @@
             this.toolStripTargetComboBox1.ForeColor = System.Drawing.Color.Blue;
             this.toolStripTargetComboBox1.Name = "toolStripTargetComboBox1";
             this.toolStripTargetComboBox1.Size = new System.Drawing.Size(130, 25);
+            this.toolStripTargetComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripTargetComboBox1_SelectedIndexChanged);
             // 
             // panelDataReport
             // 
@@ -898,9 +841,9 @@
             // currentErrorAvgBox
             // 
             this.currentErrorAvgBox.Enabled = false;
-            this.currentErrorAvgBox.Location = new System.Drawing.Point(95, 170);
+            this.currentErrorAvgBox.Location = new System.Drawing.Point(109, 170);
             this.currentErrorAvgBox.Name = "currentErrorAvgBox";
-            this.currentErrorAvgBox.Size = new System.Drawing.Size(100, 21);
+            this.currentErrorAvgBox.Size = new System.Drawing.Size(86, 21);
             this.currentErrorAvgBox.TabIndex = 0;
             // 
             // currentIterationBox
@@ -1001,6 +944,64 @@
             this.tabTestingPage.TabIndex = 4;
             this.tabTestingPage.Text = "Testing";
             this.tabTestingPage.UseVisualStyleBackColor = true;
+            // 
+            // tabQueryPage
+            // 
+            this.tabQueryPage.Controls.Add(this.toolStripQueryTab);
+            this.tabQueryPage.Location = new System.Drawing.Point(4, 22);
+            this.tabQueryPage.Name = "tabQueryPage";
+            this.tabQueryPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabQueryPage.Size = new System.Drawing.Size(834, 404);
+            this.tabQueryPage.TabIndex = 5;
+            this.tabQueryPage.Text = "Query";
+            this.tabQueryPage.UseVisualStyleBackColor = true;
+            // 
+            // toolStripQueryTab
+            // 
+            this.toolStripQueryTab.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripQueryTab.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton35,
+            this.toolStripSeparator12,
+            this.toolStripButton36,
+            this.toolStripButton37});
+            this.toolStripQueryTab.Location = new System.Drawing.Point(3, 3);
+            this.toolStripQueryTab.Name = "toolStripQueryTab";
+            this.toolStripQueryTab.Size = new System.Drawing.Size(828, 25);
+            this.toolStripQueryTab.TabIndex = 5;
+            this.toolStripQueryTab.Text = "toolStrip11";
+            this.toolStripQueryTab.Visible = false;
+            // 
+            // toolStripButton35
+            // 
+            this.toolStripButton35.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton35.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton35.Image")));
+            this.toolStripButton35.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton35.Name = "toolStripButton35";
+            this.toolStripButton35.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton35.Text = "Save";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton36
+            // 
+            this.toolStripButton36.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton36.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton36.Image")));
+            this.toolStripButton36.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton36.Name = "toolStripButton36";
+            this.toolStripButton36.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton36.Text = "Delete";
+            // 
+            // toolStripButton37
+            // 
+            this.toolStripButton37.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton37.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton37.Image")));
+            this.toolStripButton37.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton37.Name = "toolStripButton37";
+            this.toolStripButton37.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton37.Text = "Clear";
             // 
             // txtEvenLog
             // 
@@ -1314,10 +1315,6 @@
             this.panelMainPage.ResumeLayout(false);
             this.panelMainPage.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabQueryPage.ResumeLayout(false);
-            this.tabQueryPage.PerformLayout();
-            this.toolStripQueryTab.ResumeLayout(false);
-            this.toolStripQueryTab.PerformLayout();
             this.tabDataPage.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1329,6 +1326,10 @@
             this.panelProcessedDataControl.PerformLayout();
             this.panelProcessedDataInfo.ResumeLayout(false);
             this.panelProcessedDataInfo.PerformLayout();
+            this.tabQueryPage.ResumeLayout(false);
+            this.tabQueryPage.PerformLayout();
+            this.toolStripQueryTab.ResumeLayout(false);
+            this.toolStripQueryTab.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.ResumeLayout(false);
