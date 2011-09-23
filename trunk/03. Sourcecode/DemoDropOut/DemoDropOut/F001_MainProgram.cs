@@ -440,7 +440,7 @@ namespace DemoDropOut
                 if (v_dialogResult == DialogResult.OK)
                 {
                     var v_table = OpenEncodedDataFormFile(v_openFileDialog.FileName);
-                    LoadDataTableToC1Grid(c1RawDataFlexGrid, v_table);
+                    LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
                     // Gán tập mẫu: m_dt_samples
                     m_dt_samples = v_table;
                     // Load số cột vào combobox
