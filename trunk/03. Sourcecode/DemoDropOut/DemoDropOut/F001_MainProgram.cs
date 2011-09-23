@@ -245,7 +245,7 @@ namespace DemoDropOut
         private int classes = 0;
 
         private double learningRate = 0.1;
-        private double sigmoidAlphaValue = 2;
+        private double momentumValue = 2;
         private double learningErrorLimit = 0.1;
         private double iterationLimit = 1000;
         private bool useErrorLimit = true;
@@ -258,7 +258,7 @@ namespace DemoDropOut
         private void UpdateSettings()
         {
             learningRateBox.Text = learningRate.ToString();
-            alphaBox.Text = sigmoidAlphaValue.ToString();
+            alphaBox.Text = momentumValue.ToString();
             errorLimitBox.Text = learningErrorLimit.ToString();
             iterationsBox.Text = iterationLimit.ToString();
 
@@ -301,7 +301,7 @@ namespace DemoDropOut
                 notifyMessage(currentNetBox, v_str_current_net);
 
                 // Khởi tạo mạng 1 lớp ẩn: luật học perceptron
-                SigmoidFunction function = new SigmoidFunction(sigmoidAlphaValue);
+                SigmoidFunction function = new SigmoidFunction(momentumValue);
                 ActivationNetwork network = new ActivationNetwork(function, variables, neuronsCount);
                 var layer = network[0]; // Perceptron has one hidden layer
 
@@ -399,7 +399,7 @@ namespace DemoDropOut
             network.AddLayer(new FeedforwardLayer(outputs));
             network.Reset(); // randomize Weights & Threshold
 
-            Train teacher = new Backpropagation(network, input, output, 0.7, 0.9); //0.7 0.9
+            Train teacher = new Backpropagation(network, input, output, learningRate, momentumValue); // 0.7, 0.9); //0.7 0.9
             int epoch = 0;
 
             do
@@ -408,7 +408,7 @@ namespace DemoDropOut
                 epoch++;
 
                 // notify message
-                notifyMessage(currentErrorAvgBox, teacher.Error.ToString("0.00000"));
+                notifyMessage(currentErrorAvgBox, teacher.Error.ToString("0.###########"));
                 notifyMessage(currentIterationBox, epoch.ToString());
 
                 // stop ??
@@ -484,7 +484,7 @@ namespace DemoDropOut
         private void btnStart_Click(object sender, EventArgs e)
         {
             learningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
-            sigmoidAlphaValue = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
+            momentumValue = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
             learningErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
             iterationLimit = Math.Max(0, int.Parse(iterationsBox.Text));
 
