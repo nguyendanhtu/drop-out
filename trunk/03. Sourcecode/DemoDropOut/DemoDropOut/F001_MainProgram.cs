@@ -20,9 +20,9 @@ using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 
 namespace DemoDropOut
 {
-    public partial class Form1 : Form
+    public partial class F001_MainProgram : Form
     {
-        public Form1()
+        public F001_MainProgram()
         {
             InitializeComponent();
         }
@@ -389,7 +389,7 @@ namespace DemoDropOut
             }
 
 
-            var neuronsCount = (variables << 1) / 3 + 1;  // variables > 3 ? variables / 2 : 2;
+            var neuronsCount = (variables >> 1) + 1;  // (variables << 1) / 3 + 1;
             var v_str_current_net = string.Format("{0}-{1}-{2}", variables, neuronsCount, outputs);
             notifyMessage(currentNetBox, v_str_current_net);
 
