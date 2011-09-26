@@ -84,11 +84,14 @@
             this.panelAnalysisMainPage = new System.Windows.Forms.Panel();
             this.c1RawDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnOpenRawData = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle4 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
             this.panelAnalysisReport = new System.Windows.Forms.Panel();
             this.panelAnalysisReport2 = new System.Windows.Forms.Panel();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.controlTitle3 = new DropOut.Uc.ControlTitle();
             this.tabPreprocessingPage = new System.Windows.Forms.TabPage();
             this.panelProcessedData = new System.Windows.Forms.Panel();
             this.c1ProcessedDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -101,31 +104,48 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTargetLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTargetComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.controlTitle1 = new DropOut.Uc.ControlTitle();
             this.panelDataReport = new System.Windows.Forms.Panel();
             this.panelProcessedDataControl = new System.Windows.Forms.Panel();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.chkErrorLimit = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.currentNetBox = new System.Windows.Forms.TextBox();
-            this.currentErrorAvgBox = new System.Windows.Forms.TextBox();
-            this.currentIterationBox = new System.Windows.Forms.TextBox();
-            this.iterationsBox = new System.Windows.Forms.TextBox();
-            this.errorLimitBox = new System.Windows.Forms.TextBox();
-            this.alphaBox = new System.Windows.Forms.TextBox();
-            this.learningRateBox = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelProcessedDataInfo = new System.Windows.Forms.Panel();
             this.textProcessedDataReport = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.controlTitle2 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
+            this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
+            this.panelTrainingReport = new System.Windows.Forms.Panel();
+            this.panelTrainingControl = new System.Windows.Forms.Panel();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.controlTitle5 = new DropOut.Uc.ControlTitle();
+            this.chkErrorLimit = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.learningRateBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.alphaBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.errorLimitBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.iterationsBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtCurrentIterationBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCurrentErrorBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCurrentNetBox = new System.Windows.Forms.TextBox();
+            this.panelTrainingMainPage = new System.Windows.Forms.Panel();
+            this.chartErrorTraining = new AForge.Controls.Chart();
+            this.tsTrainingControl = new System.Windows.Forms.ToolStrip();
+            this.tsbtnStartTrain = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtnTrainingOptions = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle6 = new DropOut.Uc.ControlTitle();
             this.tabTestingPage = new System.Windows.Forms.TabPage();
             this.tabQueryPage = new System.Windows.Forms.TabPage();
             this.toolStripQueryTab = new System.Windows.Forms.ToolStrip();
@@ -160,12 +180,6 @@
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.controlTitle4 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle3 = new DropOut.Uc.ControlTitle();
-            this.controlTitle1 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle2 = new DropOut.Uc.ControlTitle();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -180,8 +194,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.c1ProcessedDataFlexGrid)).BeginInit();
             this.toolStripProcessedDataFlexGrid.SuspendLayout();
             this.panelDataReport.SuspendLayout();
-            this.panelProcessedDataControl.SuspendLayout();
             this.panelProcessedDataInfo.SuspendLayout();
+            this.tabTrainingPage.SuspendLayout();
+            this.panelTrainingReport.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panelTrainingMainPage.SuspendLayout();
+            this.tsTrainingControl.SuspendLayout();
             this.tabQueryPage.SuspendLayout();
             this.toolStripQueryTab.SuspendLayout();
             this.toolStripMain.SuspendLayout();
@@ -599,21 +617,46 @@
             // 
             this.toolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton16});
+            this.tsbtnOpenRawData});
             this.toolStrip3.Location = new System.Drawing.Point(0, 20);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(620, 25);
             this.toolStrip3.TabIndex = 5;
             this.toolStrip3.Text = "toolStrip1";
             // 
-            // toolStripButton16
+            // tsbtnOpenRawData
             // 
-            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
-            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton16.Name = "toolStripButton16";
-            this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton16.Text = "toolStripButton14";
+            this.tsbtnOpenRawData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnOpenRawData.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnOpenRawData.Image")));
+            this.tsbtnOpenRawData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnOpenRawData.Name = "tsbtnOpenRawData";
+            this.tsbtnOpenRawData.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnOpenRawData.Text = "toolStripButton14";
+            this.tsbtnOpenRawData.Click += new System.EventHandler(this.btnOpenRawData_Click);
+            // 
+            // controlTitle4
+            // 
+            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle4.Name = "controlTitle4";
+            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle4.TabIndex = 0;
+            this.controlTitle4.Title = "Raw Data";
+            // 
+            // collapsibleSplitter2
+            // 
+            this.collapsibleSplitter2.AnimationDelay = 20;
+            this.collapsibleSplitter2.AnimationStep = 20;
+            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
+            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter2.ExpandParentForm = false;
+            this.collapsibleSplitter2.Location = new System.Drawing.Point(623, 3);
+            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter2.TabIndex = 8;
+            this.collapsibleSplitter2.TabStop = false;
+            this.collapsibleSplitter2.UseAnimations = false;
             // 
             // panelAnalysisReport
             // 
@@ -654,11 +697,21 @@
             this.toolStrip2.TabIndex = 3;
             this.toolStrip2.Text = "toolStrip2";
             // 
+            // controlTitle3
+            // 
+            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle3.Name = "controlTitle3";
+            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle3.TabIndex = 0;
+            this.controlTitle3.Title = "Tab Report";
+            // 
             // tabPreprocessingPage
             // 
             this.tabPreprocessingPage.Controls.Add(this.panelProcessedData);
-            this.tabPreprocessingPage.Controls.Add(this.collapsibleSplitter1);
             this.tabPreprocessingPage.Controls.Add(this.panelDataReport);
+            this.tabPreprocessingPage.Controls.Add(this.collapsibleSplitter1);
             this.tabPreprocessingPage.Location = new System.Drawing.Point(4, 22);
             this.tabPreprocessingPage.Name = "tabPreprocessingPage";
             this.tabPreprocessingPage.Padding = new System.Windows.Forms.Padding(3);
@@ -675,7 +728,7 @@
             this.panelProcessedData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProcessedData.Location = new System.Drawing.Point(3, 3);
             this.panelProcessedData.Name = "panelProcessedData";
-            this.panelProcessedData.Size = new System.Drawing.Size(620, 398);
+            this.panelProcessedData.Size = new System.Drawing.Size(625, 398);
             this.panelProcessedData.TabIndex = 2;
             // 
             // c1ProcessedDataFlexGrid
@@ -685,7 +738,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
-            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
             // 
@@ -703,7 +756,7 @@
             this.toolStripTargetComboBox1});
             this.toolStripProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.toolStripProcessedDataFlexGrid.Name = "toolStripProcessedDataFlexGrid";
-            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 25);
+            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 25);
             this.toolStripProcessedDataFlexGrid.TabIndex = 5;
             this.toolStripProcessedDataFlexGrid.Text = "toolStrip1";
             // 
@@ -770,204 +823,39 @@
             this.toolStripTargetComboBox1.Size = new System.Drawing.Size(130, 25);
             this.toolStripTargetComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripTargetComboBox1_SelectedIndexChanged);
             // 
+            // controlTitle1
+            // 
+            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle1.Name = "controlTitle1";
+            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle1.TabIndex = 0;
+            this.controlTitle1.Title = "Processed Data";
+            // 
             // panelDataReport
             // 
             this.panelDataReport.Controls.Add(this.panelProcessedDataControl);
             this.panelDataReport.Controls.Add(this.splitter1);
             this.panelDataReport.Controls.Add(this.panelProcessedDataInfo);
             this.panelDataReport.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelDataReport.Location = new System.Drawing.Point(631, 3);
+            this.panelDataReport.Location = new System.Drawing.Point(628, 3);
             this.panelDataReport.Name = "panelDataReport";
             this.panelDataReport.Size = new System.Drawing.Size(200, 398);
             this.panelDataReport.TabIndex = 0;
             // 
             // panelProcessedDataControl
             // 
-            this.panelProcessedDataControl.Controls.Add(this.btnStop);
-            this.panelProcessedDataControl.Controls.Add(this.btnStart);
-            this.panelProcessedDataControl.Controls.Add(this.chkErrorLimit);
-            this.panelProcessedDataControl.Controls.Add(this.label5);
-            this.panelProcessedDataControl.Controls.Add(this.label8);
-            this.panelProcessedDataControl.Controls.Add(this.label7);
-            this.panelProcessedDataControl.Controls.Add(this.label4);
-            this.panelProcessedDataControl.Controls.Add(this.label6);
-            this.panelProcessedDataControl.Controls.Add(this.label3);
-            this.panelProcessedDataControl.Controls.Add(this.label2);
-            this.panelProcessedDataControl.Controls.Add(this.label1);
-            this.panelProcessedDataControl.Controls.Add(this.currentNetBox);
-            this.panelProcessedDataControl.Controls.Add(this.currentErrorAvgBox);
-            this.panelProcessedDataControl.Controls.Add(this.currentIterationBox);
-            this.panelProcessedDataControl.Controls.Add(this.iterationsBox);
-            this.panelProcessedDataControl.Controls.Add(this.errorLimitBox);
-            this.panelProcessedDataControl.Controls.Add(this.alphaBox);
-            this.panelProcessedDataControl.Controls.Add(this.learningRateBox);
             this.panelProcessedDataControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelProcessedDataControl.Location = new System.Drawing.Point(0, 140);
+            this.panelProcessedDataControl.Location = new System.Drawing.Point(0, 275);
             this.panelProcessedDataControl.Name = "panelProcessedDataControl";
-            this.panelProcessedDataControl.Size = new System.Drawing.Size(200, 258);
+            this.panelProcessedDataControl.Size = new System.Drawing.Size(200, 123);
             this.panelProcessedDataControl.TabIndex = 2;
-            // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(95, 232);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(9, 232);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 3;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // chkErrorLimit
-            // 
-            this.chkErrorLimit.AutoSize = true;
-            this.chkErrorLimit.Location = new System.Drawing.Point(9, 110);
-            this.chkErrorLimit.Name = "chkErrorLimit";
-            this.chkErrorLimit.Size = new System.Drawing.Size(182, 17);
-            this.chkErrorLimit.TabIndex = 2;
-            this.chkErrorLimit.Text = "Use error limit [or iterations limit]";
-            this.chkErrorLimit.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(6, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(189, 2);
-            this.label5.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 199);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Current net";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 173);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Current avg(error)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Iterations limit";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 147);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Current iteration";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Error limit";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Momentum";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Learning rate";
-            // 
-            // currentNetBox
-            // 
-            this.currentNetBox.Enabled = false;
-            this.currentNetBox.Location = new System.Drawing.Point(95, 196);
-            this.currentNetBox.Name = "currentNetBox";
-            this.currentNetBox.Size = new System.Drawing.Size(100, 21);
-            this.currentNetBox.TabIndex = 0;
-            // 
-            // currentErrorAvgBox
-            // 
-            this.currentErrorAvgBox.Enabled = false;
-            this.currentErrorAvgBox.Location = new System.Drawing.Point(109, 170);
-            this.currentErrorAvgBox.Name = "currentErrorAvgBox";
-            this.currentErrorAvgBox.Size = new System.Drawing.Size(86, 21);
-            this.currentErrorAvgBox.TabIndex = 0;
-            // 
-            // currentIterationBox
-            // 
-            this.currentIterationBox.Enabled = false;
-            this.currentIterationBox.Location = new System.Drawing.Point(95, 144);
-            this.currentIterationBox.Name = "currentIterationBox";
-            this.currentIterationBox.Size = new System.Drawing.Size(100, 21);
-            this.currentIterationBox.TabIndex = 0;
-            // 
-            // iterationsBox
-            // 
-            this.iterationsBox.Location = new System.Drawing.Point(95, 84);
-            this.iterationsBox.Name = "iterationsBox";
-            this.iterationsBox.Size = new System.Drawing.Size(100, 21);
-            this.iterationsBox.TabIndex = 0;
-            this.iterationsBox.Text = "1000";
-            // 
-            // errorLimitBox
-            // 
-            this.errorLimitBox.Location = new System.Drawing.Point(95, 58);
-            this.errorLimitBox.Name = "errorLimitBox";
-            this.errorLimitBox.Size = new System.Drawing.Size(100, 21);
-            this.errorLimitBox.TabIndex = 0;
-            this.errorLimitBox.Text = "0.01";
-            // 
-            // alphaBox
-            // 
-            this.alphaBox.Location = new System.Drawing.Point(95, 32);
-            this.alphaBox.Name = "alphaBox";
-            this.alphaBox.Size = new System.Drawing.Size(100, 21);
-            this.alphaBox.TabIndex = 0;
-            this.alphaBox.Text = "0.9";
-            // 
-            // learningRateBox
-            // 
-            this.learningRateBox.Location = new System.Drawing.Point(95, 6);
-            this.learningRateBox.Name = "learningRateBox";
-            this.learningRateBox.Size = new System.Drawing.Size(100, 21);
-            this.learningRateBox.TabIndex = 0;
-            this.learningRateBox.Text = "0.7";
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 137);
+            this.splitter1.Location = new System.Drawing.Point(0, 272);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(200, 3);
             this.splitter1.TabIndex = 1;
@@ -981,7 +869,7 @@
             this.panelProcessedDataInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelProcessedDataInfo.Location = new System.Drawing.Point(0, 0);
             this.panelProcessedDataInfo.Name = "panelProcessedDataInfo";
-            this.panelProcessedDataInfo.Size = new System.Drawing.Size(200, 137);
+            this.panelProcessedDataInfo.Size = new System.Drawing.Size(200, 272);
             this.panelProcessedDataInfo.TabIndex = 0;
             // 
             // textProcessedDataReport
@@ -992,7 +880,7 @@
             this.textProcessedDataReport.Multiline = true;
             this.textProcessedDataReport.Name = "textProcessedDataReport";
             this.textProcessedDataReport.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textProcessedDataReport.Size = new System.Drawing.Size(200, 92);
+            this.textProcessedDataReport.Size = new System.Drawing.Size(200, 227);
             this.textProcessedDataReport.TabIndex = 2;
             // 
             // toolStrip1
@@ -1003,8 +891,35 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // controlTitle2
+            // 
+            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle2.Name = "controlTitle2";
+            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle2.TabIndex = 0;
+            this.controlTitle2.Title = "Tab Report";
+            // 
+            // collapsibleSplitter1
+            // 
+            this.collapsibleSplitter1.AnimationDelay = 20;
+            this.collapsibleSplitter1.AnimationStep = 20;
+            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
+            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter1.ExpandParentForm = false;
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(828, 3);
+            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter1.TabIndex = 1;
+            this.collapsibleSplitter1.TabStop = false;
+            this.collapsibleSplitter1.UseAnimations = false;
+            // 
             // tabTrainingPage
             // 
+            this.tabTrainingPage.Controls.Add(this.collapsibleSplitter3);
+            this.tabTrainingPage.Controls.Add(this.panelTrainingMainPage);
+            this.tabTrainingPage.Controls.Add(this.panelTrainingReport);
             this.tabTrainingPage.Location = new System.Drawing.Point(4, 22);
             this.tabTrainingPage.Name = "tabTrainingPage";
             this.tabTrainingPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1012,6 +927,318 @@
             this.tabTrainingPage.TabIndex = 3;
             this.tabTrainingPage.Text = "Training";
             this.tabTrainingPage.UseVisualStyleBackColor = true;
+            // 
+            // collapsibleSplitter3
+            // 
+            this.collapsibleSplitter3.AnimationDelay = 20;
+            this.collapsibleSplitter3.AnimationStep = 20;
+            this.collapsibleSplitter3.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
+            this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter3.ExpandParentForm = false;
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(628, 3);
+            this.collapsibleSplitter3.Name = "collapsibleSplitter3";
+            this.collapsibleSplitter3.TabIndex = 3;
+            this.collapsibleSplitter3.TabStop = false;
+            this.collapsibleSplitter3.UseAnimations = false;
+            // 
+            // panelTrainingReport
+            // 
+            this.panelTrainingReport.Controls.Add(this.panelTrainingControl);
+            this.panelTrainingReport.Controls.Add(this.splitter2);
+            this.panelTrainingReport.Controls.Add(this.panel3);
+            this.panelTrainingReport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelTrainingReport.Location = new System.Drawing.Point(631, 3);
+            this.panelTrainingReport.Name = "panelTrainingReport";
+            this.panelTrainingReport.Size = new System.Drawing.Size(200, 398);
+            this.panelTrainingReport.TabIndex = 1;
+            // 
+            // panelTrainingControl
+            // 
+            this.panelTrainingControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTrainingControl.Location = new System.Drawing.Point(0, 335);
+            this.panelTrainingControl.Name = "panelTrainingControl";
+            this.panelTrainingControl.Size = new System.Drawing.Size(200, 63);
+            this.panelTrainingControl.TabIndex = 2;
+            // 
+            // splitter2
+            // 
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter2.Location = new System.Drawing.Point(0, 325);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(200, 10);
+            this.splitter2.TabIndex = 1;
+            this.splitter2.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnStop);
+            this.panel3.Controls.Add(this.toolStrip4);
+            this.panel3.Controls.Add(this.btnStart);
+            this.panel3.Controls.Add(this.controlTitle5);
+            this.panel3.Controls.Add(this.chkErrorLimit);
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.learningRateBox);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.alphaBox);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.errorLimitBox);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.iterationsBox);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.txtCurrentIterationBox);
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.txtCurrentErrorBox);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.txtCurrentNetBox);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 325);
+            this.panel3.TabIndex = 0;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Location = new System.Drawing.Point(93, 282);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(76, 23);
+            this.btnStop.TabIndex = 3;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.Location = new System.Drawing.Point(0, 20);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(200, 25);
+            this.toolStrip4.TabIndex = 3;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(7, 282);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(76, 23);
+            this.btnStart.TabIndex = 3;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // controlTitle5
+            // 
+            this.controlTitle5.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle5.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle5.Name = "controlTitle5";
+            this.controlTitle5.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle5.TabIndex = 0;
+            this.controlTitle5.Title = "Tab Report";
+            // 
+            // chkErrorLimit
+            // 
+            this.chkErrorLimit.AutoSize = true;
+            this.chkErrorLimit.Location = new System.Drawing.Point(7, 160);
+            this.chkErrorLimit.Name = "chkErrorLimit";
+            this.chkErrorLimit.Size = new System.Drawing.Size(182, 17);
+            this.chkErrorLimit.TabIndex = 2;
+            this.chkErrorLimit.Text = "Use error limit [or iterations limit]";
+            this.chkErrorLimit.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(4, 59);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(71, 13);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Learning rate";
+            // 
+            // label9
+            // 
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Location = new System.Drawing.Point(4, 182);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(190, 2);
+            this.label9.TabIndex = 1;
+            // 
+            // learningRateBox
+            // 
+            this.learningRateBox.Location = new System.Drawing.Point(93, 56);
+            this.learningRateBox.Name = "learningRateBox";
+            this.learningRateBox.Size = new System.Drawing.Size(101, 21);
+            this.learningRateBox.TabIndex = 0;
+            this.learningRateBox.Text = "0.7";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(4, 249);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Current net";
+            // 
+            // alphaBox
+            // 
+            this.alphaBox.Location = new System.Drawing.Point(93, 82);
+            this.alphaBox.Name = "alphaBox";
+            this.alphaBox.Size = new System.Drawing.Size(101, 21);
+            this.alphaBox.TabIndex = 0;
+            this.alphaBox.Text = "0.9";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 223);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Current avg(error)";
+            // 
+            // errorLimitBox
+            // 
+            this.errorLimitBox.Location = new System.Drawing.Point(93, 108);
+            this.errorLimitBox.Name = "errorLimitBox";
+            this.errorLimitBox.Size = new System.Drawing.Size(101, 21);
+            this.errorLimitBox.TabIndex = 0;
+            this.errorLimitBox.Text = "0.01";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 137);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Iterations limit";
+            // 
+            // iterationsBox
+            // 
+            this.iterationsBox.Location = new System.Drawing.Point(93, 134);
+            this.iterationsBox.Name = "iterationsBox";
+            this.iterationsBox.Size = new System.Drawing.Size(101, 21);
+            this.iterationsBox.TabIndex = 0;
+            this.iterationsBox.Text = "1000";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 197);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(87, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Current iteration";
+            // 
+            // txtCurrentIterationBox
+            // 
+            this.txtCurrentIterationBox.Enabled = false;
+            this.txtCurrentIterationBox.Location = new System.Drawing.Point(93, 194);
+            this.txtCurrentIterationBox.Name = "txtCurrentIterationBox";
+            this.txtCurrentIterationBox.Size = new System.Drawing.Size(101, 21);
+            this.txtCurrentIterationBox.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(4, 111);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Error limit";
+            // 
+            // txtCurrentErrorBox
+            // 
+            this.txtCurrentErrorBox.Enabled = false;
+            this.txtCurrentErrorBox.Location = new System.Drawing.Point(107, 220);
+            this.txtCurrentErrorBox.Name = "txtCurrentErrorBox";
+            this.txtCurrentErrorBox.Size = new System.Drawing.Size(87, 21);
+            this.txtCurrentErrorBox.TabIndex = 0;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(4, 85);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Momentum";
+            // 
+            // txtCurrentNetBox
+            // 
+            this.txtCurrentNetBox.Enabled = false;
+            this.txtCurrentNetBox.Location = new System.Drawing.Point(93, 246);
+            this.txtCurrentNetBox.Name = "txtCurrentNetBox";
+            this.txtCurrentNetBox.Size = new System.Drawing.Size(101, 21);
+            this.txtCurrentNetBox.TabIndex = 0;
+            // 
+            // panelTrainingMainPage
+            // 
+            this.panelTrainingMainPage.Controls.Add(this.chartErrorTraining);
+            this.panelTrainingMainPage.Controls.Add(this.tsTrainingControl);
+            this.panelTrainingMainPage.Controls.Add(this.controlTitle6);
+            this.panelTrainingMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTrainingMainPage.Location = new System.Drawing.Point(3, 3);
+            this.panelTrainingMainPage.Name = "panelTrainingMainPage";
+            this.panelTrainingMainPage.Size = new System.Drawing.Size(628, 398);
+            this.panelTrainingMainPage.TabIndex = 2;
+            // 
+            // chartErrorTraining
+            // 
+            this.chartErrorTraining.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartErrorTraining.Location = new System.Drawing.Point(0, 45);
+            this.chartErrorTraining.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.chartErrorTraining.Name = "chartErrorTraining";
+            this.chartErrorTraining.Size = new System.Drawing.Size(628, 353);
+            this.chartErrorTraining.TabIndex = 2;
+            this.chartErrorTraining.Text = "Error Chart";
+            // 
+            // tsTrainingControl
+            // 
+            this.tsTrainingControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnStartTrain,
+            this.toolStripSeparator4,
+            this.tsbtnTrainingOptions});
+            this.tsTrainingControl.Location = new System.Drawing.Point(0, 20);
+            this.tsTrainingControl.Name = "tsTrainingControl";
+            this.tsTrainingControl.Size = new System.Drawing.Size(628, 25);
+            this.tsTrainingControl.TabIndex = 1;
+            this.tsTrainingControl.Text = "toolStrip5";
+            // 
+            // tsbtnStartTrain
+            // 
+            this.tsbtnStartTrain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnStartTrain.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnStartTrain.Image")));
+            this.tsbtnStartTrain.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnStartTrain.Name = "tsbtnStartTrain";
+            this.tsbtnStartTrain.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnStartTrain.Text = "Train";
+            this.tsbtnStartTrain.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbtnTrainingOptions
+            // 
+            this.tsbtnTrainingOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnTrainingOptions.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnTrainingOptions.Image")));
+            this.tsbtnTrainingOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnTrainingOptions.Name = "tsbtnTrainingOptions";
+            this.tsbtnTrainingOptions.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnTrainingOptions.Text = "Options";
+            // 
+            // controlTitle6
+            // 
+            this.controlTitle6.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle6.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle6.Name = "controlTitle6";
+            this.controlTitle6.Size = new System.Drawing.Size(628, 20);
+            this.controlTitle6.TabIndex = 0;
+            this.controlTitle6.Title = "Graph Visualize Error";
             // 
             // tabTestingPage
             // 
@@ -1312,74 +1539,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // controlTitle4
-            // 
-            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle4.Name = "controlTitle4";
-            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle4.TabIndex = 0;
-            this.controlTitle4.Title = "Raw Data";
-            // 
-            // collapsibleSplitter2
-            // 
-            this.collapsibleSplitter2.AnimationDelay = 20;
-            this.collapsibleSplitter2.AnimationStep = 20;
-            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
-            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter2.ExpandParentForm = false;
-            this.collapsibleSplitter2.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter2.TabIndex = 8;
-            this.collapsibleSplitter2.TabStop = false;
-            this.collapsibleSplitter2.UseAnimations = false;
-            // 
-            // controlTitle3
-            // 
-            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle3.Name = "controlTitle3";
-            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle3.TabIndex = 0;
-            this.controlTitle3.Title = "Tab Report";
-            // 
-            // controlTitle1
-            // 
-            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle1.TabIndex = 0;
-            this.controlTitle1.Title = "Processed Data";
-            // 
-            // collapsibleSplitter1
-            // 
-            this.collapsibleSplitter1.AnimationDelay = 20;
-            this.collapsibleSplitter1.AnimationStep = 20;
-            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
-            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter1.TabIndex = 1;
-            this.collapsibleSplitter1.TabStop = false;
-            this.collapsibleSplitter1.UseAnimations = false;
-            // 
-            // controlTitle2
-            // 
-            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle2.Name = "controlTitle2";
-            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle2.TabIndex = 0;
-            this.controlTitle2.Title = "Tab Report";
-            // 
             // F001_MainProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1413,10 +1572,16 @@
             this.toolStripProcessedDataFlexGrid.ResumeLayout(false);
             this.toolStripProcessedDataFlexGrid.PerformLayout();
             this.panelDataReport.ResumeLayout(false);
-            this.panelProcessedDataControl.ResumeLayout(false);
-            this.panelProcessedDataControl.PerformLayout();
             this.panelProcessedDataInfo.ResumeLayout(false);
             this.panelProcessedDataInfo.PerformLayout();
+            this.tabTrainingPage.ResumeLayout(false);
+            this.panelTrainingReport.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panelTrainingMainPage.ResumeLayout(false);
+            this.panelTrainingMainPage.PerformLayout();
+            this.tsTrainingControl.ResumeLayout(false);
+            this.tsTrainingControl.PerformLayout();
             this.tabQueryPage.ResumeLayout(false);
             this.tabQueryPage.PerformLayout();
             this.toolStripQueryTab.ResumeLayout(false);
@@ -1535,24 +1700,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripLabel toolStripTargetLabel;
         private System.Windows.Forms.ToolStripComboBox toolStripTargetComboBox1;
-        private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.CheckBox chkErrorLimit;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox currentNetBox;
-        private System.Windows.Forms.TextBox currentErrorAvgBox;
-        private System.Windows.Forms.TextBox currentIterationBox;
-        private System.Windows.Forms.TextBox iterationsBox;
-        private System.Windows.Forms.TextBox errorLimitBox;
-        private System.Windows.Forms.TextBox alphaBox;
-        private System.Windows.Forms.TextBox learningRateBox;
         private System.Windows.Forms.TabPage tabAnalysisPage;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem networkPropertiesToolStripMenuItem1;
@@ -1565,8 +1712,40 @@
         private System.Windows.Forms.Panel panelAnalysisMainPage;
         private C1.Win.C1FlexGrid.C1FlexGrid c1RawDataFlexGrid;
         private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripButton toolStripButton16;
+        private System.Windows.Forms.ToolStripButton tsbtnOpenRawData;
         private DropOut.Uc.ControlTitle controlTitle4;
+        private System.Windows.Forms.Panel panelTrainingReport;
+        private System.Windows.Forms.Panel panelTrainingControl;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.CheckBox chkErrorLimit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtCurrentNetBox;
+        private System.Windows.Forms.TextBox txtCurrentErrorBox;
+        private System.Windows.Forms.TextBox txtCurrentIterationBox;
+        private System.Windows.Forms.TextBox iterationsBox;
+        private System.Windows.Forms.TextBox errorLimitBox;
+        private System.Windows.Forms.TextBox alphaBox;
+        private System.Windows.Forms.TextBox learningRateBox;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ToolStrip toolStrip4;
+        private DropOut.Uc.ControlTitle controlTitle5;
+        private System.Windows.Forms.Splitter splitter2;
+        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter3;
+        private System.Windows.Forms.Panel panelTrainingMainPage;
+        private DropOut.Uc.ControlTitle controlTitle6;
+        private System.Windows.Forms.ToolStrip tsTrainingControl;
+        private System.Windows.Forms.ToolStripButton tsbtnStartTrain;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsbtnTrainingOptions;
+        private AForge.Controls.Chart chartErrorTraining;
     }
 }
 

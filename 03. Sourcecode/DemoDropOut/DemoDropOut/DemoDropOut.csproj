@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Controls, Version=2.1.4.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\AForge.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Neuro, Version=2.1.1.0, Culture=neutral, PublicKeyToken=2094f4ea39731d4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\AForge.NET Framework-2.1.4\Samples\Neuro\Back Propagation\XORProblem\bin\Debug\AForge.Neuro.dll</HintPath>
@@ -56,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apps\DataAccess.cs" />
+    <Compile Include="Apps\DropOutForecast.cs" />
     <Compile Include="CollapsibleSplitter.cs">
       <SubType>Component</SubType>
     </Compile>

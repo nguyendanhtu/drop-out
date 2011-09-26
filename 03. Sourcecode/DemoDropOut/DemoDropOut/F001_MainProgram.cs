@@ -17,6 +17,7 @@ using AForge.Neuro.Learning;
 using HeatonResearchNeural.Feedforward;
 using HeatonResearchNeural.Feedforward.Train;
 using HeatonResearchNeural.Feedforward.Train.Backpropagation;
+using DemoDropOut.Apps;
 
 namespace DemoDropOut
 {
@@ -209,220 +210,26 @@ namespace DemoDropOut
         }
         #endregion
 
-        #region Thông báo
-        public delegate void SetTextHandler(Control control, string text);
-
-        private void notifyMessage(Control control, string message)
-        {
-            if (control.InvokeRequired == true)
-            {
-                control.Invoke(new SetTextHandler(notifyMessage), control, message);
-            }
-            else
-            {
-                control.Text = message;
-            }
-        }
-
-        #endregion
-
         #region Luyện mạng
         /// <summary>
-        /// Số tập mẫu
+        /// Start Forecast
         /// </summary>
-        private int samples = 0;
-        /// <summary>
-        /// Số biến nhập
-        /// </summary>
-        private int variables = 0;
+        private DropOutForecast m_dropOutForecast;
         /// <summary>
         /// Số biến xuất
         /// </summary>
-        private int outputs = 0;
-        /// <summary>
-        /// Số lớp xuất
-        /// </summary>
         private int classes = 0;
-
-        private double learningRate = 0.1;
-        private double momentumValue = 2;
-        private double learningErrorLimit = 0.1;
-        private double iterationLimit = 1000;
-        private bool useErrorLimit = true;
-
-        private volatile bool signalStop = false;
-
-        // Thread
-        private Thread worker = null;
 
         private void UpdateSettings()
         {
-            learningRateBox.Text = learningRate.ToString();
-            alphaBox.Text = momentumValue.ToString();
-            errorLimitBox.Text = learningErrorLimit.ToString();
-            iterationsBox.Text = iterationLimit.ToString();
+            learningRateBox.Text = m_dropOutForecast.LearningRate.ToString();
+            alphaBox.Text = m_dropOutForecast.Momentum.ToString();
+            errorLimitBox.Text = m_dropOutForecast.ErrorLimit.ToString();
+            iterationsBox.Text = m_dropOutForecast.IterationLimit.ToString();
 
-            chkErrorLimit.Checked = useErrorLimit;
+            chkErrorLimit.Checked = m_dropOutForecast.IsCheckError;
         }
 
-
-        private void startTraining()
-        {
-            try
-            {
-                variables = m_dt_samples.Columns.Count - outputs;
-                samples = m_dt_samples.Rows.Count;
-
-                var input = new double[samples][];  // training set
-                var output = new double[samples][]; // ideal output
-
-                // set sample dataset
-                for (int i = 0; i < samples; i++)
-                {
-                    input[i] = new double[variables];
-                    output[i] = new double[outputs];
-
-                    // set input
-                    for (int j = 0; j < variables; j++)
-                    {
-                        var value = m_dt_samples.Rows[i][j].ToString();
-                        input[i][j] = double.Parse(value);
-                    }
-                    for (int j = 0; j < outputs; j++)
-                    {
-                        var value = m_dt_samples.Rows[i][variables + j].ToString();
-                        output[i][j] = double.Parse(value);
-                    }
-                }
-
-
-                var neuronsCount = variables > 3 ? variables / 2 : 2;
-                var v_str_current_net = string.Format("{0}-{1}-{2}", variables, neuronsCount, outputs);
-                notifyMessage(currentNetBox, v_str_current_net);
-
-                // Khởi tạo mạng 1 lớp ẩn: luật học perceptron
-                SigmoidFunction function = new SigmoidFunction(momentumValue);
-                ActivationNetwork network = new ActivationNetwork(function, variables, neuronsCount);
-                var layer = network[0]; // Perceptron has one hidden layer
-
-                // Học có thầy: qui tắc delta
-                DeltaRuleLearning teacher = new DeltaRuleLearning(network);
-                teacher.LearningRate = learningRate;
-
-                // lặp
-                int iteration = 1;
-                // bảng lỗi
-                //var errorsList = new ArrayList();
-                var currentError = 0.0;
-                // bảng trọng: new double[lớp ẩn][nơ ron][nút vào];
-                // bảng trọng cho perceptron: new double[nơ ron][biến nhập]
-                var weightsOfPerceptron = new double[neuronsCount][];
-
-                while (signalStop == false)
-                {
-                    #region Lưu trạng thái của mạng học
-                    //for (int i = 0; i < neuronsCount; i++)
-                    //{
-                    //    weightsOfPerceptron[i] = new double[variables];
-                    //    for (int j = 0; j < variables; j++)
-                    //    {
-                    //        weightsOfPerceptron[i][j] = layer[i][j];
-                    //    }
-                    //}
-                    #endregion
-
-                    double error = teacher.RunEpoch(input, output) / samples;
-                    //errorsList.Add(error);
-
-                    // notify message
-                    notifyMessage(currentIterationBox, iteration.ToString());
-                    notifyMessage(currentErrorAvgBox, error.ToString());
-                    iteration++;
-
-                    // stop ??
-                    if (useErrorLimit == true)
-                    {
-                        if (error <= learningErrorLimit)
-                            break;
-                    }
-                    else if (iteration > iterationLimit)
-                    {
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Console.WriteLine(ex);
-            }
-        }
-
-        /// <summary>
-        /// Sử dụng mạng truyền thẳng kết hợp phương pháp lan truyền ngược
-        /// </summary>
-        private void runTraining()
-        {
-            variables = m_dt_samples.Columns.Count - outputs;
-            samples = m_dt_samples.Rows.Count;
-
-            var input = new double[samples][];  // training set
-            var output = new double[samples][]; // ideal output
-
-            // set sample dataset
-            for (int i = 0; i < samples; i++)
-            {
-                input[i] = new double[variables];
-                output[i] = new double[outputs];
-
-                // set input
-                for (int j = 0; j < variables; j++)
-                {
-                    var value = m_dt_samples.Rows[i][j].ToString();
-                    input[i][j] = double.Parse(value);
-                }
-                for (int j = 0; j < outputs; j++)
-                {
-                    var value = m_dt_samples.Rows[i][variables + j].ToString();
-                    output[i][j] = double.Parse(value);
-                }
-            }
-
-
-            var neuronsCount = (variables >> 1) + 1;  // (variables << 1) / 3 + 1;
-            var v_str_current_net = string.Format("{0}-{1}-{2}", variables, neuronsCount, outputs);
-            notifyMessage(currentNetBox, v_str_current_net);
-
-            FeedforwardNetwork network = new FeedforwardNetwork();
-            network.AddLayer(new FeedforwardLayer(variables));
-            network.AddLayer(new FeedforwardLayer(neuronsCount));
-            network.AddLayer(new FeedforwardLayer(outputs));
-            network.Reset(); // randomize Weights & Threshold
-
-            Train teacher = new Backpropagation(network, input, output, learningRate, momentumValue); // 0.7, 0.9); //0.7 0.9
-            int epoch = 0;
-
-            do
-            {
-                teacher.Iteration();
-                epoch++;
-
-                // notify message
-                notifyMessage(currentErrorAvgBox, teacher.Error.ToString("0.###########"));
-                notifyMessage(currentIterationBox, epoch.ToString());
-
-                // stop ??
-                if (useErrorLimit == true)
-                {
-                    if (teacher.Error <= learningErrorLimit)
-                        break;
-                }
-                else if (epoch > iterationLimit)
-                {
-                    break;
-                }
-            } while (signalStop == false);
-        }
         #endregion
 
         private void btnOpenRawData_Click(object sender, EventArgs e)
@@ -471,8 +278,8 @@ namespace DemoDropOut
                 if (toolStripTargetComboBox1.Items.Count > 0 && m_ht_dimension != null)
                 {
                     // Lấy thông tin số nút xuất của mạng
-                    outputs = (int)m_ht_dimension[m_list_dimension[toolStripTargetComboBox1.SelectedIndex]];
-                    toolStripTargetLabel.Text = string.Format("Target [{0}]", outputs);
+                    classes = (int)m_ht_dimension[m_list_dimension[toolStripTargetComboBox1.SelectedIndex]];
+                    toolStripTargetLabel.Text = string.Format("Target [{0}]", classes);
                 }
             }
             catch (Exception ex)
@@ -483,30 +290,69 @@ namespace DemoDropOut
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            learningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
-            momentumValue = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
-            learningErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
-            iterationLimit = Math.Max(0, int.Parse(iterationsBox.Text));
+            try
+            {
 
-            useErrorLimit = chkErrorLimit.Checked;
-            UpdateSettings();
+                m_dropOutForecast = new DropOutForecast(m_dt_samples, classes);
 
-            // start 
-            signalStop = false;
-            //worker = new Thread(startTraining);
-            worker = new Thread(runTraining);
-            worker.Start();
+                m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
+                m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
+
+                m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
+                m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
+
+                m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
+
+                m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
+                m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
+
+                UpdateSettings();
+
+                m_dropOutForecast.Train();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void m_dropOutForecast_Finish(object sender, uint iteration)
+        {
+            try
+            {
+                MessageBox.Show("Đã xong !!\r\nSố bước lặp hoàn tất: " + iteration.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void m_dropOutForecast_NotifyError(double dbError, uint iteration)
+        {
+            if (this.InvokeRequired == true)
+            {
+                this.Invoke(new NotifyErrorHandler(m_dropOutForecast_NotifyError), dbError, iteration);
+            }
+            else
+            {
+                this.txtCurrentErrorBox.Text = dbError.ToString();
+                this.txtCurrentIterationBox.Text = iteration.ToString();
+            }
         }
 
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            signalStop = true;
-            while (worker.Join(100) == false)
+            try
             {
-                Application.DoEvents();
+                m_dropOutForecast.Stop();
             }
-            worker = null;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }
