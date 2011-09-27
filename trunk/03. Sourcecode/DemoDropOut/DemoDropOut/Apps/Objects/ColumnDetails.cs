@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DemoDropOut.Objects
+namespace DemoDropOut.Apps.Objects
 {
     public class ColumnDetails
     {

@@ -10,15 +10,15 @@ using System.IO;
 using System.Diagnostics;
 using C1.Win.C1FlexGrid;
 using System.Collections;
-using DemoDropOut.Objects;
+using DemoDropOut.Apps.Objects;
 using System.Threading;
 using AForge.Neuro;
 using AForge.Neuro.Learning;
 using HeatonResearchNeural.Feedforward;
 using HeatonResearchNeural.Feedforward.Train;
 using HeatonResearchNeural.Feedforward.Train.Backpropagation;
-using DemoDropOut.Apps;
 using AForge;
+using DemoDropOut.Apps.BussinessLogicLayer;
 
 namespace DemoDropOut
 {
