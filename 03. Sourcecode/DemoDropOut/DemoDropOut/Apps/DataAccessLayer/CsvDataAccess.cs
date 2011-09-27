@@ -4,9 +4,9 @@ using System.Text;
 using System.IO;
 using System.Data;
 
-namespace DemoDropOut.Apps
+namespace DemoDropOut.Apps.DataAccessLayer
 {
-    public static class DataAccess
+    public static class CsvDataAccess
     {
         /// <summary>
         /// Đọc dữ liệu định dạng comma delimited

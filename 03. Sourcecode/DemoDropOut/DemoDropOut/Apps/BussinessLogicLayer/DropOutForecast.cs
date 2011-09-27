@@ -7,7 +7,7 @@ using HeatonResearchNeural.Feedforward.Train;
 using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using System.Data;
 
-namespace DemoDropOut.Apps
+namespace DemoDropOut.Apps.BussinessLogicLayer
 {
     public delegate void NotifyErrorHandler(double dbError, uint iteration);
     public delegate void FinishHandler(object sender, uint iteration);
