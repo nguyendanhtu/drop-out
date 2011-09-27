@@ -18,6 +18,7 @@ using HeatonResearchNeural.Feedforward;
 using HeatonResearchNeural.Feedforward.Train;
 using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using DemoDropOut.Apps;
+using AForge;
 
 namespace DemoDropOut
 {
@@ -208,6 +209,17 @@ namespace DemoDropOut
                 }
             }
         }
+
+        private void DrawErrorChart(List<double> ip_listError)
+        {
+            double[,] errorList = new double[ip_listError.Count, 1];
+            for (int i = 0; i < ip_listError.Count; i++)
+            {
+                errorList[i, 0] = ip_listError[i];
+            }
+            chartErrorTraining.RangeX = new DoubleRange(0, ip_listError.Count);
+            chartErrorTraining.UpdateDataSeries("Error Chart", errorList);
+        }
         #endregion
 
         #region Luyện mạng
@@ -219,6 +231,8 @@ namespace DemoDropOut
         /// Số biến xuất
         /// </summary>
         private int classes = 0;
+
+        private List<double> listErrorChart;
 
         private void UpdateSettings()
         {
@@ -292,7 +306,7 @@ namespace DemoDropOut
         {
             try
             {
-
+                listErrorChart = new List<double>();
                 m_dropOutForecast = new DropOutForecast(m_dt_samples, classes);
 
                 m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
@@ -339,6 +353,10 @@ namespace DemoDropOut
             {
                 this.txtCurrentErrorBox.Text = dbError.ToString();
                 this.txtCurrentIterationBox.Text = iteration.ToString();
+                this.listErrorChart.Add(dbError);
+                if (listErrorChart.Count % 3 == 0)
+                {
+                }
             }
         }
 
