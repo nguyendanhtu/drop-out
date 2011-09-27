@@ -77,10 +77,10 @@
   <ItemGroup>
     <Compile Include="Apps\DataAccessLayer\CsvDataAccess.cs" />
     <Compile Include="Apps\BussinessLogicLayer\DropOutForecast.cs" />
-    <Compile Include="CollapsibleSplitter.cs">
+    <Compile Include="Uc\CollapsibleSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ControlTitle.cs">
+    <Compile Include="Uc\ControlTitle.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="F001_MainProgram.cs">
