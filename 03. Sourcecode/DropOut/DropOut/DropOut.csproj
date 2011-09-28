@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="C1.Common, Version=1.0.20031.116, Culture=neutral, PublicKeyToken=e272bb32d11b1948">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\04. Tools\C1 Controls\C1.Common.dll</HintPath>
+      <HintPath>..\..\DLLs\C1 Controls\C1.Common.dll</HintPath>
     </Reference>
     <Reference Include="C1.Win.C1FlexGrid, Version=2.5.20044.189, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\.Tools - Controls\C1.Win.C1FlexGrid.dll</HintPath>
+      <HintPath>..\..\DLLs\C1 Controls\C1.Win.C1FlexGrid.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
