@@ -45,6 +45,10 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         // Thread
         private Thread worker = null;
+        
+        // Network
+        private FeedforwardNetwork network = null;
+
         #endregion
 
         #region Properties
@@ -219,6 +223,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     }
                 } while (signalStop == false);
                 // Hoàn tất việc học mẫu
+                this.network = teacher.Network;
                 OnFinish(this, epoch);
             }
             catch (Exception ex)
@@ -280,6 +285,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 worker = null;
             }
+        }
+
+        public double[] ComputeOutputs(double[] ip_ideal_samples)
+        {
+            return this.network.ComputeOutputs(ip_ideal_samples);
         }
         #endregion
     }

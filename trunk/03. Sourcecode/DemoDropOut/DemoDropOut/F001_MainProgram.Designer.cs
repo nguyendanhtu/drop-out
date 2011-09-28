@@ -85,13 +85,10 @@
             this.c1RawDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.tsbtnOpenRawData = new System.Windows.Forms.ToolStripButton();
-            this.controlTitle4 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
             this.panelAnalysisReport = new System.Windows.Forms.Panel();
             this.panelAnalysisReport2 = new System.Windows.Forms.Panel();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.controlTitle3 = new DropOut.Uc.ControlTitle();
             this.tabPreprocessingPage = new System.Windows.Forms.TabPage();
             this.panelProcessedData = new System.Windows.Forms.Panel();
             this.c1ProcessedDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -104,17 +101,13 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTargetLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTargetComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.controlTitle1 = new DropOut.Uc.ControlTitle();
             this.panelDataReport = new System.Windows.Forms.Panel();
             this.panelProcessedDataControl = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelProcessedDataInfo = new System.Windows.Forms.Panel();
             this.textProcessedDataReport = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.controlTitle2 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
-            this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
             this.panelTrainingReport = new System.Windows.Forms.Panel();
             this.panelTrainingControl = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
@@ -122,7 +115,6 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.btnStart = new System.Windows.Forms.Button();
-            this.controlTitle5 = new DropOut.Uc.ControlTitle();
             this.chkErrorLimit = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -145,7 +137,6 @@
             this.tsbtnStartTrain = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnTrainingOptions = new System.Windows.Forms.ToolStripButton();
-            this.controlTitle6 = new DropOut.Uc.ControlTitle();
             this.tabTestingPage = new System.Windows.Forms.TabPage();
             this.tabQueryPage = new System.Windows.Forms.TabPage();
             this.toolStripQueryTab = new System.Windows.Forms.ToolStrip();
@@ -180,6 +171,15 @@
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.controlTitle4 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
+            this.controlTitle3 = new DropOut.Uc.ControlTitle();
+            this.controlTitle1 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
+            this.controlTitle2 = new DropOut.Uc.ControlTitle();
+            this.controlTitle6 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
+            this.controlTitle5 = new DropOut.Uc.ControlTitle();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -581,7 +581,6 @@
             // tabAnalysisPage
             // 
             this.tabAnalysisPage.Controls.Add(this.panelAnalysisMainPage);
-            this.tabAnalysisPage.Controls.Add(this.collapsibleSplitter2);
             this.tabAnalysisPage.Controls.Add(this.panelAnalysisReport);
             this.tabAnalysisPage.Location = new System.Drawing.Point(4, 22);
             this.tabAnalysisPage.Name = "tabAnalysisPage";
@@ -596,10 +595,11 @@
             this.panelAnalysisMainPage.Controls.Add(this.c1RawDataFlexGrid);
             this.panelAnalysisMainPage.Controls.Add(this.toolStrip3);
             this.panelAnalysisMainPage.Controls.Add(this.controlTitle4);
+            this.panelAnalysisMainPage.Controls.Add(this.collapsibleSplitter2);
             this.panelAnalysisMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAnalysisMainPage.Location = new System.Drawing.Point(3, 3);
             this.panelAnalysisMainPage.Name = "panelAnalysisMainPage";
-            this.panelAnalysisMainPage.Size = new System.Drawing.Size(620, 398);
+            this.panelAnalysisMainPage.Size = new System.Drawing.Size(628, 398);
             this.panelAnalysisMainPage.TabIndex = 9;
             // 
             // c1RawDataFlexGrid
@@ -633,30 +633,6 @@
             this.tsbtnOpenRawData.Size = new System.Drawing.Size(23, 22);
             this.tsbtnOpenRawData.Text = "toolStripButton14";
             this.tsbtnOpenRawData.Click += new System.EventHandler(this.btnOpenRawData_Click);
-            // 
-            // controlTitle4
-            // 
-            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle4.Name = "controlTitle4";
-            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle4.TabIndex = 0;
-            this.controlTitle4.Title = "Raw Data";
-            // 
-            // collapsibleSplitter2
-            // 
-            this.collapsibleSplitter2.AnimationDelay = 20;
-            this.collapsibleSplitter2.AnimationStep = 20;
-            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
-            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter2.ExpandParentForm = false;
-            this.collapsibleSplitter2.Location = new System.Drawing.Point(623, 3);
-            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter2.TabIndex = 8;
-            this.collapsibleSplitter2.TabStop = false;
-            this.collapsibleSplitter2.UseAnimations = false;
             // 
             // panelAnalysisReport
             // 
@@ -697,21 +673,10 @@
             this.toolStrip2.TabIndex = 3;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // controlTitle3
-            // 
-            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle3.Name = "controlTitle3";
-            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle3.TabIndex = 0;
-            this.controlTitle3.Title = "Tab Report";
-            // 
             // tabPreprocessingPage
             // 
             this.tabPreprocessingPage.Controls.Add(this.panelProcessedData);
             this.tabPreprocessingPage.Controls.Add(this.panelDataReport);
-            this.tabPreprocessingPage.Controls.Add(this.collapsibleSplitter1);
             this.tabPreprocessingPage.Location = new System.Drawing.Point(4, 22);
             this.tabPreprocessingPage.Name = "tabPreprocessingPage";
             this.tabPreprocessingPage.Padding = new System.Windows.Forms.Padding(3);
@@ -725,10 +690,11 @@
             this.panelProcessedData.Controls.Add(this.c1ProcessedDataFlexGrid);
             this.panelProcessedData.Controls.Add(this.toolStripProcessedDataFlexGrid);
             this.panelProcessedData.Controls.Add(this.controlTitle1);
+            this.panelProcessedData.Controls.Add(this.collapsibleSplitter1);
             this.panelProcessedData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProcessedData.Location = new System.Drawing.Point(3, 3);
             this.panelProcessedData.Name = "panelProcessedData";
-            this.panelProcessedData.Size = new System.Drawing.Size(625, 398);
+            this.panelProcessedData.Size = new System.Drawing.Size(628, 398);
             this.panelProcessedData.TabIndex = 2;
             // 
             // c1ProcessedDataFlexGrid
@@ -738,7 +704,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
-            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
+            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
             // 
@@ -756,7 +722,7 @@
             this.toolStripTargetComboBox1});
             this.toolStripProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.toolStripProcessedDataFlexGrid.Name = "toolStripProcessedDataFlexGrid";
-            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 25);
+            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 25);
             this.toolStripProcessedDataFlexGrid.TabIndex = 5;
             this.toolStripProcessedDataFlexGrid.Text = "toolStrip1";
             // 
@@ -823,23 +789,13 @@
             this.toolStripTargetComboBox1.Size = new System.Drawing.Size(130, 25);
             this.toolStripTargetComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripTargetComboBox1_SelectedIndexChanged);
             // 
-            // controlTitle1
-            // 
-            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
-            this.controlTitle1.TabIndex = 0;
-            this.controlTitle1.Title = "Processed Data";
-            // 
             // panelDataReport
             // 
             this.panelDataReport.Controls.Add(this.panelProcessedDataControl);
             this.panelDataReport.Controls.Add(this.splitter1);
             this.panelDataReport.Controls.Add(this.panelProcessedDataInfo);
             this.panelDataReport.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelDataReport.Location = new System.Drawing.Point(628, 3);
+            this.panelDataReport.Location = new System.Drawing.Point(631, 3);
             this.panelDataReport.Name = "panelDataReport";
             this.panelDataReport.Size = new System.Drawing.Size(200, 398);
             this.panelDataReport.TabIndex = 0;
@@ -891,33 +847,8 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // controlTitle2
-            // 
-            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle2.Name = "controlTitle2";
-            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle2.TabIndex = 0;
-            this.controlTitle2.Title = "Tab Report";
-            // 
-            // collapsibleSplitter1
-            // 
-            this.collapsibleSplitter1.AnimationDelay = 20;
-            this.collapsibleSplitter1.AnimationStep = 20;
-            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
-            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(828, 3);
-            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter1.TabIndex = 1;
-            this.collapsibleSplitter1.TabStop = false;
-            this.collapsibleSplitter1.UseAnimations = false;
-            // 
             // tabTrainingPage
             // 
-            this.tabTrainingPage.Controls.Add(this.collapsibleSplitter3);
             this.tabTrainingPage.Controls.Add(this.panelTrainingMainPage);
             this.tabTrainingPage.Controls.Add(this.panelTrainingReport);
             this.tabTrainingPage.Location = new System.Drawing.Point(4, 22);
@@ -927,20 +858,6 @@
             this.tabTrainingPage.TabIndex = 3;
             this.tabTrainingPage.Text = "Training";
             this.tabTrainingPage.UseVisualStyleBackColor = true;
-            // 
-            // collapsibleSplitter3
-            // 
-            this.collapsibleSplitter3.AnimationDelay = 20;
-            this.collapsibleSplitter3.AnimationStep = 20;
-            this.collapsibleSplitter3.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
-            this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter3.ExpandParentForm = false;
-            this.collapsibleSplitter3.Location = new System.Drawing.Point(628, 3);
-            this.collapsibleSplitter3.Name = "collapsibleSplitter3";
-            this.collapsibleSplitter3.TabIndex = 3;
-            this.collapsibleSplitter3.TabStop = false;
-            this.collapsibleSplitter3.UseAnimations = false;
             // 
             // panelTrainingReport
             // 
@@ -1025,16 +942,6 @@
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // controlTitle5
-            // 
-            this.controlTitle5.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle5.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle5.Name = "controlTitle5";
-            this.controlTitle5.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle5.TabIndex = 0;
-            this.controlTitle5.Title = "Tab Report";
             // 
             // chkErrorLimit
             // 
@@ -1178,6 +1085,7 @@
             this.panelTrainingMainPage.Controls.Add(this.chartErrorTraining);
             this.panelTrainingMainPage.Controls.Add(this.tsTrainingControl);
             this.panelTrainingMainPage.Controls.Add(this.controlTitle6);
+            this.panelTrainingMainPage.Controls.Add(this.collapsibleSplitter3);
             this.panelTrainingMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTrainingMainPage.Location = new System.Drawing.Point(3, 3);
             this.panelTrainingMainPage.Name = "panelTrainingMainPage";
@@ -1190,7 +1098,7 @@
             this.chartErrorTraining.Location = new System.Drawing.Point(0, 45);
             this.chartErrorTraining.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.chartErrorTraining.Name = "chartErrorTraining";
-            this.chartErrorTraining.Size = new System.Drawing.Size(628, 353);
+            this.chartErrorTraining.Size = new System.Drawing.Size(620, 353);
             this.chartErrorTraining.TabIndex = 2;
             this.chartErrorTraining.Text = "Error Chart";
             // 
@@ -1202,7 +1110,7 @@
             this.tsbtnTrainingOptions});
             this.tsTrainingControl.Location = new System.Drawing.Point(0, 20);
             this.tsTrainingControl.Name = "tsTrainingControl";
-            this.tsTrainingControl.Size = new System.Drawing.Size(628, 25);
+            this.tsTrainingControl.Size = new System.Drawing.Size(620, 25);
             this.tsTrainingControl.TabIndex = 1;
             this.tsTrainingControl.Text = "toolStrip5";
             // 
@@ -1229,16 +1137,6 @@
             this.tsbtnTrainingOptions.Name = "tsbtnTrainingOptions";
             this.tsbtnTrainingOptions.Size = new System.Drawing.Size(23, 22);
             this.tsbtnTrainingOptions.Text = "Options";
-            // 
-            // controlTitle6
-            // 
-            this.controlTitle6.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle6.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle6.Name = "controlTitle6";
-            this.controlTitle6.Size = new System.Drawing.Size(628, 20);
-            this.controlTitle6.TabIndex = 0;
-            this.controlTitle6.Title = "Graph Visualize Error";
             // 
             // tabTestingPage
             // 
@@ -1539,6 +1437,108 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // controlTitle4
+            // 
+            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle4.Name = "controlTitle4";
+            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle4.TabIndex = 0;
+            this.controlTitle4.Title = "Raw Data";
+            // 
+            // collapsibleSplitter2
+            // 
+            this.collapsibleSplitter2.AnimationDelay = 20;
+            this.collapsibleSplitter2.AnimationStep = 20;
+            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
+            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter2.ExpandParentForm = false;
+            this.collapsibleSplitter2.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter2.TabIndex = 9;
+            this.collapsibleSplitter2.TabStop = false;
+            this.collapsibleSplitter2.UseAnimations = false;
+            // 
+            // controlTitle3
+            // 
+            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle3.Name = "controlTitle3";
+            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle3.TabIndex = 0;
+            this.controlTitle3.Title = "Tab Report";
+            // 
+            // controlTitle1
+            // 
+            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle1.Name = "controlTitle1";
+            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle1.TabIndex = 0;
+            this.controlTitle1.Title = "Processed Data";
+            // 
+            // collapsibleSplitter1
+            // 
+            this.collapsibleSplitter1.AnimationDelay = 20;
+            this.collapsibleSplitter1.AnimationStep = 20;
+            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
+            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter1.ExpandParentForm = false;
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter1.TabIndex = 6;
+            this.collapsibleSplitter1.TabStop = false;
+            this.collapsibleSplitter1.UseAnimations = false;
+            // 
+            // controlTitle2
+            // 
+            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle2.Name = "controlTitle2";
+            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle2.TabIndex = 0;
+            this.controlTitle2.Title = "Tab Report";
+            // 
+            // controlTitle6
+            // 
+            this.controlTitle6.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle6.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle6.Name = "controlTitle6";
+            this.controlTitle6.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle6.TabIndex = 0;
+            this.controlTitle6.Title = "Graph Visualize Error";
+            // 
+            // collapsibleSplitter3
+            // 
+            this.collapsibleSplitter3.AnimationDelay = 20;
+            this.collapsibleSplitter3.AnimationStep = 20;
+            this.collapsibleSplitter3.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
+            this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter3.ExpandParentForm = false;
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter3.Name = "collapsibleSplitter3";
+            this.collapsibleSplitter3.TabIndex = 4;
+            this.collapsibleSplitter3.TabStop = false;
+            this.collapsibleSplitter3.UseAnimations = false;
+            // 
+            // controlTitle5
+            // 
+            this.controlTitle5.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle5.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle5.Name = "controlTitle5";
+            this.controlTitle5.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle5.TabIndex = 0;
+            this.controlTitle5.Title = "Tab Report";
+            // 
             // F001_MainProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1675,7 +1675,6 @@
         private System.Windows.Forms.Panel panelProcessedData;
         private C1.Win.C1FlexGrid.C1FlexGrid c1ProcessedDataFlexGrid;
         private DropOut.Uc.ControlTitle controlTitle1;
-        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter1;
         private System.Windows.Forms.Panel panelDataReport;
         private System.Windows.Forms.Panel panelProcessedDataControl;
         private System.Windows.Forms.Splitter splitter1;
@@ -1703,7 +1702,6 @@
         private System.Windows.Forms.TabPage tabAnalysisPage;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem networkPropertiesToolStripMenuItem1;
-        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter2;
         private System.Windows.Forms.Panel panelAnalysisReport;
         private System.Windows.Forms.Panel panelAnalysisReport2;
         private System.Windows.Forms.TextBox textBox8;
@@ -1738,7 +1736,6 @@
         private System.Windows.Forms.ToolStrip toolStrip4;
         private DropOut.Uc.ControlTitle controlTitle5;
         private System.Windows.Forms.Splitter splitter2;
-        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter3;
         private System.Windows.Forms.Panel panelTrainingMainPage;
         private DropOut.Uc.ControlTitle controlTitle6;
         private System.Windows.Forms.ToolStrip tsTrainingControl;
@@ -1746,6 +1743,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsbtnTrainingOptions;
         private AForge.Controls.Chart chartErrorTraining;
+        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter1;
+        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter2;
+        private DropOut.Uc.CollapsibleSplitter collapsibleSplitter3;
     }
 }
 
