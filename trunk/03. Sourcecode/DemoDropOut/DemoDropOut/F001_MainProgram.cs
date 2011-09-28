@@ -263,5 +263,53 @@ namespace DemoDropOut
             }
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var tabControl = (TabControl)sender;
+                var ip_c1Gird = this.c1ManualQueryFlexGrid;
+                if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
+                {
+                    // Load trường dữ liệu
+                    ip_c1Gird.Rows.Count = ip_c1Gird.Rows.Fixed + 1; // xóa dữ liệu bằng cách đặt lại số row = fixed
+                    ip_c1Gird.Cols.Count = this.m_dt_samples.Columns.Count + ip_c1Gird.Cols.Fixed - 1; //Số cột = số cột fixed + số cột dữ liệu
+                    for (int i = ip_c1Gird.Cols.Fixed, table_index = 0; i < ip_c1Gird.Cols.Count; i++, table_index++)
+                    {
+                        var v_str_caption = this.m_dt_samples.Columns[table_index].Caption;
+                        ip_c1Gird[0, i] = v_str_caption;
+                        ip_c1Gird.Cols[i].Caption = v_str_caption;
+                        ip_c1Gird.Cols[i].Name = v_str_caption;
+                    }
+                }
+                // else if
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnManualQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var input = new double[this.c1ManualQueryFlexGrid.Cols.Count - this.c1ManualQueryFlexGrid.Cols.Fixed];
+                for (int i = 0; i < input.Length; i++)
+                {
+                    input[i] = double.Parse(this.c1ManualQueryFlexGrid[1, this.c1ManualQueryFlexGrid.Cols.Fixed + i].ToString());
+                }
+                var output = m_dropOutForecast.ComputeOutputs(input);
+                for (int i = 0; i < output.Length; i++)
+                {
+                    this.c1ManualQueryResultFlexGrid[1, this.c1ManualQueryFlexGrid.Cols.Fixed + i] = output[i].ToString("0.######");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

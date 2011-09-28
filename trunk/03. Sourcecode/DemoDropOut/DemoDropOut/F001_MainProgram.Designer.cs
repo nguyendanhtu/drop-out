@@ -171,6 +171,21 @@
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.panelManualQuery = new System.Windows.Forms.Panel();
+            this.panelTableQuery = new System.Windows.Forms.Panel();
+            this.c1ManualQueryResultFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
+            this.c1ManualQueryFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
+            this.splitter4 = new System.Windows.Forms.Splitter();
+            this.tsManuQuery = new System.Windows.Forms.ToolStrip();
+            this.btnManualQuery = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnShowHideMaxMin = new System.Windows.Forms.ToolStripButton();
+            this.c1TableQueryFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
+            this.toolStrip11 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
             this.controlTitle4 = new DropOut.Uc.ControlTitle();
             this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
             this.controlTitle3 = new DropOut.Uc.ControlTitle();
@@ -180,6 +195,8 @@
             this.controlTitle6 = new DropOut.Uc.ControlTitle();
             this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
             this.controlTitle5 = new DropOut.Uc.ControlTitle();
+            this.controlTitle15 = new DropOut.Uc.ControlTitle();
+            this.controlTitle14 = new DropOut.Uc.ControlTitle();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -203,6 +220,13 @@
             this.tabQueryPage.SuspendLayout();
             this.toolStripQueryTab.SuspendLayout();
             this.toolStripMain.SuspendLayout();
+            this.panelManualQuery.SuspendLayout();
+            this.panelTableQuery.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1ManualQueryResultFlexGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1ManualQueryFlexGrid)).BeginInit();
+            this.tsManuQuery.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1TableQueryFlexGrid)).BeginInit();
+            this.toolStrip11.SuspendLayout();
             this.SuspendLayout();
             // 
             // testToolStripMenuItem
@@ -577,6 +601,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(842, 430);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabAnalysisPage
             // 
@@ -704,7 +729,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
-            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
             // 
@@ -722,7 +747,7 @@
             this.toolStripTargetComboBox1});
             this.toolStripProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.toolStripProcessedDataFlexGrid.Name = "toolStripProcessedDataFlexGrid";
-            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 25);
+            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 25);
             this.toolStripProcessedDataFlexGrid.TabIndex = 5;
             this.toolStripProcessedDataFlexGrid.Text = "toolStrip1";
             // 
@@ -1098,7 +1123,7 @@
             this.chartErrorTraining.Location = new System.Drawing.Point(0, 45);
             this.chartErrorTraining.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.chartErrorTraining.Name = "chartErrorTraining";
-            this.chartErrorTraining.Size = new System.Drawing.Size(620, 353);
+            this.chartErrorTraining.Size = new System.Drawing.Size(625, 353);
             this.chartErrorTraining.TabIndex = 2;
             this.chartErrorTraining.Text = "Error Chart";
             // 
@@ -1110,7 +1135,7 @@
             this.tsbtnTrainingOptions});
             this.tsTrainingControl.Location = new System.Drawing.Point(0, 20);
             this.tsTrainingControl.Name = "tsTrainingControl";
-            this.tsTrainingControl.Size = new System.Drawing.Size(620, 25);
+            this.tsTrainingControl.Size = new System.Drawing.Size(625, 25);
             this.tsTrainingControl.TabIndex = 1;
             this.tsTrainingControl.Text = "toolStrip5";
             // 
@@ -1150,6 +1175,8 @@
             // 
             // tabQueryPage
             // 
+            this.tabQueryPage.Controls.Add(this.panelTableQuery);
+            this.tabQueryPage.Controls.Add(this.panelManualQuery);
             this.tabQueryPage.Controls.Add(this.toolStripQueryTab);
             this.tabQueryPage.Location = new System.Drawing.Point(4, 22);
             this.tabQueryPage.Name = "tabQueryPage";
@@ -1437,6 +1464,159 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // panelManualQuery
+            // 
+            this.panelManualQuery.Controls.Add(this.c1ManualQueryFlexGrid);
+            this.panelManualQuery.Controls.Add(this.splitter4);
+            this.panelManualQuery.Controls.Add(this.c1ManualQueryResultFlexGrid);
+            this.panelManualQuery.Controls.Add(this.tsManuQuery);
+            this.panelManualQuery.Controls.Add(this.controlTitle14);
+            this.panelManualQuery.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelManualQuery.Location = new System.Drawing.Point(3, 3);
+            this.panelManualQuery.Name = "panelManualQuery";
+            this.panelManualQuery.Size = new System.Drawing.Size(828, 143);
+            this.panelManualQuery.TabIndex = 6;
+            // 
+            // panelTableQuery
+            // 
+            this.panelTableQuery.Controls.Add(this.c1TableQueryFlexGrid);
+            this.panelTableQuery.Controls.Add(this.toolStrip11);
+            this.panelTableQuery.Controls.Add(this.controlTitle15);
+            this.panelTableQuery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTableQuery.Location = new System.Drawing.Point(3, 146);
+            this.panelTableQuery.Name = "panelTableQuery";
+            this.panelTableQuery.Size = new System.Drawing.Size(828, 255);
+            this.panelTableQuery.TabIndex = 7;
+            // 
+            // c1ManualQueryResultFlexGrid
+            // 
+            this.c1ManualQueryResultFlexGrid.AllowEditing = false;
+            this.c1ManualQueryResultFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
+            this.c1ManualQueryResultFlexGrid.ColumnInfo = "1,0,0,30,0,90,Columns:0{Caption:\"Type\";}\t";
+            this.c1ManualQueryResultFlexGrid.Dock = System.Windows.Forms.DockStyle.Right;
+            this.c1ManualQueryResultFlexGrid.EditOptions = C1.Win.C1FlexGrid.EditFlags.None;
+            this.c1ManualQueryResultFlexGrid.ExtendLastCol = true;
+            this.c1ManualQueryResultFlexGrid.Location = new System.Drawing.Point(711, 45);
+            this.c1ManualQueryResultFlexGrid.Name = "c1ManualQueryResultFlexGrid";
+            this.c1ManualQueryResultFlexGrid.Rows.Count = 4;
+            this.c1ManualQueryResultFlexGrid.ShowSort = false;
+            this.c1ManualQueryResultFlexGrid.Size = new System.Drawing.Size(117, 98);
+            this.c1ManualQueryResultFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ManualQueryResultFlexGrid.Styles"));
+            this.c1ManualQueryResultFlexGrid.TabIndex = 7;
+            // 
+            // c1ManualQueryFlexGrid
+            // 
+            this.c1ManualQueryFlexGrid.ColumnInfo = "10,0,0,0,0,90,Columns:";
+            this.c1ManualQueryFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.c1ManualQueryFlexGrid.Location = new System.Drawing.Point(0, 45);
+            this.c1ManualQueryFlexGrid.Name = "c1ManualQueryFlexGrid";
+            this.c1ManualQueryFlexGrid.Rows.Count = 4;
+            this.c1ManualQueryFlexGrid.Size = new System.Drawing.Size(708, 98);
+            this.c1ManualQueryFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ManualQueryFlexGrid.Styles"));
+            this.c1ManualQueryFlexGrid.TabIndex = 8;
+            // 
+            // splitter4
+            // 
+            this.splitter4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter4.Location = new System.Drawing.Point(708, 45);
+            this.splitter4.Name = "splitter4";
+            this.splitter4.Size = new System.Drawing.Size(3, 98);
+            this.splitter4.TabIndex = 9;
+            this.splitter4.TabStop = false;
+            // 
+            // tsManuQuery
+            // 
+            this.tsManuQuery.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsManuQuery.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnManualQuery,
+            this.toolStripSeparator11,
+            this.btnShowHideMaxMin});
+            this.tsManuQuery.Location = new System.Drawing.Point(0, 20);
+            this.tsManuQuery.Name = "tsManuQuery";
+            this.tsManuQuery.Size = new System.Drawing.Size(828, 25);
+            this.tsManuQuery.TabIndex = 11;
+            this.tsManuQuery.Text = "toolStrip10";
+            // 
+            // btnManualQuery
+            // 
+            this.btnManualQuery.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnManualQuery.Image = ((System.Drawing.Image)(resources.GetObject("btnManualQuery.Image")));
+            this.btnManualQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnManualQuery.Name = "btnManualQuery";
+            this.btnManualQuery.Size = new System.Drawing.Size(23, 22);
+            this.btnManualQuery.Text = "Manual Query";
+            this.btnManualQuery.Click += new System.EventHandler(this.btnManualQuery_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnShowHideMaxMin
+            // 
+            this.btnShowHideMaxMin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnShowHideMaxMin.Image = ((System.Drawing.Image)(resources.GetObject("btnShowHideMaxMin.Image")));
+            this.btnShowHideMaxMin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnShowHideMaxMin.Name = "btnShowHideMaxMin";
+            this.btnShowHideMaxMin.Size = new System.Drawing.Size(23, 22);
+            this.btnShowHideMaxMin.Text = "Show/Hide Max/Min";
+            // 
+            // c1TableQueryFlexGrid
+            // 
+            this.c1TableQueryFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
+            this.c1TableQueryFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.c1TableQueryFlexGrid.Location = new System.Drawing.Point(0, 45);
+            this.c1TableQueryFlexGrid.Name = "c1TableQueryFlexGrid";
+            this.c1TableQueryFlexGrid.Size = new System.Drawing.Size(828, 210);
+            this.c1TableQueryFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1TableQueryFlexGrid.Styles"));
+            this.c1TableQueryFlexGrid.TabIndex = 10;
+            // 
+            // toolStrip11
+            // 
+            this.toolStrip11.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip11.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.toolStripSeparator10,
+            this.toolStripButton4,
+            this.toolStripButton15});
+            this.toolStrip11.Location = new System.Drawing.Point(0, 20);
+            this.toolStrip11.Name = "toolStrip11";
+            this.toolStrip11.Size = new System.Drawing.Size(828, 25);
+            this.toolStrip11.TabIndex = 9;
+            this.toolStrip11.Text = "toolStrip11";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Save";
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Delete";
+            // 
+            // toolStripButton15
+            // 
+            this.toolStripButton15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
+            this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton15.Name = "toolStripButton15";
+            this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton15.Text = "Clear";
+            // 
             // controlTitle4
             // 
             this.controlTitle4.BackColor = System.Drawing.Color.Gray;
@@ -1477,7 +1657,7 @@
             this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle1.Location = new System.Drawing.Point(0, 0);
             this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
             this.controlTitle1.TabIndex = 0;
             this.controlTitle1.Title = "Processed Data";
             // 
@@ -1489,7 +1669,7 @@
             this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
             this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(625, 0);
             this.collapsibleSplitter1.Name = "collapsibleSplitter1";
             this.collapsibleSplitter1.TabIndex = 6;
             this.collapsibleSplitter1.TabStop = false;
@@ -1511,7 +1691,7 @@
             this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle6.Location = new System.Drawing.Point(0, 0);
             this.controlTitle6.Name = "controlTitle6";
-            this.controlTitle6.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle6.Size = new System.Drawing.Size(625, 20);
             this.controlTitle6.TabIndex = 0;
             this.controlTitle6.Title = "Graph Visualize Error";
             // 
@@ -1523,7 +1703,7 @@
             this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
             this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter3.ExpandParentForm = false;
-            this.collapsibleSplitter3.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(625, 0);
             this.collapsibleSplitter3.Name = "collapsibleSplitter3";
             this.collapsibleSplitter3.TabIndex = 4;
             this.collapsibleSplitter3.TabStop = false;
@@ -1538,6 +1718,26 @@
             this.controlTitle5.Size = new System.Drawing.Size(200, 20);
             this.controlTitle5.TabIndex = 0;
             this.controlTitle5.Title = "Tab Report";
+            // 
+            // controlTitle15
+            // 
+            this.controlTitle15.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle15.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle15.Name = "controlTitle15";
+            this.controlTitle15.Size = new System.Drawing.Size(828, 20);
+            this.controlTitle15.TabIndex = 8;
+            this.controlTitle15.Title = "Results Table";
+            // 
+            // controlTitle14
+            // 
+            this.controlTitle14.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle14.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle14.Name = "controlTitle14";
+            this.controlTitle14.Size = new System.Drawing.Size(828, 20);
+            this.controlTitle14.TabIndex = 10;
+            this.controlTitle14.Title = "Manual Query";
             // 
             // F001_MainProgram
             // 
@@ -1588,6 +1788,17 @@
             this.toolStripQueryTab.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            this.panelManualQuery.ResumeLayout(false);
+            this.panelManualQuery.PerformLayout();
+            this.panelTableQuery.ResumeLayout(false);
+            this.panelTableQuery.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1ManualQueryResultFlexGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.c1ManualQueryFlexGrid)).EndInit();
+            this.tsManuQuery.ResumeLayout(false);
+            this.tsManuQuery.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.c1TableQueryFlexGrid)).EndInit();
+            this.toolStrip11.ResumeLayout(false);
+            this.toolStrip11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1746,6 +1957,23 @@
         private DropOut.Uc.CollapsibleSplitter collapsibleSplitter1;
         private DropOut.Uc.CollapsibleSplitter collapsibleSplitter2;
         private DropOut.Uc.CollapsibleSplitter collapsibleSplitter3;
+        private System.Windows.Forms.Panel panelManualQuery;
+        private System.Windows.Forms.Panel panelTableQuery;
+        private C1.Win.C1FlexGrid.C1FlexGrid c1ManualQueryResultFlexGrid;
+        private C1.Win.C1FlexGrid.C1FlexGrid c1ManualQueryFlexGrid;
+        private System.Windows.Forms.Splitter splitter4;
+        private System.Windows.Forms.ToolStrip tsManuQuery;
+        private System.Windows.Forms.ToolStripButton btnManualQuery;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripButton btnShowHideMaxMin;
+        private DropOut.Uc.ControlTitle controlTitle14;
+        private C1.Win.C1FlexGrid.C1FlexGrid c1TableQueryFlexGrid;
+        private System.Windows.Forms.ToolStrip toolStrip11;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton15;
+        private DropOut.Uc.ControlTitle controlTitle15;
     }
 }
 
