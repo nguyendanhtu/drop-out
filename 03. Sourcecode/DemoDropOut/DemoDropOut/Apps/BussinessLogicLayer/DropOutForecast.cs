@@ -287,9 +287,25 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
         }
 
-        public double[] ComputeOutputs(double[] ip_ideal_samples)
+        public double[] ComputeOutputs(double[] ip_ideal_input)
         {
-            return this.network.ComputeOutputs(ip_ideal_samples);
+            return this.network.ComputeOutputs(ip_ideal_input);
+        }
+
+        public double[][] ComputeOutputs(double[][] ip_ideal_inputs)
+        {
+            var lenHeight = ip_ideal_inputs.GetLength(0);
+            var result = new double[lenHeight][];
+            for (int i = 0; i < lenHeight; i++)
+            {
+                result[i] = ComputeOutputs(ip_ideal_inputs[i]);
+            }
+            return result;
+        }
+
+        public double[][] ComputeOutputs(DataTable ip_ideal_inputs)
+        {
+            throw new NotImplementedException("Chưa cài đặt chương trình");
         }
         #endregion
     }
