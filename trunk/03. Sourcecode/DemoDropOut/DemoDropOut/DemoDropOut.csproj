@@ -116,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,6 +127,33 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel-csv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-file-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analyze-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\partition-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preprocess-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\train-start-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\train-stop-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-icon-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
