@@ -181,7 +181,7 @@
             this.toolStripButton36 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton37 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featureSelectionToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -193,13 +193,12 @@
             this.optionsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.networkPropertiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.tsbtnQuery = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnQueryDataset = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnQueryFile = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnHelp = new System.Windows.Forms.ToolStripButton();
             this.controlTitle4 = new DropOut.Uc.ControlTitle();
             this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
             this.controlTitle3 = new DropOut.Uc.ControlTitle();
@@ -1191,7 +1190,7 @@
             this.toolStripMain.GripMargin = new System.Windows.Forms.Padding(5, 2, 2, 2);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSplitButton1,
-            this.toolStripButton1,
+            this.tsbtnSave,
             this.toolStripSeparator1,
             this.toolStripSplitButton2,
             this.toolStripSplitButton3,
@@ -1199,16 +1198,15 @@
             this.toolStripSplitButton4,
             this.toolStripSeparator3,
             this.tsbtnTrain,
-            this.toolStripButton5,
             this.toolStripSeparator5,
             this.toolStripButton6,
             this.toolStripButton7,
             this.toolStripSeparator6,
             this.tsbtnQuery,
-            this.toolStripButton9,
-            this.toolStripButton10,
+            this.tsbtnQueryDataset,
+            this.tsbtnQueryFile,
             this.toolStripSeparator7,
-            this.toolStripButton11});
+            this.tsbtnHelp});
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(842, 25);
@@ -1432,7 +1430,7 @@
             // tsbtnOpenRawData
             // 
             this.tsbtnOpenRawData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnOpenRawData.Image = global::DemoDropOut.Properties.Resources.excel_csv;
+            this.tsbtnOpenRawData.Image = global::DemoDropOut.Properties.Resources.query_file_icon_1;
             this.tsbtnOpenRawData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnOpenRawData.Name = "tsbtnOpenRawData";
             this.tsbtnOpenRawData.Size = new System.Drawing.Size(23, 22);
@@ -1451,7 +1449,7 @@
             // btnOpenProcessedData
             // 
             this.btnOpenProcessedData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnOpenProcessedData.Image = global::DemoDropOut.Properties.Resources.excel_csv;
+            this.btnOpenProcessedData.Image = global::DemoDropOut.Properties.Resources.query_file_icon_1;
             this.btnOpenProcessedData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpenProcessedData.Name = "btnOpenProcessedData";
             this.btnOpenProcessedData.Size = new System.Drawing.Size(23, 22);
@@ -1622,14 +1620,14 @@
             this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 22);
             this.toolStripSplitButton1.Text = "Open";
             // 
-            // toolStripButton1
+            // tsbtnSave
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::DemoDropOut.Properties.Resources.save_icon;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.tsbtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSave.Image = global::DemoDropOut.Properties.Resources.save_icon;
+            this.tsbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSave.Name = "tsbtnSave";
+            this.tsbtnSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnSave.Text = "toolStripButton1";
             // 
             // toolStripSplitButton2
             // 
@@ -1692,7 +1690,7 @@
             this.optionsToolStripMenuItem3,
             this.toolStripMenuItem10,
             this.networkPropertiesToolStripMenuItem1});
-            this.tsbtnTrain.Image = global::DemoDropOut.Properties.Resources.train_stop_icon_1;
+            this.tsbtnTrain.Image = global::DemoDropOut.Properties.Resources.train_start_icon_1;
             this.tsbtnTrain.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnTrain.Name = "tsbtnTrain";
             this.tsbtnTrain.Size = new System.Drawing.Size(66, 22);
@@ -1717,18 +1715,9 @@
             this.networkPropertiesToolStripMenuItem1.Text = "Network Properties...";
             this.networkPropertiesToolStripMenuItem1.ToolTipText = "Design network architecture";
             // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Continue";
-            // 
             // toolStripButton6
             // 
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.Image = global::DemoDropOut.Properties.Resources.test_icon_1;
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(49, 22);
@@ -1737,7 +1726,7 @@
             // toolStripButton7
             // 
             this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.Image = global::DemoDropOut.Properties.Resources.networkset_icon_1;
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
@@ -1751,32 +1740,32 @@
             this.tsbtnQuery.Size = new System.Drawing.Size(59, 22);
             this.tsbtnQuery.Text = "Query";
             // 
-            // toolStripButton9
+            // tsbtnQueryDataset
             // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton9.Text = "Query Dataset";
+            this.tsbtnQueryDataset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnQueryDataset.Image = global::DemoDropOut.Properties.Resources.dataset_icon_1;
+            this.tsbtnQueryDataset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnQueryDataset.Name = "tsbtnQueryDataset";
+            this.tsbtnQueryDataset.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnQueryDataset.Text = "Query Dataset";
             // 
-            // toolStripButton10
+            // tsbtnQueryFile
             // 
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton10.Text = "Query File";
+            this.tsbtnQueryFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnQueryFile.Image = global::DemoDropOut.Properties.Resources.excel_csv;
+            this.tsbtnQueryFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnQueryFile.Name = "tsbtnQueryFile";
+            this.tsbtnQueryFile.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnQueryFile.Text = "Query File";
             // 
-            // toolStripButton11
+            // tsbtnHelp
             // 
-            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
-            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton11.Name = "toolStripButton11";
-            this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton11.Text = "Help";
+            this.tsbtnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnHelp.Image = global::DemoDropOut.Properties.Resources.help_icon_1;
+            this.tsbtnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnHelp.Name = "tsbtnHelp";
+            this.tsbtnHelp.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnHelp.Text = "Help";
             // 
             // controlTitle4
             // 
@@ -2056,18 +2045,17 @@
         private System.Windows.Forms.ToolStripMenuItem tipOfDayToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripButton tsbtnQueryDataset;
+        private System.Windows.Forms.ToolStripButton tsbtnQueryFile;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.Panel panelMainPage;
         private System.Windows.Forms.TextBox txtEvenLog;
         private System.Windows.Forms.ToolStripButton tsbtnQuery;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripButton toolStripButton11;
+        private System.Windows.Forms.ToolStripButton tsbtnHelp;
         private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem3;
         private System.Windows.Forms.ToolStripSplitButton tsbtnTrain;
@@ -2075,7 +2063,7 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripMenuItem datasetOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem featureSelectionToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton tsbtnSave;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton3;

@@ -155,6 +155,21 @@
   <ItemGroup>
     <None Include="Resources\query-icon-3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\networkset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dataset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-file-icon-1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

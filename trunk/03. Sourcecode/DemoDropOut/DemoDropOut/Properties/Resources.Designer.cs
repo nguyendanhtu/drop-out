@@ -67,9 +67,30 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dataset_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("dataset-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap excel_csv {
             get {
                 object obj = ResourceManager.GetObject("excel-csv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap help_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("help-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap networkset_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("networkset-icon-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,6 +116,13 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap query_file_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("query-file-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap query_icon_3 {
             get {
                 object obj = ResourceManager.GetObject("query-icon-3", resourceCulture);
@@ -105,6 +133,13 @@ namespace DemoDropOut.Properties {
         internal static System.Drawing.Bitmap save_icon {
             get {
                 object obj = ResourceManager.GetObject("save-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap test_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("test-icon-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
