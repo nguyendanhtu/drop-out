@@ -8,15 +8,38 @@ namespace DemoDropOut.Apps.Objects
     {
         public ColumnType Type;
         public ColumnFormat Format;
-        public int EncodedColumnInto;
         public double MinValue = double.MaxValue;
         public double MaxValue = double.MinValue;
+        private int encColumnInto;
+
+        public int EncodedCoulumnInto
+        {
+            get
+            {
+                if (Format == ColumnFormat.Numerical)
+                {
+                    return 1;
+                }
+                else if (Format == ColumnFormat.Date)
+                {
+                    return 2;
+                }
+                else// if (Format == ColumnFormat.Categorical)
+                {
+                    return encColumnInto;
+                }
+            }
+            set
+            {
+                encColumnInto = value;
+            }
+        }
 
         public ColumnDetails()
         {
             Type = ColumnType.Input;
             Format = ColumnFormat.Numerical;
-            EncodedColumnInto = 1;
+            encColumnInto = 1;
         }
 
         public ColumnDetails(ColumnType type, ColumnFormat format)
@@ -28,7 +51,7 @@ namespace DemoDropOut.Apps.Objects
         public ColumnDetails(ColumnType type, ColumnFormat format, int encodeColNumber)
             : this(type, format)
         {
-            EncodedColumnInto = encodeColNumber;
+            encColumnInto = encodeColNumber;
         }
     }
 
@@ -36,7 +59,8 @@ namespace DemoDropOut.Apps.Objects
     {
         Numerical,
         Categorical,
-        Date
+        Date,
+        Time
     }
 
     public enum ColumnType

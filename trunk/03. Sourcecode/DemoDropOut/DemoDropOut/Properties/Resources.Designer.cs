@@ -60,6 +60,13 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap acceptRow_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("acceptRow-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap analyze_icon_1 {
             get {
                 object obj = ResourceManager.GetObject("analyze-icon-1", resourceCulture);
@@ -84,6 +91,13 @@ namespace DemoDropOut.Properties {
         internal static System.Drawing.Bitmap help_icon_1 {
             get {
                 object obj = ResourceManager.GetObject("help-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap networkProperties_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("networkProperties-icon-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -130,6 +144,27 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap query_manual_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("query-manual-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap query_table_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("query-table-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rejectRow_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("rejectRow-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap save_icon {
             get {
                 object obj = ResourceManager.GetObject("save-icon", resourceCulture);
@@ -144,6 +179,13 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap testset_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("testset-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap train_start_icon_1 {
             get {
                 object obj = ResourceManager.GetObject("train-start-icon-1", resourceCulture);
@@ -154,6 +196,41 @@ namespace DemoDropOut.Properties {
         internal static System.Drawing.Bitmap train_stop_icon_1 {
             get {
                 object obj = ResourceManager.GetObject("train-stop-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap training_options_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("training-options-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap training_options_icon_2 {
+            get {
+                object obj = ResourceManager.GetObject("training-options-icon-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap trainingset_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("trainingset-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap trainingset_icon_2 {
+            get {
+                object obj = ResourceManager.GetObject("trainingset-icon-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap validationset_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("validationset-icon-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
