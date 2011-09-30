@@ -44,23 +44,23 @@ namespace DemoDropOut
 
         }
 
-        public void LoadDataTableToC1Grid(C1FlexGrid ip_c1Gird, DataTable ip_table)
+        public void LoadProcessedDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
         {
-            Debug.Assert(ip_c1Gird != null, "Chưa khởi tạo C1 grid control: Null");
+            Debug.Assert(ip_c1Grid != null, "Chưa khởi tạo C1 grid control: Null");
             Debug.Assert(ip_table != null, "Bảng không chứa dữ liệu: Null");
             // var v_current_row = ip_c1Gird.Row;
             // Xóa dữ liệu trong bảng
-            ip_c1Gird.Rows.Count = ip_c1Gird.Rows.Fixed; // xóa dữ liệu bằng cách đặt lại số row = fixed
-            ip_c1Gird.Cols.Count = ip_table.Columns.Count + ip_c1Gird.Cols.Fixed; //Số cột = số cột fixed + số cột dữ liệu
+            ip_c1Grid.Rows.Count = ip_c1Grid.Rows.Fixed; // xóa dữ liệu bằng cách đặt lại số row = fixed
+            ip_c1Grid.Cols.Count = ip_table.Columns.Count + ip_c1Grid.Cols.Fixed; //Số cột = số cột fixed + số cột dữ liệu
             // Đọc số cột & ghi tiêu đề
             m_ht_dimension = new Hashtable();
             m_list_dimension = new List<string>();
-            for (int i = ip_c1Gird.Cols.Fixed, table_index = 0; i < ip_c1Gird.Cols.Count; i++, table_index++)
+            for (int i = ip_c1Grid.Cols.Fixed, table_index = 0; i < ip_c1Grid.Cols.Count; i++, table_index++)
             {
                 var v_str_caption = ip_table.Columns[table_index].Caption;
-                ip_c1Gird[0, i] = v_str_caption;
-                ip_c1Gird.Cols[i].Caption = v_str_caption;
-                ip_c1Gird.Cols[i].Name = v_str_caption;//ip_table.Columns[table_index].ColumnName;
+                ip_c1Grid[0, i] = v_str_caption;
+                ip_c1Grid.Cols[i].Caption = v_str_caption;
+                ip_c1Grid.Cols[i].Name = v_str_caption;//ip_table.Columns[table_index].ColumnName;
 
                 #region Đọc thông tin các cột dữ liệu: kiểu dữ liệu categories ?? --> được mã (encoded) trong bao nhiêu cột
                 if (v_str_caption.Contains(":") == true)
@@ -91,11 +91,11 @@ namespace DemoDropOut
             {
                 // Đọc từng mẫu dữ liệu
                 var v_dataRow = ip_table.Rows[i];
-                ip_c1Gird.Rows.Add();
+                ip_c1Grid.Rows.Add();
                 for (int j = 0; j < ip_table.Columns.Count; j++)
                 {
                     //ip_c1Gird.Rows[j].UserData = v_dataRow[j];
-                    ip_c1Gird[ip_c1Gird.Rows.Count - 1, ip_c1Gird.Cols.Fixed + j] = v_dataRow[j];
+                    ip_c1Grid[ip_c1Grid.Rows.Count - 1, ip_c1Grid.Cols.Fixed + j] = v_dataRow[j];
                 }
             }
         }
@@ -151,20 +151,20 @@ namespace DemoDropOut
                 if (v_dialogResult == DialogResult.OK)
                 {
                     var v_table = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
-                    LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+                    LoadProcessedDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
                     // Gán tập mẫu: m_dt_samples
                     m_dt_samples = v_table;
                     // Load số cột vào combobox
-                    toolStripTargetComboBox1.Items.Clear();
+                    tscboTarget.Items.Clear();
                     foreach (var targetItem in m_list_dimension)
                     {
                         // var v_cboText = targetItem;
-                        toolStripTargetComboBox1.Items.Add(targetItem);
+                        tscboTarget.Items.Add(targetItem);
                     }
-                    if (toolStripTargetComboBox1.Items.Count > 0)
+                    if (tscboTarget.Items.Count > 0)
                     {
                         // var v_selIndex = m_list_dimension.Count - 1;
-                        toolStripTargetComboBox1.SelectedIndex = m_list_dimension.Count - 1; // v_selIndex;
+                        tscboTarget.SelectedIndex = m_list_dimension.Count - 1; // v_selIndex;
                         //toolStripTargetLabel.Text = string.Format("Target [{0}]", m_ht_dimension[m_list_dimension[v_selIndex]]);
                     }
                 }
@@ -175,15 +175,16 @@ namespace DemoDropOut
             }
         }
 
-        private void toolStripTargetComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void tscboTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (toolStripTargetComboBox1.Items.Count > 0 && m_ht_dimension != null)
+                var tsCbo = (ToolStripComboBox)sender;
+                if (tsCbo.Items.Count > 0 && m_ht_dimension != null)
                 {
                     // Lấy thông tin số nút xuất của mạng
-                    classes = (int)m_ht_dimension[m_list_dimension[toolStripTargetComboBox1.SelectedIndex]];
-                    toolStripTargetLabel.Text = string.Format("Target [{0}]", classes);
+                    classes = (int)m_ht_dimension[m_list_dimension[tsCbo.SelectedIndex]];
+                    tslblTarget.Text = string.Format("Target [{0}]", classes);
                 }
             }
             catch (Exception ex)
@@ -304,6 +305,43 @@ namespace DemoDropOut
                 {
                     this.c1ManualQueryResultFlexGrid[1, this.c1ManualQueryFlexGrid.Cols.Fixed + i] = output[i].ToString("0.######");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbtnOpenRawData_ButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Button Click");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbtnOpenRawData_DropDownOpening(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbtnOpenRawData_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                var v_tsItem = (ToolStripItem)e.ClickedItem;
+                
             }
             catch (Exception ex)
             {

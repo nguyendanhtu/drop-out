@@ -170,6 +170,39 @@
   <ItemGroup>
     <None Include="Resources\query-file-icon-1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-table-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-manual-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trainingset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trainingset-icon-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\validationset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptRow-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rejectRow-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training-options-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training-options-icon-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\networkProperties-icon-1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
