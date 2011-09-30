@@ -1523,7 +1523,7 @@
             this.tabTrainingPage.Location = new System.Drawing.Point(4, 22);
             this.tabTrainingPage.Name = "tabTrainingPage";
             this.tabTrainingPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTrainingPage.Size = new System.Drawing.Size(954, 386);
+            this.tabTrainingPage.Size = new System.Drawing.Size(954, 381);
             this.tabTrainingPage.TabIndex = 3;
             this.tabTrainingPage.Text = "Training";
             // 
@@ -1535,7 +1535,7 @@
             this.panelTrainingMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTrainingMain.Location = new System.Drawing.Point(3, 3);
             this.panelTrainingMain.Name = "panelTrainingMain";
-            this.panelTrainingMain.Size = new System.Drawing.Size(748, 380);
+            this.panelTrainingMain.Size = new System.Drawing.Size(748, 375);
             this.panelTrainingMain.TabIndex = 6;
             // 
             // toolStrip8
@@ -1546,7 +1546,7 @@
             this.toolStripButton28});
             this.toolStrip8.Location = new System.Drawing.Point(0, 20);
             this.toolStrip8.Name = "toolStrip8";
-            this.toolStrip8.Size = new System.Drawing.Size(745, 25);
+            this.toolStrip8.Size = new System.Drawing.Size(740, 25);
             this.toolStrip8.TabIndex = 1;
             this.toolStrip8.Text = "toolStrip8";
             // 
@@ -1576,7 +1576,7 @@
             this.controlTitle10.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle10.Location = new System.Drawing.Point(0, 0);
             this.controlTitle10.Name = "controlTitle10";
-            this.controlTitle10.Size = new System.Drawing.Size(745, 20);
+            this.controlTitle10.Size = new System.Drawing.Size(740, 20);
             this.controlTitle10.TabIndex = 0;
             this.controlTitle10.Title = "Training Graph";
             // 
@@ -1588,7 +1588,7 @@
             this.collapsibleSplitter7.ControlToHide = this.panelTrainingReport;
             this.collapsibleSplitter7.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter7.ExpandParentForm = false;
-            this.collapsibleSplitter7.Location = new System.Drawing.Point(745, 0);
+            this.collapsibleSplitter7.Location = new System.Drawing.Point(740, 0);
             this.collapsibleSplitter7.Name = "collapsibleSplitter7";
             this.collapsibleSplitter7.TabIndex = 2;
             this.collapsibleSplitter7.TabStop = false;
@@ -1601,7 +1601,7 @@
             this.panelTrainingReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelTrainingReport.Location = new System.Drawing.Point(751, 3);
             this.panelTrainingReport.Name = "panelTrainingReport";
-            this.panelTrainingReport.Size = new System.Drawing.Size(200, 380);
+            this.panelTrainingReport.Size = new System.Drawing.Size(200, 375);
             this.panelTrainingReport.TabIndex = 5;
             // 
             // toolStrip7
@@ -1642,7 +1642,7 @@
             this.tabTestingPage.Location = new System.Drawing.Point(4, 22);
             this.tabTestingPage.Name = "tabTestingPage";
             this.tabTestingPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTestingPage.Size = new System.Drawing.Size(954, 386);
+            this.tabTestingPage.Size = new System.Drawing.Size(954, 381);
             this.tabTestingPage.TabIndex = 4;
             this.tabTestingPage.Text = "Testing";
             // 
@@ -1650,9 +1650,9 @@
             // 
             this.panelTestingMain.Controls.Add(this.panelTestingMainPage);
             this.panelTestingMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTestingMain.Location = new System.Drawing.Point(206, 3);
+            this.panelTestingMain.Location = new System.Drawing.Point(211, 3);
             this.panelTestingMain.Name = "panelTestingMain";
-            this.panelTestingMain.Size = new System.Drawing.Size(745, 380);
+            this.panelTestingMain.Size = new System.Drawing.Size(740, 375);
             this.panelTestingMain.TabIndex = 2;
             // 
             // panelTestingMainPage
@@ -1661,7 +1661,7 @@
             this.panelTestingMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTestingMainPage.Location = new System.Drawing.Point(0, 0);
             this.panelTestingMainPage.Name = "panelTestingMainPage";
-            this.panelTestingMainPage.Size = new System.Drawing.Size(745, 380);
+            this.panelTestingMainPage.Size = new System.Drawing.Size(740, 375);
             this.panelTestingMainPage.TabIndex = 0;
             // 
             // controlTitle13
@@ -1670,7 +1670,7 @@
             this.controlTitle13.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle13.Location = new System.Drawing.Point(0, 0);
             this.controlTitle13.Name = "controlTitle13";
-            this.controlTitle13.Size = new System.Drawing.Size(745, 20);
+            this.controlTitle13.Size = new System.Drawing.Size(740, 20);
             this.controlTitle13.TabIndex = 0;
             this.controlTitle13.Title = "Visualization";
             // 
@@ -1682,9 +1682,9 @@
             this.panelTestOutputTable.Controls.Add(this.toolStrip9);
             this.panelTestOutputTable.Controls.Add(this.controlTitle11);
             this.panelTestOutputTable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelTestOutputTable.Location = new System.Drawing.Point(6, 3);
+            this.panelTestOutputTable.Location = new System.Drawing.Point(11, 3);
             this.panelTestOutputTable.Name = "panelTestOutputTable";
-            this.panelTestOutputTable.Size = new System.Drawing.Size(200, 380);
+            this.panelTestOutputTable.Size = new System.Drawing.Size(200, 375);
             this.panelTestOutputTable.TabIndex = 0;
             // 
             // c1ActualVsOuputFlexGrid
@@ -1697,14 +1697,14 @@
             this.c1ActualVsOuputFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ActualVsOuputFlexGrid.Name = "c1ActualVsOuputFlexGrid";
             this.c1ActualVsOuputFlexGrid.Rows.Count = 20;
-            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(200, 240);
+            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(200, 235);
             this.c1ActualVsOuputFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ActualVsOuputFlexGrid.Styles"));
             this.c1ActualVsOuputFlexGrid.TabIndex = 2;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter3.Location = new System.Drawing.Point(0, 285);
+            this.splitter3.Location = new System.Drawing.Point(0, 280);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(200, 3);
             this.splitter3.TabIndex = 4;
@@ -1714,7 +1714,7 @@
             // 
             this.panelSummaryTesting.Controls.Add(this.controlTitle12);
             this.panelSummaryTesting.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSummaryTesting.Location = new System.Drawing.Point(0, 288);
+            this.panelSummaryTesting.Location = new System.Drawing.Point(0, 283);
             this.panelSummaryTesting.Name = "panelSummaryTesting";
             this.panelSummaryTesting.Size = new System.Drawing.Size(200, 92);
             this.panelSummaryTesting.TabIndex = 3;
@@ -1817,18 +1817,17 @@
             this.tabQueryPage.Location = new System.Drawing.Point(4, 22);
             this.tabQueryPage.Name = "tabQueryPage";
             this.tabQueryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQueryPage.Size = new System.Drawing.Size(954, 381);
+            this.tabQueryPage.Size = new System.Drawing.Size(954, 386);
             this.tabQueryPage.TabIndex = 5;
             this.tabQueryPage.Text = "Query";
             // 
             // c1TableQueryFlexGrid
             // 
             this.c1TableQueryFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
-            this.c1TableQueryFlexGrid.Cursor = System.Windows.Forms.Cursors.Default;
             this.c1TableQueryFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1TableQueryFlexGrid.Location = new System.Drawing.Point(3, 193);
             this.c1TableQueryFlexGrid.Name = "c1TableQueryFlexGrid";
-            this.c1TableQueryFlexGrid.Size = new System.Drawing.Size(948, 185);
+            this.c1TableQueryFlexGrid.Size = new System.Drawing.Size(948, 190);
             this.c1TableQueryFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1TableQueryFlexGrid.Styles"));
             this.c1TableQueryFlexGrid.TabIndex = 6;
             // 
