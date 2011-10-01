@@ -146,7 +146,7 @@ namespace DemoDropOut
             try
             {
                 var v_openFileDialog = new OpenFileDialog();
-                v_openFileDialog.Filter = "Processed Data Format (*.csv, *.txt)|*.csv;*.txt|All Files (*.*)|*.*";
+                v_openFileDialog.Filter = "Processed Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
                 var v_dialogResult = v_openFileDialog.ShowDialog();
                 if (v_dialogResult == DialogResult.OK)
                 {

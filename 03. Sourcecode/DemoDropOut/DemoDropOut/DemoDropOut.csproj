@@ -76,9 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\BussinessLogicLayer\DataAnalysisBlo.cs" />
+    <Compile Include="Apps\BussinessLogicLayer\DataPreprocessingBlo.cs" />
     <Compile Include="Apps\DataAccessLayer\CsvDataAccess.cs" />
     <Compile Include="Apps\BussinessLogicLayer\DropOutForecast.cs" />
+    <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
     <Compile Include="Apps\Objects\DataSamples.cs" />
+    <Compile Include="Apps\Objects\DateEncoding.cs" />
     <Compile Include="Common\C1Utils.cs" />
     <Compile Include="Uc\CollapsibleSplitter.cs">
       <SubType>Component</SubType>
