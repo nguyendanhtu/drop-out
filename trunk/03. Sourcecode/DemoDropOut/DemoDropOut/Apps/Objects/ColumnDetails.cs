@@ -10,9 +10,23 @@ namespace DemoDropOut.Apps.Objects
         public ColumnFormat Format;
         public double MinValue = double.MaxValue;
         public double MaxValue = double.MinValue;
+        public double Mean = 0;
+        public double StandardDeviation;
         private int encColumnInto;
+        private IList<string> m_list_category;
 
-        public int EncodedCoulumnInto
+        public IList<string> Categories
+        {
+            get { return m_list_category; }
+            set { m_list_category = value; }
+        }
+
+        public string ScalingRange
+        {
+            get { return string.Empty; }
+        }
+
+        public int EncodedColumns
         {
             get
             {
@@ -20,14 +34,15 @@ namespace DemoDropOut.Apps.Objects
                 {
                     return 1;
                 }
-                else if (Format == ColumnFormat.Date)
+                else if (Format == ColumnFormat.Date || Format == ColumnFormat.Time)
                 {
                     return 2;
                 }
-                else// if (Format == ColumnFormat.Categorical)
+                else if (Format == ColumnFormat.Categorical)
                 {
                     return encColumnInto;
                 }
+                return m_list_category.Count;
             }
             set
             {
