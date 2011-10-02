@@ -10,7 +10,7 @@ namespace DemoDropOut.Common
 {
     public class C1Utils
     {
-        public void LoadDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
+        public static void LoadDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
         {
             Debug.Assert(ip_c1Grid != null, "Chưa khởi tạo C1 grid control: Null");
             Debug.Assert(ip_table != null, "Bảng không chứa dữ liệu: Null");

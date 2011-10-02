@@ -20,6 +20,7 @@ using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using AForge;
 using DemoDropOut.Apps.BussinessLogicLayer;
 using DemoDropOut.Apps.DataAccessLayer;
+using DemoDropOut.Common;
 
 namespace DemoDropOut
 {
@@ -316,7 +317,15 @@ namespace DemoDropOut
         {
             try
             {
-                MessageBox.Show("Button Click");
+                var v_openFileDialog = new OpenFileDialog();
+                v_openFileDialog.Filter = "Processed Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
+                var v_dialogResult = v_openFileDialog.ShowDialog();
+                if (v_dialogResult == DialogResult.OK)
+                {
+                    var v_analysis_obj = new DataAnalysisBlo();
+                    var v_table = v_analysis_obj.Analyze(v_openFileDialog.FileName);
+                    C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                }
             }
             catch (Exception ex)
             {
