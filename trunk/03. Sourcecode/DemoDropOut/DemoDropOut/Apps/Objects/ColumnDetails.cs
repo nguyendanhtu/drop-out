@@ -15,7 +15,26 @@ namespace DemoDropOut.Apps.Objects
         private ScalingRange m_scaling_range;
         private double m_db_minValue = double.MaxValue;
         private double m_db_maxValue = double.MinValue;
+        // private int m_int_numeric_count = 0;
+        private string m_str_colname;
 
+        public string ColumnName
+        {
+            get { return m_str_colname; }
+            set { m_str_colname = value; }
+        }
+
+        public int NumericCount
+        {
+            get
+            {
+                //return m_int_numeric_count;
+                return m_list_category.Count;
+            }
+        }
+        /// <summary>
+        /// Cập nhật giá trị max - min
+        /// </summary>
         public double MaxMinUpdateValue
         {
             set
@@ -27,6 +46,13 @@ namespace DemoDropOut.Apps.Objects
                 else if (value < m_db_minValue)
                 {
                     m_db_minValue = value;
+                }
+                // Đếm số lượt cập nhật giá trị max - min
+                // m_int_numeric_count++;
+                var v_str_value = value.ToString();
+                if (m_list_category.Contains(v_str_value) == false)
+                {
+                    m_list_category.Add(v_str_value);
                 }
             }
         }
@@ -126,6 +152,11 @@ namespace DemoDropOut.Apps.Objects
             : this(type, format)
         {
             encColumnInto = encodeColNumber;
+        }
+
+        public override string ToString()
+        {
+            return string.IsNullOrEmpty(m_str_colname)? m_column_format.ToString() : m_str_colname;
         }
     }
 

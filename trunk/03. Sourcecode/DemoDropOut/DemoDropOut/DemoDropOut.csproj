@@ -82,6 +82,7 @@
     <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
     <Compile Include="Apps\Objects\DataSamples.cs" />
     <Compile Include="Apps\Objects\DateEncoding.cs" />
+    <Compile Include="Common\C1Styles.cs" />
     <Compile Include="Common\C1Utils.cs" />
     <Compile Include="Uc\CollapsibleSplitter.cs">
       <SubType>Component</SubType>

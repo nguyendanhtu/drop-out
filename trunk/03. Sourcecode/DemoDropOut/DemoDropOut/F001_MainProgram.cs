@@ -324,7 +324,40 @@ namespace DemoDropOut
                 {
                     var v_analysis_obj = new DataAnalysisBlo();
                     var v_table = v_analysis_obj.Analyze(v_openFileDialog.FileName);
-                    C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                    c1RawDataFlexGrid.DataSource = v_table;
+                    // c1RawDataFlexGrid.
+                    // C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                    tscboTarget.Items.Clear();
+                    foreach (var v_str_item in v_analysis_obj.ColumnName)
+                    {
+                        this.tscboTarget.Items.Add(v_str_item);
+                    }
+                    if (this.tscboTarget.Items.Count > 0)
+                        this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
+                    // create style with red background
+
+                    var _flex = c1RawDataFlexGrid;
+                    CellStyle cs = _flex.Styles.Add("red");
+                    cs.BackColor = Color.Red;
+
+                    // create style with green background
+                    cs = _flex.Styles.Add("green");
+                    cs.BackColor = Color.Green;
+
+                    // create style with bold font
+                   cs = _flex.Styles.Add("bold");
+                    cs.Font = new Font("Tahoma", 8, FontStyle.Bold);
+
+                    // assign red style to a column
+                    _flex.Cols[3].Style = _flex.Styles["red"];
+
+                    // assign green style to a row
+                    _flex.Rows[3].Style = _flex.Styles["green"];
+
+                    // assign bold style to a cell range
+                    CellRange rg = _flex.GetCellRange(2, 2, 4, 4);
+                    rg.Style = _flex.Styles["bold"];
+                    _flex.SetCellStyle(0, 0, _flex.Styles["green"]);
                 }
             }
             catch (Exception ex)
@@ -337,7 +370,7 @@ namespace DemoDropOut
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -350,7 +383,7 @@ namespace DemoDropOut
             try
             {
                 var v_tsItem = (ToolStripItem)e.ClickedItem;
-                
+
             }
             catch (Exception ex)
             {
@@ -358,5 +391,31 @@ namespace DemoDropOut
             }
         }
 
+        private void F001_MainProgram_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                loadComponents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void loadComponents()
+        {
+            this.c1RawDataFlexGrid.DrawMode = DrawModeEnum.OwnerDraw;
+            this.c1RawDataFlexGrid.OwnerDrawCell += new OwnerDrawCellEventHandler(c1FlexGrid_OwnerDrawCell);
+        }
+
+        public void c1FlexGrid_OwnerDrawCell(object sender, OwnerDrawCellEventArgs e)
+        {
+            var flex = (C1FlexGrid)sender;
+            if ((e.Row >= flex.Rows.Fixed) & (e.Col == (flex.Cols.Fixed - 1)))
+            {
+                e.Text = ((e.Row - flex.Rows.Fixed) + 1).ToString();
+            }
+        }
     }
 }

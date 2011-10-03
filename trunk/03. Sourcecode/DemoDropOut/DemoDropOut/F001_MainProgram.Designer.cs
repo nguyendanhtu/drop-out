@@ -638,7 +638,7 @@
             // c1RawDataFlexGrid
             // 
             this.c1RawDataFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
-            this.c1RawDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
+            this.c1RawDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:0{Width:32;}\t";
             this.c1RawDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1RawDataFlexGrid.Name = "c1RawDataFlexGrid";
@@ -733,13 +733,14 @@
             // tslblTarget
             // 
             this.tslblTarget.Name = "tslblTarget";
-            this.tslblTarget.Size = new System.Drawing.Size(58, 22);
-            this.tslblTarget.Text = "Target (0)";
+            this.tslblTarget.Size = new System.Drawing.Size(44, 22);
+            this.tslblTarget.Text = "Target:";
             // 
             // tscboTarget
             // 
             this.tscboTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscboTarget.DropDownWidth = 160;
+            this.tscboTarget.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.tscboTarget.ForeColor = System.Drawing.Color.Blue;
             this.tscboTarget.Name = "tscboTarget";
             this.tscboTarget.Size = new System.Drawing.Size(121, 25);
@@ -811,7 +812,7 @@
             // c1ProcessedDataFlexGrid
             // 
             this.c1ProcessedDataFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
-            this.c1ProcessedDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:";
+            this.c1ProcessedDataFlexGrid.ColumnInfo = "10,1,0,0,0,90,Columns:0{Width:29;}\t";
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
@@ -1980,6 +1981,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "F001_MainProgram";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.F001_MainProgram_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.panelMainPage.ResumeLayout(false);
