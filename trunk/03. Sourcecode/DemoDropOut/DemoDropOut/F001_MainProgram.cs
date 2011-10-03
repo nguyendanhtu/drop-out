@@ -313,6 +313,92 @@ namespace DemoDropOut
             }
         }
 
+        #region Thông số lớp nghiệp vụ
+        /// <summary>
+        /// Đối tượng xử lý nghiệp vụ phân tích, phân chia tập dữ liệu
+        /// </summary>
+        private DataAnalysisBlo m_dAnalysis_obj = null;
+        /// <summary>
+        /// Đối tượng xử lý nghiệp vụ tiền xử lý, biến đổi kiểu dữ liệu thô
+        /// </summary>
+        private DataPreprocessingBlo m_dPreprocessing_obj = null;
+
+        #endregion
+
+        #region Xử lý hiển thị dữ liệu
+
+        private void PartitionDataset(double ip_training_percent, double ip_validation_percent, double ip_test_percent)
+        {
+            if (ip_training_percent + ip_validation_percent + ip_test_percent > 1)
+            {
+                throw new Exception("Tỉ lệ phân chia tập dữ liệu không hợp lệ");
+            }
+            // style
+            var _flex = c1RawDataFlexGrid;
+            // Tô màu blue cho tập dữ liệu luyện
+            CellStyle cstyle = _flex.Styles.Add("TrainingSet");
+            cstyle.ForeColor = Color.Blue;
+            // Tô màu green cho tập dữ liệu khớp mạng
+            cstyle = _flex.Styles.Add("ValidationSet");
+            cstyle.ForeColor = Color.Green;
+            // Tô màu red cho tập dữ liệu kiểm tra
+            cstyle = _flex.Styles.Add("TestSet");
+            cstyle.ForeColor = Color.Red;
+            // Tô màu cho ô dữ liệu bị lỗi
+            cstyle = _flex.Styles.Add("CellError");
+            cstyle.BackColor = Color.Black;
+            cstyle.ForeColor = Color.White;
+            // Tô màu cho hàng dữ liệu bị lỗi
+            cstyle = _flex.Styles.Add("RowError");
+            cstyle.ForeColor = Color.Gray;
+
+            //cstyle = _flex.Styles.Add("bold");
+            //cstyle.Font = new Font("Tahoma", 8, FontStyle.Bold);
+
+            // Thực hiện phân chia dữ liệu (test)
+            m_dAnalysis_obj.Partition(ip_training_percent, ip_validation_percent, ip_test_percent);
+            var v_row = 0;
+            var v_col = 0;
+            for (int i = 0; i < m_dAnalysis_obj.TrainingSetIndex.Count; i++)
+            {
+                v_row = _flex.Rows.Fixed + m_dAnalysis_obj.TrainingSetIndex[i];
+                _flex.Rows[v_row].Style = _flex.Styles["TrainingSet"];
+                _flex.SetCellStyle(v_row, 0, _flex.Styles["TrainingSet"]);
+            }
+
+            for (int i = 0; i < m_dAnalysis_obj.ValidationSetIndex.Count; i++)
+            {
+                v_row = _flex.Rows.Fixed + m_dAnalysis_obj.ValidationSetIndex[i];
+                _flex.Rows[v_row].Style = _flex.Styles["ValidationSet"];
+                _flex.SetCellStyle(v_row, 0, _flex.Styles["ValidationSet"]);
+            }
+
+            for (int i = 0; i < m_dAnalysis_obj.TestSetIndex.Count; i++)
+            {
+                v_row = _flex.Rows.Fixed + m_dAnalysis_obj.TestSetIndex[i];
+                _flex.Rows[v_row].Style = _flex.Styles["TestSet"];
+                _flex.SetCellStyle(v_row, 0, _flex.Styles["TestSet"]);
+            }
+
+            foreach (int row in m_dAnalysis_obj.InvalidPopulationRows.Keys)
+            {
+                var v_cells_error = (List<int>)m_dAnalysis_obj.InvalidPopulationRows[row];
+                _flex.Rows[_flex.Rows.Fixed + row].Style = _flex.Styles["RowError"];
+                for (v_col = 0; v_col < v_cells_error.Count; v_col++)
+                {
+                    _flex.SetCellStyle(_flex.Rows.Fixed + row, _flex.Cols.Fixed + v_cells_error[v_col], _flex.Styles["CellError"]);
+                }
+            }
+
+            //CellRange rg = _flex.GetCellRange(2, 2, 4, 4);
+            //rg.Style = _flex.Styles["bold"];
+            //_flex.SetCellStyle(0, 0, _flex.Styles["green"]);
+        }
+
+        #endregion
+
+        #region Xử lý các sự kiện phân tích dữ liệu
+
         private void tsbtnOpenRawData_ButtonClick(object sender, EventArgs e)
         {
             try
@@ -322,43 +408,33 @@ namespace DemoDropOut
                 var v_dialogResult = v_openFileDialog.ShowDialog();
                 if (v_dialogResult == DialogResult.OK)
                 {
-                    var v_analysis_obj = new DataAnalysisBlo();
-                    var v_table = v_analysis_obj.Analyze(v_openFileDialog.FileName);
-                    c1RawDataFlexGrid.DataSource = v_table;
-                    // c1RawDataFlexGrid.
-                    // C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                    m_dAnalysis_obj = new DataAnalysisBlo();
+                    var v_table = m_dAnalysis_obj.Analyze(v_openFileDialog.FileName);
+                    C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                    //c1RawDataFlexGrid.DataSource = v_table;
+
                     tscboTarget.Items.Clear();
-                    foreach (var v_str_item in v_analysis_obj.ColumnName)
+                    foreach (var v_str_item in m_dAnalysis_obj.ColumnName)
                     {
                         this.tscboTarget.Items.Add(v_str_item);
                     }
                     if (this.tscboTarget.Items.Count > 0)
                         this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
-                    // create style with red background
-
-                    var _flex = c1RawDataFlexGrid;
-                    CellStyle cs = _flex.Styles.Add("red");
-                    cs.BackColor = Color.Red;
-
-                    // create style with green background
-                    cs = _flex.Styles.Add("green");
-                    cs.BackColor = Color.Green;
-
-                    // create style with bold font
-                   cs = _flex.Styles.Add("bold");
-                    cs.Font = new Font("Tahoma", 8, FontStyle.Bold);
-
-                    // assign red style to a column
-                    _flex.Cols[3].Style = _flex.Styles["red"];
-
-                    // assign green style to a row
-                    _flex.Rows[3].Style = _flex.Styles["green"];
-
-                    // assign bold style to a cell range
-                    CellRange rg = _flex.GetCellRange(2, 2, 4, 4);
-                    rg.Style = _flex.Styles["bold"];
-                    _flex.SetCellStyle(0, 0, _flex.Styles["green"]);
+                    this.PartitionDataset(0.68, 0.16, 0.16);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbtnPartition1_ButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_dAnalysis_obj != null)
+                    PartitionDataset(0.68, 0.16, 0.16);
             }
             catch (Exception ex)
             {
@@ -391,6 +467,11 @@ namespace DemoDropOut
             }
         }
 
+
+        #endregion
+
+        #region Xử lý các sự kiện của form: F001_MainProgram
+
         private void F001_MainProgram_Load(object sender, EventArgs e)
         {
             try
@@ -417,5 +498,31 @@ namespace DemoDropOut
                 e.Text = ((e.Row - flex.Rows.Fixed) + 1).ToString();
             }
         }
+
+        #endregion
+
+        #region Xử lý các sự kiện: Tiền xử lý dữ liệu
+
+        private void tsbtnPreprocess1_ButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                m_dPreprocessing_obj = new DataPreprocessingBlo();
+                m_dPreprocessing_obj.CategoricalEncoding = CategoricalEncoding.Binary;
+                m_dPreprocessing_obj.DateEncoding = DateEncoding.Weekly;
+                m_dPreprocessing_obj.RawData = c1RawDataFlexGrid;
+                m_dPreprocessing_obj.Preprocessing();
+
+                var v_table = m_dPreprocessing_obj.EncodedData;
+                C1Utils.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #endregion
+
     }
 }

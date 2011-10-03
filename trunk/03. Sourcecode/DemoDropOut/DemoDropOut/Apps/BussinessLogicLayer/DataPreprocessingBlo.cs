@@ -88,6 +88,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 {
                     v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MaxValue, v_column_details.MinValue, 0, 1);
                 }
+                v_table_.Rows.Add(v_new_row);
             }
             return v_table_;
         }
@@ -216,27 +217,34 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         private DataTable EncodeCategoricalComlumnByBinary(int columnIndex, IList<string> category)
         {
+            // Lấy cột thứ columnIndex để mã
             var categoricalColumn = m_gr_raw_data.Cols[columnIndex];
-            var v_cat_cols = Math.Log(category.Count, 2);
+            // Số bit dùng để lưu category.Count giá trị: v_cat_enc
+            // Tương ứng với số cột được sử dụng để lưu trạng thái của category item
+            var v_cat_enc = Math.Log(category.Count, 2);
+            // Tạo bảng dữ liệu lưu cột mới
             var v_table_enc = new DataTable(categoricalColumn.Name);
 
             // Đặt tên cột
-            for (int i = 0; i < v_cat_cols; i++)
+            for (int i = 0; i < v_cat_enc; i++)
             {
-                var v_new_colName = string.Format("{0}: B{1}", categoricalColumn.Name, i);
-                v_table_enc.Columns.Add(v_new_colName);
+                var v_new_caption = string.Format("{0}: B{1}", categoricalColumn.Name, i);
+                var v_new_column = new DataColumn(v_new_caption);
+                v_new_column.Caption = v_new_caption;
+                v_table_enc.Columns.Add(v_new_column);
             }
 
             for (int i = m_gr_raw_data.Rows.Fixed; i < m_gr_raw_data.Rows.Count; i++)
             {
                 var v_str_value = categoricalColumn[i] as string;
                 var v_new_row = v_table_enc.NewRow();
-                for (int j = 0; j < v_cat_cols; j++)
+                for (int j = 0; j < category.Count; j++)
                 {
                     if (v_str_value == category[j])
                     {
                         // Tìm thấy value tại vị trí j
-                        for (var k = 0; k < v_cat_cols; k++)
+                        // Biểu diễn j dưới dạng nhị phân rồi lưu tương ứng vào các cột
+                        for (var k = 0; k < v_cat_enc; k++)
                         {
                             // Lưu giá trị các cột tương ứng giá trị nhị phân của j
                             v_new_row[k] = (j >> k) & 1;
@@ -244,6 +252,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         break;
                     }
                 }
+                v_table_enc.Rows.Add(v_new_row);
             }
 
             return v_table_enc;
@@ -259,9 +268,9 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             if (m_gr_raw_data == null)
                 throw new Exception("Dữ liệu trống (null). Không thể tiền xử lý");
             m_dt_enc_data = new DataTable("Encoded Data");
-            var v_cols_ = m_gr_raw_data.Cols.Count - m_gr_raw_data.Cols.Fixed;
-            var v_rows_ = m_gr_raw_data.Rows.Count - m_gr_raw_data.Rows.Fixed;
-            for (int i = m_gr_raw_data.Cols.Fixed; i < v_cols_; i++)
+            //var v_cols_ = m_gr_raw_data.Cols.Count - m_gr_raw_data.Cols.Fixed;
+            //var v_rows_ = m_gr_raw_data.Rows.Count - m_gr_raw_data.Rows.Fixed;
+            for (int i = m_gr_raw_data.Cols.Fixed; i < m_gr_raw_data.Cols.Count; i++)
             {
                 var v_column_ = m_gr_raw_data.Cols[i];
                 var v_column_details = (ColumnDetails)v_column_.UserData;
@@ -291,18 +300,36 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 if (v_table_ == null)
                     continue;
-                for (int j = 0; j < v_table_.Columns.Count; j++)
-                {
-                    m_dt_enc_data.Columns.Add(v_table_.Columns[i]);
-                }
+                MergeTable(ref m_dt_enc_data, v_table_);
             }
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return m_dt_enc_data;
         }
 
         public DataTable Preprocessing(C1FlexGrid ip_grid_raw_data)
         {
             this.m_gr_raw_data = ip_grid_raw_data;
             return Preprocessing();
+        }
+
+        private void MergeTable(ref DataTable ip_dt_dest, DataTable ip_dt_src)
+        {
+            if(ip_dt_dest.Rows.Count <= 0)
+            {
+                var v_str_bak = ip_dt_dest.TableName;
+                ip_dt_dest = ip_dt_src;
+                ip_dt_dest.TableName = v_str_bak;
+                return;
+            }
+            var v_col_bak = ip_dt_dest.Columns.Count;
+            for (int j = 0; j < ip_dt_src.Columns.Count; j++)
+            {
+                ip_dt_dest.Columns.Add(ip_dt_src.Columns[j].ColumnName, ip_dt_src.Columns[j].DataType);
+                for (int i = 0; i < ip_dt_src.Rows.Count; i++)
+                {
+                    ip_dt_dest.Rows[i][v_col_bak + j] = ip_dt_src.Rows[i][j];
+                }
+            }
         }
     }
 }

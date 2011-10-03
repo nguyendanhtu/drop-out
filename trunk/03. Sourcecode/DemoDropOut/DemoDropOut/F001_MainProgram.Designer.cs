@@ -832,7 +832,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
-            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
+            this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
             // 
@@ -846,7 +846,7 @@
             this.tsbtnSavePreprocessedData});
             this.toolStripProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.toolStripProcessedDataFlexGrid.Name = "toolStripProcessedDataFlexGrid";
-            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 25);
+            this.toolStripProcessedDataFlexGrid.Size = new System.Drawing.Size(620, 25);
             this.toolStripProcessedDataFlexGrid.TabIndex = 5;
             this.toolStripProcessedDataFlexGrid.Text = "toolStrip1";
             // 
@@ -1713,11 +1713,12 @@
             this.tsbtnPartition1.Name = "tsbtnPartition1";
             this.tsbtnPartition1.Size = new System.Drawing.Size(84, 22);
             this.tsbtnPartition1.Text = "Partition";
+            this.tsbtnPartition1.ButtonClick += new System.EventHandler(this.tsbtnPartition1_ButtonClick);
             // 
             // optionsToolStripMenuItem1
             // 
             this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.optionsToolStripMenuItem1.Text = "Options...";
             // 
             // toolStripSeparator2
@@ -1734,6 +1735,7 @@
             this.tsbtnPreprocess1.Name = "tsbtnPreprocess1";
             this.tsbtnPreprocess1.Size = new System.Drawing.Size(96, 22);
             this.tsbtnPreprocess1.Text = "Preprocess";
+            this.tsbtnPreprocess1.ButtonClick += new System.EventHandler(this.tsbtnPreprocess1_ButtonClick);
             // 
             // datasetOptionsToolStripMenuItem1
             // 
@@ -1869,7 +1871,7 @@
             this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle1.Location = new System.Drawing.Point(0, 0);
             this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle1.Size = new System.Drawing.Size(620, 20);
             this.controlTitle1.TabIndex = 0;
             this.controlTitle1.Title = "Processed Data";
             // 
@@ -1881,7 +1883,7 @@
             this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
             this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(625, 0);
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(620, 0);
             this.collapsibleSplitter1.Name = "collapsibleSplitter1";
             this.collapsibleSplitter1.TabIndex = 6;
             this.collapsibleSplitter1.TabStop = false;
