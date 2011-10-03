@@ -8,6 +8,7 @@ using System.Data;
 using System.IO;
 using DemoDropOut.Apps.Objects;
 using System.Globalization;
+using System.Collections;
 
 namespace DemoDropOut.Apps.BussinessLogicLayer
 {
@@ -19,23 +20,17 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         public bool SpecificOrder
         {
-            get { return m_bl_specific_order;}
-            set { m_bl_specific_order = value;}
+            get { return m_bl_specific_order; }
+            set { m_bl_specific_order = value; }
         }
 
-        private DataTable m_dt_analyzed;
-
-        public DataTable Analyzed
-        {
-            get { return m_dt_analyzed; }
-        }
-        // Lư thông tin chỉ số của mẫu hợp lệ & không hợp lệ
-        private IList<int> m_list_valid_population;
-        private IList<int> m_list_invalid_population;
+        // Lưu thông tin chỉ số của mẫu hợp lệ & không hợp lệ
+        private List<int> m_list_valid_population;
+        private Hashtable m_list_invalid_population;
         // Lưu thông tin chỉ số của tập mẫu dùng làm: mẫu luyện, mẫu khớp, mẫu kiểm tra.
-        private IList<int> m_list_training_set;
-        private IList<int> m_list_validation_set;
-        private IList<int> m_list_test_set;
+        private List<int> m_list_training_set;
+        private List<int> m_list_validation_set;
+        private List<int> m_list_test_set;
 
         public IList<int> TrainingSetIndex
         {
@@ -52,12 +47,12 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             get { return m_list_test_set; }
         }
 
-        public IList<int> ValidPopulation
+        public IList<int> ValidPopulationRows
         {
             get { return m_list_valid_population; }
         }
 
-        public IList<int> InvalidPopulation
+        public Hashtable InvalidPopulationRows
         {
             get { return m_list_invalid_population; }
         }
@@ -73,12 +68,17 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             set { m_str_date_format = value; }
         }
 
-        public void Partition(int ip_training_percent, int ip_validation_percent, int ip_test_percent)
+        public void Partition(double ip_training_percent, double ip_validation_percent, double ip_test_percent)
         {
             // Khởi tạo lại danh sách tập mẫu
             m_list_training_set = new List<int>();
             m_list_validation_set = new List<int>();
             m_list_test_set = new List<int>();
+
+            var v_partition_population = m_list_valid_population.ToList();
+            var v_train_count = (int)(v_partition_population.Count * ip_training_percent);
+            var v_validation_count = (int)Math.Ceiling(v_partition_population.Count * ip_validation_percent);
+            // var v_test_count = (int)(v_valid_population.Count * ip_test_percent);
 
             if (m_bl_specific_order == true)
             {
@@ -86,64 +86,95 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
             else // Random approach (Simple random sample)
             {
-
+                // Lấy ngẫu nhiên tập dữ liệu training trước
+                var v_random = new Random();
+                for (int i = 0; i < v_train_count; i++)
+                {
+                    var v_rnd_index = v_random.Next(v_partition_population.Count - 1);
+                    AddTrainingSetIndex(v_partition_population[v_rnd_index]);
+                    v_partition_population.RemoveAt(v_rnd_index);
+                }
+                for (int i = 0; i < v_validation_count; i++)
+                {
+                    var v_rnd_index = v_random.Next(v_partition_population.Count - 1);
+                    AddValidationSetIndex(v_partition_population[v_rnd_index]);
+                    v_partition_population.RemoveAt(v_rnd_index);
+                }
+                // for ... test count
+                m_list_test_set = v_partition_population;
             }
         }
 
         #region Thêm vào hoặc loại bỏ chỉ mục trong các danh sách lưu trữ chỉ mục
-        private void AddValidPopulationIndex(int index)
+        private void AddValidPopulationIndex(int row)
         {
-            m_list_valid_population.Add(index);
+            m_list_valid_population.Add(row);
         }
 
-        private void RemoveValidPopulationIndex(int index)
+        private void RemoveValidPopulationIndex(int row)
         {
-            m_list_valid_population.RemoveAt(index);
+            m_list_valid_population.RemoveAt(row);
         }
 
-        private void AddInvalidPopulationIndex(int index)
+        private void AddInvalidPopulationIndex(int row, int col)
         {
-            m_list_invalid_population.Add(index);
+            if (m_list_invalid_population[row] == null)
+            {
+                var v_list_col_error = new List<int>();
+                v_list_col_error.Add(col);
+                m_list_invalid_population[row] = v_list_col_error;
+            }
+            else
+            {
+                ((IList<int>)(m_list_invalid_population[row])).Add(col);
+            }
         }
 
-        public void RemoveInvalidPopulationIndex(int index)
+        private void RemoveInvalidPopulationIndex(int index)
         {
-            m_list_invalid_population.RemoveAt(index);
+            m_list_invalid_population.Remove(index);
         }
 
-        public void AddTrainingSetIndex(int index)
+        private void AddTrainingSetIndex(int index)
         {
             m_list_training_set.Add(index);
         }
 
-        public void RemoveTrainingSetIndex(int index)
+        private void RemoveTrainingSetIndex(int index)
         {
             m_list_training_set.RemoveAt(index);
         }
 
-        public void AddValidationSetIndex(int index)
+        private void AddValidationSetIndex(int index)
         {
             m_list_validation_set.Add(index);
         }
 
-        public void RemoveValidationSetIndex(int index)
+        private void RemoveValidationSetIndex(int index)
         {
             m_list_validation_set.RemoveAt(index);
         }
 
-        public void AddTestSetIndex(int index)
+        private void AddTestSetIndex(int index)
         {
             m_list_test_set.Add(index);
         }
 
-        public void RemoveTestSetIndex(int index)
+        private void RemoveTestSetIndex(int index)
         {
             m_list_test_set.RemoveAt(index);
         }
         #endregion
 
+        private void InitializeComponents()
+        {
+            m_list_invalid_population = new Hashtable();
+            m_list_valid_population = new List<int>();
+        }
+
         public DataTable Analyze(DataTable ip_rawDataTable)
         {
+            InitializeComponents();
             var v_dataTable = new DataTable(ip_rawDataTable.TableName);
             // Get table columns
             var v_cols_ = ip_rawDataTable.Columns.Count;
@@ -296,7 +327,6 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
             #endregion
             // data table
-            m_dt_analyzed = v_dataTable;
             return v_dataTable;
         }
         /// <summary>
@@ -306,15 +336,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <returns>DataTable</returns>
         public DataTable Analyze(string ip_str_fname)
         {
+            InitializeComponents();
             StreamReader v_reader = null;
             try
             {
-                var v_dataTable = new DataTable("Raw Data");
                 var v_stream = new FileStream(ip_str_fname, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 v_reader = new StreamReader(v_stream); // File.OpenText(ip_str_fname);
                 var v_str_line = string.Empty;
                 var v_db_value = default(Double);
                 var v_dt_date = default(DateTime);
+                var v_dataTable = new DataTable("Raw Data");
                 //var v_bl_header_ok = false;
                 // Khởi tạo bảng thông tin
                 if ((v_str_line = v_reader.ReadLine()) != null)
@@ -333,7 +364,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                             {
                                 var v_str_colName = "Column #" + (j + 1).ToString();
                                 v_dataCol = new DataColumn(v_str_colName);
-                                v_dataCol.Caption = v_str_colName;
+                                // v_dataCol.Caption = v_str_colName;
                                 v_dataTable.Columns.Add(v_dataCol);
                             }
 
@@ -342,7 +373,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                             goto lbl_header_ok;
                         }
                         // else
-                        v_dataCol.Caption = v_str_tokens[j];
+                        // v_dataCol.Caption = v_str_tokens[j];
                         v_dataTable.Columns.Add(v_dataCol);
                     }
                 }
@@ -364,6 +395,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         {
                             v_str_tokens[j] = "null";
                             v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                            throw new Exception("Mẫu dữ liệu đầu tiên không thể phân tích được. Cần được chuẩn hóa lại");
                         }
                         else if (double.TryParse(v_str_tokens[j], out v_db_value) == true)
                         {
@@ -387,9 +419,9 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         // CD := Column Details
                         v_dataTable.Columns[j].ExtendedProperties.Add("Details", v_column_details);
                     }
-
                     // thêm được 1 mẫu mới: v_dataRow
                     v_dataTable.Rows.Add(v_dataRow);
+                    AddValidPopulationIndex(0); //v_dataTable.Rows.Count := 0;
                 }
                 #endregion
 
@@ -401,15 +433,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     var v_str_tokens = v_str_line.Split(',');
                     var v_dataRow = v_dataTable.NewRow();
                     // Đọc dữ liệu của mẫu: inputsCount
-                    for (int j = 0; j < v_str_tokens.Length; j++)
+                    for (int v_col = 0; v_col < v_str_tokens.Length; v_col++)
                     {
-                        var v_column_details = (ColumnDetails)v_dataTable.Columns[j].ExtendedProperties["Details"];
-                        if (string.IsNullOrEmpty(v_str_tokens[j]) == true)
+                        var v_column_details = (ColumnDetails)v_dataTable.Columns[v_col].ExtendedProperties["Details"];
+                        if (string.IsNullOrEmpty(v_str_tokens[v_col]) == true)
                         {
-                            v_str_tokens[j] = "null";
-                            v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                            //v_str_tokens[j] = "null";
+                            //v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                            AddInvalidPopulationIndex(v_dataTable.Rows.Count, v_col);
                         }
-                        else if (double.TryParse(v_str_tokens[j], out v_db_value) == true)
+                        else if (double.TryParse(v_str_tokens[v_col], out v_db_value) == true)
                         {
                             // Kiểm tra lại giá trị v_str_tokens[j] này có thuộc nhóm Numerical
                             // Nếu ko thuộc thì đây là lỗi, khác thì cập nhật giá trị max - min
@@ -419,10 +452,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                             }
                             else
                             {
-                                v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                // v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                AddInvalidPopulationIndex(v_dataTable.Rows.Count, v_col);
                             }
                         }
-                        else if (DateTime.TryParseExact(v_str_tokens[j], m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
+                        else if (DateTime.TryParseExact(v_str_tokens[v_col], m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
                         {
                             if (v_column_details.Format == ColumnFormat.Date)
                             {
@@ -434,21 +468,38 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                             }
                             else
                             {
-                                v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                // v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                AddInvalidPopulationIndex(v_dataTable.Rows.Count, v_col);
                             }
                         }
-                        else if (v_column_details.Categories.Contains(v_str_tokens[j]) == false)
+                        else if (v_column_details.Categories.Contains(v_str_tokens[v_col]) == false)
                         {
                             if (v_column_details.Format == ColumnFormat.Categorical)
                             {
-                                v_column_details.Categories.Add(v_str_tokens[j]);
+                                v_column_details.Categories.Add(v_str_tokens[v_col]);
                             }
                             else
                             {
-                                v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                // v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
+                                AddInvalidPopulationIndex(v_dataTable.Rows.Count, v_col);
                             }
                         }
-                        v_dataRow[j] = v_str_tokens[j];
+                        //else
+                        //{
+                        //    AddInvalidPopulationIndex(v_dataTable.Rows.Count, v_col);
+                        //}
+                        v_dataRow[v_col] = v_str_tokens[v_col];
+                    }
+                    if (m_list_invalid_population[v_dataTable.Rows.Count] == null)
+                    {
+                        // Chú ý: ta lấy v_dataTable.Rows.Count bởi vì
+                        // trước vòng lặp while ta đã sẵn có 1 bản ghi ở trong v_dataTable
+                        // --> Count chính bằng chỉ số của v_dataRow ta cần lấy.
+                        AddValidPopulationIndex(v_dataTable.Rows.Count);
+                    }
+                    else
+                    {
+                        v_dataRow.RowError = "true";
                     }
                     // thêm được 1 mẫu mới: v_dataRow
                     v_dataTable.Rows.Add(v_dataRow);
@@ -478,29 +529,28 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     // Đặt lại tên cột
                     if (v_column_details.Format == ColumnFormat.Categorical)
                     {
-                        v_dataTable.Columns[i].Caption = string.Format("(C{0}) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
+                        v_dataTable.Columns[i].Caption = string.Format("(C{0}) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
                     else if (v_column_details.Format == ColumnFormat.Numerical)
                     {
-                        v_dataTable.Columns[i].Caption = string.Format("(N) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
+                        v_dataTable.Columns[i].Caption = string.Format("(N) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
                     else if (v_column_details.Format == ColumnFormat.Date)
                     {
-                        v_dataTable.Columns[i].Caption = string.Format("(D) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
+                        v_dataTable.Columns[i].Caption = string.Format("(D) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
                     else if (v_column_details.Format == ColumnFormat.Time)
                     {
-                        v_dataTable.Columns[i].Caption = string.Format("(T) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
+                        v_dataTable.Columns[i].Caption = string.Format("(T) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
                     else if (v_column_details.Format == ColumnFormat.Unknow)
                     {
-                        v_dataTable.Columns[i].Caption = string.Format("(U) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
+                        v_dataTable.Columns[i].Caption = string.Format("(U) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
                 }
 
                 #endregion
                 // data table
-                m_dt_analyzed = v_dataTable;
                 return v_dataTable;
             }
             catch (IOException ex)
