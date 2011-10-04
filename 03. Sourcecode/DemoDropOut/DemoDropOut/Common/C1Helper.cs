@@ -8,7 +8,7 @@ using C1.Win.C1FlexGrid;
 
 namespace DemoDropOut.Common
 {
-    public class C1Utils
+    public class C1Helper
     {
         public static void LoadDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
         {
