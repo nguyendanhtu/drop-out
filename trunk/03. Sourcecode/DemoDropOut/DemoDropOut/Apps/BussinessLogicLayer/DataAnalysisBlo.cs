@@ -225,7 +225,13 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         private void SetOutput(DataTable table, int index)
         {
-            table.ExtendedProperties["Output"] = index;
+            if (table.ExtendedProperties["OutputIndex"] != null)
+            {
+                var v_col_index = (int)table.ExtendedProperties["OutputIndex"];
+                ((ColumnDetails)table.Columns[v_col_index].ExtendedProperties["Details"]).Type = ColumnType.Input;
+            }
+            ((ColumnDetails)table.Columns[index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
+            table.ExtendedProperties["OutputIndex"] = index;
         }
 
         public void SetOutput(int index)
@@ -618,7 +624,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 #region Mặc định cột cuối cùng là đầu ra
                 var v_output_index = v_dataTable.Columns.Count - 1;
                 ((ColumnDetails)v_dataTable.Columns[v_output_index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
-                v_dataTable.ExtendedProperties["Output"] = v_output_index;
+                v_dataTable.ExtendedProperties["OutputIndex"] = v_output_index;
                 #endregion
                 // data table
                 m_dt_analyzed_set = v_dataTable;

@@ -194,13 +194,25 @@ namespace DemoDropOut
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void btnTraining_Click(object sender, EventArgs e)
         {
             try
             {
+                this.tabControl1.SelectedTab = this.tabTrainingPage;
                 listErrorChart = new List<double>();
-                m_dropOutForecast = new DropOutForecast(m_dt_samples, classes);
+                m_dropOutForecast = new DropOutForecast();
 
+                // Set tập mẫu luyện
+                m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
+                m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
+                m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
+
+                // Cấu hình mạng (default)
+                m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
+                m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
+                m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
+
+                // Thông số mạng
                 m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
                 m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
 
@@ -517,6 +529,7 @@ namespace DemoDropOut
 
                 var v_table = m_dPreprocessing_obj.EncodedData;
                 C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+                this.tabControl1.SelectedTab = this.tabPreprocessingPage;
             }
             catch (Exception ex)
             {
@@ -524,7 +537,19 @@ namespace DemoDropOut
             }
         }
 
+        private void tsbtnQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tabControl1.SelectedTab = this.tabQueryPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         #endregion
+
 
     }
 }
