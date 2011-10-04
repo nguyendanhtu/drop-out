@@ -410,7 +410,7 @@ namespace DemoDropOut
                 {
                     m_dAnalysis_obj = new DataAnalysisBlo();
                     var v_table = m_dAnalysis_obj.Analyze(v_openFileDialog.FileName);
-                    C1Utils.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
+                    C1Helper.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
                     //c1RawDataFlexGrid.DataSource = v_table;
 
                     tscboTarget.Items.Clear();
@@ -510,11 +510,13 @@ namespace DemoDropOut
                 m_dPreprocessing_obj = new DataPreprocessingBlo();
                 m_dPreprocessing_obj.CategoricalEncoding = CategoricalEncoding.Binary;
                 m_dPreprocessing_obj.DateEncoding = DateEncoding.Weekly;
-                m_dPreprocessing_obj.RawData = c1RawDataFlexGrid;
+                m_dPreprocessing_obj.TrainingSet = m_dAnalysis_obj.TrainingSet;
+                m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
+                m_dPreprocessing_obj.TestSet = m_dAnalysis_obj.TestSet;
                 m_dPreprocessing_obj.Preprocessing();
 
                 var v_table = m_dPreprocessing_obj.EncodedData;
-                C1Utils.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+                C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
             }
             catch (Exception ex)
             {
