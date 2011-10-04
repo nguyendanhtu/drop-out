@@ -39,8 +39,32 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         private C1FlexGrid m_gr_raw_data = null;
         private DataTable m_dt_enc_data = null;
+        private DataTable m_dt_training_set_enc = null;
+        private DataTable m_dt_validation_set_enc = null;
+        private DataTable m_dt_test_set_enc = null;
+
+        public DataTable TrainingSet
+        {
+            get { return m_dt_training_set_enc; }
+            set { m_dt_training_set_enc = value; }
+        }
+
+        public DataTable ValidationSet
+        {
+            get { return m_dt_validation_set_enc; }
+            set { m_dt_validation_set_enc = value; }
+        }
+
+        public DataTable TestSet
+        {
+            get { return m_dt_test_set_enc; }
+            set { m_dt_test_set_enc = value; }
+        }
+
+
         /// <summary>
         /// Tập dữ liệu đã được tiền xử lý
+        /// Bao gồm: training set, validation set, test set
         /// </summary>
         public DataTable EncodedData
         {
@@ -62,11 +86,24 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             set { m_str_date_format = value; }
         }
-
-        private double ScalingNumeric(double actual, double Xmax, double Xmin, double lower, double upper)
+        /// <summary>
+        /// Scaling numeric
+        /// </summary>
+        /// <param name="Xactual">Giá trị X</param>
+        /// <param name="Xmax">X max</param>
+        /// <param name="Xmin">X min</param>
+        /// <param name="SRlower">Scaling range lower</param>
+        /// <param name="SRupper">Scaling range upper</param>
+        /// <returns></returns>
+        private double ScalingNumeric(double Xactual, double Xmax, double Xmin, double SRlower, double SRupper)
         {
-            var sf = (upper - lower) / (Xmax - Xmin); // scaling factor
-            return (lower + (actual - Xmin) * sf);
+            var sf = (SRupper - SRlower) / (Xmax - Xmin); // scaling factor
+            return (SRlower + (Xactual - Xmin) * sf);
+        }
+
+        private double ScalingNumeric(double Xactual, double Xmin, double sf, double SRlower)
+        {
+            return (SRlower + (Xactual - Xmin) * sf);
         }
 
         private DataTable EncodeNumeric(int columnIndex)
@@ -76,18 +113,25 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             v_table_.Columns.Add(v_numeric_column.Name);
             var v_column_details = (ColumnDetails)v_numeric_column.UserData;
             var v_rows = m_gr_raw_data.Rows.Count - m_gr_raw_data.Rows.Fixed;
+            var sf = v_column_details.ScalingFactor; // scaling factor
             for (int i = m_gr_raw_data.Rows.Fixed; i < m_gr_raw_data.Rows.Count; i++)
             {
                 var v_actual_value = double.Parse(v_numeric_column[i].ToString());
                 var v_new_row = v_table_.NewRow();
-                if (v_column_details.Type == ColumnType.Input)
-                {
-                    v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MaxValue, v_column_details.MinValue, -1, 1);
-                }
-                else
-                {
-                    v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MaxValue, v_column_details.MinValue, 0, 1);
-                }
+                v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MinValue, sf, v_column_details.ScalingRange.Lower);
+                #region Backup
+                //if (v_column_details.Type == ColumnType.Input)
+                //{
+                //    //v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MaxValue, v_column_details.MinValue, -1, 1);
+                //    v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MinValue, sf, v_column_details.ScalingRange.Lower);
+                //}
+                //else
+                //{
+                //    //v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MaxValue, v_column_details.MinValue, 0, 1);
+                //    v_new_row[0] = ScalingNumeric(v_actual_value, v_column_details.MinValue, sf, v_column_details.ScalingRange.Lower);
+                //}
+
+                #endregion
                 v_table_.Rows.Add(v_new_row);
             }
             return v_table_;
@@ -314,7 +358,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         private void MergeTable(ref DataTable ip_dt_dest, DataTable ip_dt_src)
         {
-            if(ip_dt_dest.Rows.Count <= 0)
+            if (ip_dt_dest.Rows.Count <= 0)
             {
                 var v_str_bak = ip_dt_dest.TableName;
                 ip_dt_dest = ip_dt_src;

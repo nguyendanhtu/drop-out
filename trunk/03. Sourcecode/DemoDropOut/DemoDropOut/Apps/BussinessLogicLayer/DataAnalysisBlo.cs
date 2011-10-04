@@ -32,6 +32,57 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         private List<int> m_list_validation_set;
         private List<int> m_list_test_set;
 
+        // Phân chia tập dữ liệu
+        private DataTable m_dt_analyzed_set;
+        //private DataTable m_dt_training_set;
+        //private DataTable m_dt_validation_set;
+        //private DataTable m_dt_test_set;
+
+        public DataTable TrainingSet
+        {
+            get
+            {
+                if (m_dt_analyzed_set == null)
+                    throw new Exception("Chưa thực hiện phân tích dữ liệu");
+                var v_table = m_dt_analyzed_set.Clone();
+                for (int i = 0; i < m_list_training_set.Count; i++)
+                {
+                    v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_training_set[i]].ItemArray);
+                }
+                return v_table;
+            }
+        }
+
+        public DataTable ValidationSet
+        {
+            get
+            {
+                if (m_dt_analyzed_set == null)
+                    throw new Exception("Chưa thực hiện phân tích dữ liệu");
+                var v_table = m_dt_analyzed_set.Clone();
+                for (int i = 0; i < m_list_validation_set.Count; i++)
+                {
+                    v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_validation_set[i]].ItemArray);
+                }
+                return v_table;
+            }
+        }
+
+        public DataTable TestSet
+        {
+            get
+            {
+                if (m_dt_analyzed_set == null)
+                    throw new Exception("Chưa thực hiện phân tích dữ liệu");
+                var v_table = m_dt_analyzed_set.Clone();
+                for (int i = 0; i < m_list_test_set.Count; i++)
+                {
+                    v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_test_set[i]].ItemArray);
+                }
+                return v_table;
+            }
+        }
+
         public IList<int> TrainingSetIndex
         {
             get { return m_list_training_set; }
@@ -170,6 +221,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             m_list_invalid_population = new Hashtable();
             m_list_valid_population = new List<int>();
+        }
+
+        private void SetOutput(DataTable table, int index)
+        {
+            table.ExtendedProperties["Output"] = index;
+        }
+
+        public void SetOutput(int index)
+        {
+            SetOutput(m_dt_analyzed_set, index);
         }
 
         public DataTable Analyze(DataTable ip_rawDataTable)
@@ -327,6 +388,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
             #endregion
             // data table
+            m_dt_analyzed_set = v_dataTable;
             return v_dataTable;
         }
         /// <summary>
@@ -346,8 +408,9 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 var v_db_value = default(Double);
                 var v_dt_date = default(DateTime);
                 var v_dataTable = new DataTable("Raw Data");
+
                 //var v_bl_header_ok = false;
-                // Khởi tạo bảng thông tin
+                #region Đọc thông tin header file
                 if ((v_str_line = v_reader.ReadLine()) != null)
                 {
                     var v_str_tokens = v_str_line.Split(',');
@@ -379,6 +442,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 // đọc thêm 1 dòng nếu lần đọc ở trên chứa thông tin (header) dữ liệu
                 v_str_line = v_reader.ReadLine();
+                #endregion
 
             lbl_header_ok: ;// Hoàn tất việc tạo header cho tập dữ liệu
                 #region Đọc 01 mẫu dữ liệu đầu tiên của tập dữ liệu
@@ -550,7 +614,14 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
 
                 #endregion
+
+                #region Mặc định cột cuối cùng là đầu ra
+                var v_output_index = v_dataTable.Columns.Count - 1;
+                ((ColumnDetails)v_dataTable.Columns[v_output_index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
+                v_dataTable.ExtendedProperties["Output"] = v_output_index;
+                #endregion
                 // data table
+                m_dt_analyzed_set = v_dataTable;
                 return v_dataTable;
             }
             catch (IOException ex)
