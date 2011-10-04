@@ -8,7 +8,7 @@ namespace DemoDropOut.Apps.Objects
     {
         public double Mean = 0;
         public double StandardDeviation;
-        public ColumnType Type;
+        private ColumnType m_column_type;
         private ColumnFormat m_column_format;
         private int encColumnInto;
         private IList<string> m_list_category = new List<string>();
@@ -98,6 +98,14 @@ namespace DemoDropOut.Apps.Objects
             set { m_scaling_range = value; }
         }
 
+        public double ScalingFactor
+        {
+            get
+            {
+                return (m_scaling_range.Upper - m_scaling_range.Lower) / (m_db_maxValue - m_db_minValue);
+            }
+        }
+
         public ColumnFormat Format
         {
             get { return m_column_format; }
@@ -108,6 +116,23 @@ namespace DemoDropOut.Apps.Objects
                     m_scaling_range = new ScalingRange();
                 }
                 m_column_format = value;
+            }
+        }
+
+        public ColumnType Type
+        {
+            get { return m_column_type; }
+            set
+            {
+                if (value == ColumnType.Input)
+                {
+                    m_scaling_range = new ScalingRange(-1, 1);
+                }
+                else
+                {
+                    m_scaling_range = new ScalingRange(0, 1);
+                }
+                m_column_type = value;
             }
         }
 
@@ -137,7 +162,7 @@ namespace DemoDropOut.Apps.Objects
 
         public ColumnDetails()
         {
-            Type = ColumnType.Input;
+            m_column_type = ColumnType.Input;
             m_column_format = ColumnFormat.Numerical;
             encColumnInto = 1;
         }
@@ -156,7 +181,7 @@ namespace DemoDropOut.Apps.Objects
 
         public override string ToString()
         {
-            return string.IsNullOrEmpty(m_str_colname)? m_column_format.ToString() : m_str_colname;
+            return string.IsNullOrEmpty(m_str_colname) ? m_column_format.ToString() : m_str_colname;
         }
     }
 
@@ -190,6 +215,11 @@ namespace DemoDropOut.Apps.Objects
         {
             Lower = lower;
             Upper = upper;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("[{0}..{1}]", Lower, Upper);
         }
     }
 }
