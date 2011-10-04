@@ -202,26 +202,5 @@ namespace DemoDropOut.Apps.DataAccessLayer
                     v_reader.Close();
             }
         }
-
-        public static double[][] ToDoubles(DataTable ip_table_inputs)
-        {
-            var _samples = ip_table_inputs.Rows.Count;
-            var _variables = ip_table_inputs.Columns.Count;
-
-            var _input = new double[_samples][];
-
-            for (int i = 0; i < _samples; i++)
-            {
-                _input[i] = new double[_variables];
-
-                // set value output
-                for (int j = 0; j < _variables; j++)
-                {
-                    var _value = ip_table_inputs.Rows[i][j].ToString();
-                    _input[i][j] = double.Parse(_value);
-                }
-            }
-            return _input;
-        }
     }
 }

@@ -349,9 +349,105 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 if (v_table_ == null)
                     continue;
+                if (v_column_details.Type == ColumnType.Ouput)
+                {
+                    v_enc_data.ExtendedProperties["OutputIndex"] = v_enc_data.Columns.Count;
+                    v_enc_data.ExtendedProperties["OutputCount"] = v_table_.Columns.Count;
+                }
                 DataHelper.MergeTableColumns(ref v_enc_data, v_table_);
             }
             return v_enc_data;
         }
+
+        #region Chuyển đổi dữ liệu bảng sang mảng double 2 chiều
+
+        public double[][] TrainingSetToDoubles()
+        {
+            return m_dt_training_set_enc.ToDoubles();
+        }
+
+        public double[][] TrainingSetInputToDoubles()
+        {
+            var v_output_index = (int)m_dt_training_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
+            var v_index2 = v_output_index + v_output_count;
+            return m_dt_training_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_training_set_enc.Columns.Count - v_index2);
+        }
+
+        public double[][] TrainingSetOutputToDoubles()
+        {
+            var v_output_index = (int)m_dt_training_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
+            return m_dt_training_set_enc.ToDoubles(v_output_index, v_output_count);
+        }
+
+        public double[][] ValidationSetToDoubles()
+        {
+            return m_dt_validation_set_enc.ToDoubles();
+        }
+
+        public double[][] ValidationSetInputToDoubles()
+        {
+            var v_output_index = (int)m_dt_training_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
+            var v_index2 = v_output_index + v_output_count;
+            return m_dt_training_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_training_set_enc.Columns.Count - v_index2);
+        }
+
+        public double[][] ValidationSetOutputToDoubles()
+        {
+            var v_output_index = (int)m_dt_validation_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_validation_set_enc.ExtendedProperties["OutputCount"];
+            return m_dt_training_set_enc.ToDoubles(v_output_index, v_output_count);
+        }
+
+        public double[][] TestSetToDoubles()
+        {
+            return m_dt_test_set_enc.ToDoubles();
+        }
+
+        public double[][] TestSetInputToDoubles()
+        {
+            var v_output_index = (int)m_dt_test_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_test_set_enc.ExtendedProperties["OutputCount"];
+            var v_index2 = v_output_index + v_output_count;
+            return m_dt_training_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_test_set_enc.Columns.Count - v_index2);
+        }
+
+        public double[][] TestSetOutputToDoubles()
+        {
+            var v_output_index = (int)m_dt_test_set_enc.ExtendedProperties["OutputIndex"];
+            var v_output_count = (int)m_dt_test_set_enc.ExtendedProperties["OutputCount"];
+            return m_dt_training_set_enc.ToDoubles(v_output_index, v_output_count);
+        }
+
+        #endregion
+
+        #region Phác thảo tham số luyện mạng
+
+        public int Classes
+        {
+            get
+            {
+                return (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
+            }
+        }
+
+        public int Variables
+        {
+            get
+            {
+                return m_dt_training_set_enc.Columns.Count - (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
+            }
+        }
+
+        public int HiddenNeurons
+        {
+            get
+            {
+                return (Variables >> 1) + 1;
+            }
+        }
+        #endregion
     }
 }

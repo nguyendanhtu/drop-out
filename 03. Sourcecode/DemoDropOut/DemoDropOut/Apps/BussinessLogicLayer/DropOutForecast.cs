@@ -30,7 +30,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <summary>
         /// Số nơ ron lớp ẩn
         /// </summary>
-        private int _hiddenNeuroCount = 0;
+        private int _hiddenNeurons = 0;
 
         private double _learningRate = 0.1;
         private double _momentumValue = 2;
@@ -41,60 +41,51 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         private double[][] _input = null; // new double[samples][];  // training set
         private double[][] _output = null; // new double[samples][]; // ideal output
 
+        private double[][] _validationSet = null;
+        private double[][] _testSet = null;
+
+        public double[][] TrainingInputSet
+        {
+            get { return _input; }
+            set { _input = value; }
+        }
+
+        public double[][] TrainingOutputSet
+        {
+            get { return _output; }
+            set { _output = value; }
+        }
+
+        public double[][] ValidationSet
+        {
+            get { return _validationSet; }
+            set { _validationSet = value; }
+        }
+
+        public double[][] TestSet
+        {
+            get { return _testSet; }
+            set { _testSet = value; }
+        }
+
         private volatile bool signalStop = false;
 
         // Thread
         private Thread worker = null;
-        
+
         // Network
         private FeedforwardNetwork network = null;
 
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Set: tập mẫu học
-        /// </summary>
-        public DataTable IdealSamples
-        {
-            set
-            {
-                if (_classes <= 0)
-                    throw new Exception("Output number can not equal or less than zero");
-                _variables = value.Columns.Count - _classes;
-                _samples = value.Rows.Count;
 
-                //var input = new double[_samples][];  // training set
-                //var output = new double[_samples][]; // ideal output
-                _input = new double[_samples][];
-                _output = new double[_samples][];
-
-                // set sample dataset
-                for (int i = 0; i < _samples; i++)
-                {
-                    _input[i] = new double[_variables];
-                    _output[i] = new double[_classes];
-
-                    // set input
-                    for (int j = 0; j < _variables; j++)
-                    {
-                        var _value = value.Rows[i][j].ToString();
-                        _input[i][j] = double.Parse(_value);
-                    }
-                    for (int j = 0; j < _classes; j++)
-                    {
-                        var _value = value.Rows[i][_variables + j].ToString();
-                        _output[i][j] = double.Parse(_value);
-                    }
-                }
-            }
-        }
         /// <summary>
         /// Get: số mẫu học
         /// </summary>
         public int Samples
         {
-            get { return _samples; }
+            get { return _input.GetLength(0); }
         }
         /// <summary>
         /// Get: số biến nhập
@@ -102,6 +93,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         public int Variables
         {
             get { return _variables; }
+            set { _variables = value; }
         }
         /// <summary>
         /// Set: số lớp xuất
@@ -109,6 +101,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         public int Classes
         {
             get { return _classes; }
+            set { _classes = value; }
         }
         /// <summary>
         /// Get, set: số nơ ron lớp ẩn
@@ -117,11 +110,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             get
             {
-                if (_hiddenNeuroCount <= 0)
-                    return (_variables >> 1) + 1;  // (variables << 1) / 3 + 1;
-                return _hiddenNeuroCount;
+                //if (_hiddenNeuroCount <= 0)
+                //    return (_variables >> 1) + 1;  // (variables << 1) / 3 + 1;
+                return _hiddenNeurons;
             }
-            set { _hiddenNeuroCount = value; }
+            set { _hiddenNeurons = value; }
         }
 
         public double LearningRate
@@ -195,7 +188,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             {
                 FeedforwardNetwork network = new FeedforwardNetwork();
                 network.AddLayer(new FeedforwardLayer(_variables));
-                network.AddLayer(new FeedforwardLayer(HiddenNeuros));
+                network.AddLayer(new FeedforwardLayer(_hiddenNeurons));
                 network.AddLayer(new FeedforwardLayer(_classes));
                 network.Reset(); // randomize Weights & Threshold
                 //network.CalculateNeuronCount();
@@ -237,23 +230,9 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <summary>
         /// Khởi tạo hệ thống: DropOutForecast
         /// </summary>
-        /// <param name="ideal">Tập mẫu học</param>
-        /// <param name="classes">Số lớp xuất</param>
-        public DropOutForecast(DataTable ideal, int classes)
+        public DropOutForecast()
         {
-            this._classes = classes;    // impliment first
-            this.IdealSamples = ideal;  // set ideal data samples
-        }
-        /// <summary>
-        /// Khởi tạo hệ thống: DropOutForecast
-        /// </summary>
-        /// <param name="ideal">Tập mẫu học</param>
-        /// <param name="classes">Số lớp xuất</param>
-        /// <param name="hiddenNeuroCount">Số nơ ron lớp ẩn</param>
-        public DropOutForecast(DataTable ideal, int classes, int hiddenNeuroCount)
-            : this(ideal, classes)
-        {
-            this._hiddenNeuroCount = hiddenNeuroCount;
+            // không có gì: he he
         }
         #endregion
 

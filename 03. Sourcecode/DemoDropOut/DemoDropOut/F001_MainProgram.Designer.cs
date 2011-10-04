@@ -642,6 +642,7 @@
             this.c1RawDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1RawDataFlexGrid.Name = "c1RawDataFlexGrid";
+            this.c1RawDataFlexGrid.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange;
             this.c1RawDataFlexGrid.Size = new System.Drawing.Size(620, 353);
             this.c1RawDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1RawDataFlexGrid.Styles"));
             this.c1RawDataFlexGrid.TabIndex = 2;
@@ -816,6 +817,7 @@
             this.c1ProcessedDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1ProcessedDataFlexGrid.Location = new System.Drawing.Point(0, 45);
             this.c1ProcessedDataFlexGrid.Name = "c1ProcessedDataFlexGrid";
+            this.c1ProcessedDataFlexGrid.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.Column;
             this.c1ProcessedDataFlexGrid.Size = new System.Drawing.Size(625, 353);
             this.c1ProcessedDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ProcessedDataFlexGrid.Styles"));
             this.c1ProcessedDataFlexGrid.TabIndex = 2;
@@ -980,7 +982,7 @@
             this.tsbtnTrain2.Name = "tsbtnTrain2";
             this.tsbtnTrain2.Size = new System.Drawing.Size(23, 22);
             this.tsbtnTrain2.Text = "Train";
-            this.tsbtnTrain2.Click += new System.EventHandler(this.btnStart_Click);
+            this.tsbtnTrain2.Click += new System.EventHandler(this.btnTraining_Click);
             // 
             // toolStripSeparator4
             // 
@@ -1087,7 +1089,7 @@
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.btnTraining_Click);
             // 
             // chkErrorLimit
             // 
@@ -1743,7 +1745,7 @@
             this.tsbtnTrain1.Name = "tsbtnTrain1";
             this.tsbtnTrain1.Size = new System.Drawing.Size(66, 22);
             this.tsbtnTrain1.Text = "Train";
-            this.tsbtnTrain1.ButtonClick += new System.EventHandler(this.btnStart_Click);
+            this.tsbtnTrain1.ButtonClick += new System.EventHandler(this.btnTraining_Click);
             // 
             // optionsToolStripMenuItem3
             // 
@@ -1787,6 +1789,7 @@
             this.tsbtnQuery.Name = "tsbtnQuery";
             this.tsbtnQuery.Size = new System.Drawing.Size(59, 22);
             this.tsbtnQuery.Text = "Query";
+            this.tsbtnQuery.Click += new System.EventHandler(this.tsbtnQuery_Click);
             // 
             // tsbtnQueryDataset
             // 
