@@ -1808,6 +1808,7 @@
             this.tsbtnQueryFile.Name = "tsbtnQueryFile";
             this.tsbtnQueryFile.Size = new System.Drawing.Size(23, 22);
             this.tsbtnQueryFile.Text = "Query File";
+            this.tsbtnQueryFile.Click += new System.EventHandler(this.btnQueryFile_Click);
             // 
             // tsbtnHelp
             // 

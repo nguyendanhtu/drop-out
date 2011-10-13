@@ -38,6 +38,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         //private DataTable m_dt_validation_set;
         //private DataTable m_dt_test_set;
 
+        public DataTable AnalyzedDataSet
+        {
+            get
+            {
+                if (m_dt_analyzed_set == null)
+                    throw new Exception("Chưa phân tích tập dữ liệu");
+                return m_dt_analyzed_set;
+            }
+        }
+
         public DataTable TrainingSet
         {
             get
@@ -232,11 +242,23 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
             ((ColumnDetails)table.Columns[index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
             table.ExtendedProperties["OutputIndex"] = index;
+            table.ExtendedProperties["OutputCount"] = 1;
         }
 
         public void SetOutput(int index)
         {
-            SetOutput(m_dt_analyzed_set, index);
+            if (m_dt_analyzed_set != null)
+                SetOutput(m_dt_analyzed_set, index);
+            else
+            {
+                throw new NullReferenceException("Dữ liệu mẫu đưa vào chưa được phân tích trước khi SetOutput");
+            }
+        }
+
+        public ColumnDetails GetOuputColumn()
+        {
+            var v_output_index = (int)m_dt_analyzed_set.ExtendedProperties["OutputIndex"];
+            return m_dt_analyzed_set.Columns[v_output_index].ExtendedProperties["Details"] as ColumnDetails;
         }
 
         public DataTable Analyze(DataTable ip_rawDataTable)
@@ -625,6 +647,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 var v_output_index = v_dataTable.Columns.Count - 1;
                 ((ColumnDetails)v_dataTable.Columns[v_output_index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
                 v_dataTable.ExtendedProperties["OutputIndex"] = v_output_index;
+                v_dataTable.ExtendedProperties["OutputCount"] = 1;
                 #endregion
                 // data table
                 m_dt_analyzed_set = v_dataTable;

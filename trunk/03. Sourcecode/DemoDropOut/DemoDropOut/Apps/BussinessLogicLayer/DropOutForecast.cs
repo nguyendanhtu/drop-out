@@ -284,7 +284,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         public double[][] ComputeOutputs(DataTable ip_ideal_inputs)
         {
-            throw new NotImplementedException("Chưa cài đặt chương trình");
+            var v_input = Common.DataHelper.ToDoubles(ip_ideal_inputs);
+            return ComputeOutputs(v_input);
         }
         #endregion
     }
