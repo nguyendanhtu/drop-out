@@ -19,7 +19,8 @@ namespace DemoDropOut.Apps.DataAccessLayer
             try
             {
                 var v_dataTable = new DataTable("Encoded Data");
-                v_reader = File.OpenText(ip_fileName);
+                var v_fstream = new FileStream(ip_fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                v_reader = new StreamReader(v_fstream);
                 var v_str_line = string.Empty;
                 // Khởi tạo bảng thông tin
                 if ((v_str_line = v_reader.ReadLine()) != null)

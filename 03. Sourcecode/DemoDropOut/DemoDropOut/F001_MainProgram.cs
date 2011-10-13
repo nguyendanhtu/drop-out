@@ -282,19 +282,9 @@ namespace DemoDropOut
             try
             {
                 var tabControl = (TabControl)sender;
-                var ip_c1Gird = this.c1ManualQueryFlexGrid;
                 if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
                 {
-                    // Load trường dữ liệu
-                    ip_c1Gird.Rows.Count = ip_c1Gird.Rows.Fixed + 1; // xóa dữ liệu bằng cách đặt lại số row = fixed
-                    ip_c1Gird.Cols.Count = this.m_dt_samples.Columns.Count + ip_c1Gird.Cols.Fixed - 1; //Số cột = số cột fixed + số cột dữ liệu
-                    for (int i = ip_c1Gird.Cols.Fixed, table_index = 0; i < ip_c1Gird.Cols.Count; i++, table_index++)
-                    {
-                        var v_str_caption = this.m_dt_samples.Columns[table_index].Caption;
-                        ip_c1Gird[0, i] = v_str_caption;
-                        ip_c1Gird.Cols[i].Caption = v_str_caption;
-                        ip_c1Gird.Cols[i].Name = v_str_caption;
-                    }
+                    DataQueryBlo.FormatGridViewInputData(this.c1ManualQueryFlexGrid, this.m_dAnalysis_obj.TrainingSet);
                 }
                 // else if
             }
@@ -308,22 +298,44 @@ namespace DemoDropOut
         {
             try
             {
-                var input = new double[this.c1ManualQueryFlexGrid.Cols.Count - this.c1ManualQueryFlexGrid.Cols.Fixed];
-                for (int i = 0; i < input.Length; i++)
-                {
-                    input[i] = double.Parse(this.c1ManualQueryFlexGrid[1, this.c1ManualQueryFlexGrid.Cols.Fixed + i].ToString());
-                }
+                var v_dt_table = DataQueryBlo.GetUserData(this.c1ManualQueryFlexGrid, 1);
+                var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
                 var output = m_dropOutForecast.ComputeOutputs(input);
-                for (int i = 0; i < output.Length; i++)
-                {
-                    this.c1ManualQueryResultFlexGrid[1, this.c1ManualQueryFlexGrid.Cols.Fixed + i] = output[i].ToString("0.######");
-                }
+                
+                var v_column_details = m_dAnalysis_obj.GetOuputColumn();
+                v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
+                this.c1ManualQueryResultFlexGrid.DataSource = v_dt_table;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnQueryFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var v_openFileDialog = new OpenFileDialog();
+                v_openFileDialog.Filter = "All Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
+                var v_dialogResult = v_openFileDialog.ShowDialog();
+                if (v_dialogResult == DialogResult.OK)
+                {
+                    var v_dt_table = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
+                    DataQueryBlo.LabelDataWithOutAnalysis(ref v_dt_table, m_dAnalysis_obj.AnalyzedDataSet.Columns);
+                    var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
+                    var output = m_dropOutForecast.ComputeOutputs(input);
+
+                    var v_column_details = m_dAnalysis_obj.GetOuputColumn();
+                    v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
+                    this.c1TableQueryFlexGrid.DataSource = v_dt_table;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }       
 
         #region Thông số lớp nghiệp vụ
         /// <summary>

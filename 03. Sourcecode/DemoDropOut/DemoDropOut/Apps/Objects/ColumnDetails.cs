@@ -85,6 +85,16 @@ namespace DemoDropOut.Apps.Objects
             set { m_list_category = value; }
         }
 
+        public string GetCateComboList()
+        {
+            var v_str_combolist = string.Empty;
+            for (int i = 0; i < m_list_category.Count; i++)
+            {
+                v_str_combolist += m_list_category[i] + "|";
+            }
+            return v_str_combolist;
+        }
+
         public ScalingRange ScalingRange
         {
             get
