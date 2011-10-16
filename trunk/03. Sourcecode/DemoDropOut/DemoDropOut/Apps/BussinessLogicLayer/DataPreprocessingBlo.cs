@@ -311,18 +311,22 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             //var v_actual_enc = Math.Log(category.Count, 2);
             //System.Diagnostics.Debug.Assert(v_cate_enc == v_actual_enc, "Không đồng bộ cột dữ liệu ra với category list");
             var v_dt_table = new DataTable();
-            v_dt_table.Columns.Add("Result Column");
+            v_dt_table.Columns.Add(ip_column_details.ColumnName);
 
             for (int i = 0; i < v_outputs_count; i++)
             {
-                var v_cate_value_index = 0; // j value
-                for (int k = 0; k < v_cate_enc; k++)
+                var v_cate_index = 0; // j value
+                var k = ip_db_outputs[i].GetLength(0) - 1;  // get index array
+                // Duyệt các phần tử mảng bởi chỉ số k
+                for (; k >= 0; k--)
                 {
-                    var v_output_value = (int)Math.Round(ip_db_outputs[i][k]);   // binary value
-                    v_cate_value_index = (v_cate_value_index << 1) | v_output_value;
+                    var v_output_value = ip_db_outputs[i][k];   // actual value
+                    var v_binary_value = (int)Math.Round(v_output_value);// binary value (rounded)
+                    v_cate_index = (v_cate_index << 1) | v_binary_value;
                 }
                 var v_dt_row = v_dt_table.NewRow();
-                v_dt_row[0] = category[v_cate_value_index];
+                var v_str_cname = category[v_cate_index];   // Tạo 1 vòng đệ quy lấy giá trị gần nhất với v_cate_index nếu nó vượt quá chỉ số mảng
+                v_dt_row[0] = v_str_cname;
                 v_dt_table.Rows.Add(v_dt_row);
             }
             return v_dt_table;
