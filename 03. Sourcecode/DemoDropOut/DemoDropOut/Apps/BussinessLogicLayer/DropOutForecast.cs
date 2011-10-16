@@ -277,7 +277,19 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var result = new double[lenHeight][];
             for (int i = 0; i < lenHeight; i++)
             {
-                result[i] = ComputeOutputs(ip_ideal_inputs[i]);
+                #region Phiên bản 1: Lỗi tham chiếu mảng
+                // Output của mạng là một mảng double[] toàn cục
+                // Nếu gán trực tiếp result[i] cho ComputeOutputs()
+                // Vậy tất cả các phần tử i của result đều cho tởi mảng toàn cục này
+                // --> gặp lỗi tham chiếu logic
+                // result[i] = ComputeOutputs(ip_ideal_inputs[i]);
+                #endregion
+                #region Phiên bản 2: Khắc phục lỗi tham chiếu đến cùng một phần tử
+                var v_new_result = ComputeOutputs(ip_ideal_inputs[i]);
+                var v_arr_len = v_new_result.Length;
+                result[i] = new double[v_arr_len];
+                Array.Copy(v_new_result, result[i], v_arr_len);
+                #endregion
             }
             return result;
         }
