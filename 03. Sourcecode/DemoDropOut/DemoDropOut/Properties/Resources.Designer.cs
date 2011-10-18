@@ -172,9 +172,44 @@ namespace DemoDropOut.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap table_row_delete_1 {
+            get {
+                object obj = ResourceManager.GetObject("table-row-delete-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap table_row_remove {
+            get {
+                object obj = ResourceManager.GetObject("table-row-remove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap test_icon_1 {
             get {
                 object obj = ResourceManager.GetObject("test-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap testing_trn_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("testing-trn-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap testing_tst_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("testing-tst-icon-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap testing_vld_icon_1 {
+            get {
+                object obj = ResourceManager.GetObject("testing-vld-icon-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

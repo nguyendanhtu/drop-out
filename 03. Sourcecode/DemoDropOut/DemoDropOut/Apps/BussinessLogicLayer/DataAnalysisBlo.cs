@@ -48,6 +48,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
         }
 
+        public DataTable GetHeaderTable
+        {
+            get
+            {
+                if (m_dt_analyzed_set == null)
+                    throw new Exception("Chưa thực hiện phân tích dữ liệu");
+                return m_dt_analyzed_set.Clone();
+            }
+        }
+
         public DataTable TrainingSet
         {
             get
@@ -255,7 +265,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
         }
 
-        public ColumnDetails GetOuputColumn()
+        public ColumnDetails GetOuput()
         {
             var v_output_index = (int)m_dt_analyzed_set.ExtendedProperties["OutputIndex"];
             return m_dt_analyzed_set.Columns[v_output_index].ExtendedProperties["Details"] as ColumnDetails;

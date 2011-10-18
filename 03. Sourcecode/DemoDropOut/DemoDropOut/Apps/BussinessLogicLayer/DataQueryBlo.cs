@@ -6,13 +6,18 @@ using System.Data;
 using DemoDropOut.Apps.Objects;
 using System.Drawing;
 using C1.Win.C1FlexGrid;
+using System.Windows.Forms;
 
 namespace DemoDropOut.Apps.BussinessLogicLayer
 {
     public class DataQueryBlo
     {
+        public static void FormatResultTable(C1FlexGrid ip_grid_c1flex, DataTable ip_dt_samples)
+        {
 
-        public static void FormatGridViewInputData(C1.Win.C1FlexGrid.C1FlexGrid ip_gird_c1flex, DataTable ip_dt_samples)
+        }
+
+        public static void FormatManualC1FlexGrid(C1.Win.C1FlexGrid.C1FlexGrid ip_gird_c1flex, DataTable ip_dt_samples)
         {
             //if (ip_dt_samples.ExtendedProperties["DropOutDataSamples"] == null)
             //{
@@ -36,12 +41,20 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 var v_excess_style = ip_gird_c1flex.Styles.Add("ExcessValue");
                 v_excess_style.BackColor = Color.Gold;
                 ip_gird_c1flex.AllowSorting = AllowSortingEnum.None;
+                // Không thích viền focus và màu highlight
+                ip_gird_c1flex.HighLight = HighLightEnum.Never;
+                ip_gird_c1flex.FocusRect = FocusRectEnum.Solid;
                 //ip_gird_c1flex.SelectionMode = SelectionModeEnum.Cell;
                 // set event
                 ip_gird_c1flex.CellChanged -= ip_gird_c1flex_CellChanged;
                 ip_gird_c1flex.CellChanged += ip_gird_c1flex_CellChanged;
                 ip_gird_c1flex.BeforeEdit -= ip_gird_c1flex_BeforeEdit;
                 ip_gird_c1flex.BeforeEdit += ip_gird_c1flex_BeforeEdit;
+                ip_gird_c1flex.Click += new EventHandler(ip_gird_c1flex_Click);
+                //ip_gird_c1flex.KeyDown -= ip_gird_c1flex_KeyDown;
+                //ip_gird_c1flex.KeyDown += ip_gird_c1flex_KeyDown;
+                //ip_gird_c1flex.KeyPress -= ip_gird_c1flex_KeyPress;
+                //ip_gird_c1flex.KeyPress += ip_gird_c1flex_KeyPress;
                 // Duyệt cột vào trước cột ra
                 for (; v_input_index < v_output_index; v_input_index++)
                 {
@@ -96,6 +109,41 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 ip_gird_c1flex.Rows[3].ComboList = string.Empty;
                 ip_gird_c1flex.Rows[2].Style = ip_gird_c1flex.Rows[0].StyleFixed;
             }
+        }
+
+        private static void ip_gird_c1flex_Click(object sender, EventArgs e)
+        {
+            var v_flex = sender as C1FlexGrid;
+            if (v_flex.RowSel == 1)
+                v_flex.StartEditing();
+        }
+
+        private static void ip_gird_c1flex_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)  // ignore enter key
+                e.Handled = true; // (don't move the cursor)
+        }
+
+        private static void ip_gird_c1flex_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Return)
+            //{
+            //    e.Handled = true; // ignore the event, we'll handle it ourselves
+            //    var _flex = sender as C1FlexGrid;
+            //    _flex.StartEditing(); // put the grid in edit mode
+
+            //    TextBox tb = _flex.Editor as TextBox; // if we got a textbox, then
+            //    if (tb != null) tb.Select(tb.Text.Length, 0); // move cursor to end
+
+            //}
+            //else if (e.KeyCode == Keys.Tab)
+            //{
+            //    e.Handled = true;
+            //    var v_c1flex = sender as C1FlexGrid;
+            //    v_c1flex.StartEditing(v_c1flex.RowSel, v_c1flex.ColSel + 1);
+            //    TextBox tb = v_c1flex.Editor as TextBox; // if we got a textbox, then
+            //    if (tb != null) tb.Select(tb.Text.Length, 0); // move cursor to end
+            //}
         }
 
         private static void ip_gird_c1flex_BeforeEdit(object sender, RowColEventArgs e)

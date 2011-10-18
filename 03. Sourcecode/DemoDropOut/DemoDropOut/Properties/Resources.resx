@@ -127,11 +127,17 @@
   <data name="acceptRow-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\acceptRow-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="query-icon-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\query-icon-3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="partition-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\partition-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="query-file-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\query-file-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="networkset-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\networkset-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="trainingset-icon-2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trainingset-icon-2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,14 +166,20 @@
   <data name="testset-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\testset-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="table-row-remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table-row-remove.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="query-table-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\query-table-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="train-stop-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\train-stop-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="networkset-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\networkset-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="testing-tst-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\testing-tst-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="networkProperties-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\networkProperties-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="test-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\test-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,13 +196,16 @@
   <data name="train-start-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\train-start-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="testing-vld-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\testing-vld-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="testing-trn-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\testing-trn-icon-1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="training-options-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\training-options-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="query-icon-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\query-icon-3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="networkProperties-icon-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\networkProperties-icon-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="table-row-delete-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table-row-delete-1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
