@@ -323,13 +323,29 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     var v_output_value = ip_db_outputs[i][k];   // actual value
                     var v_binary_value = (int)Math.Round(v_output_value);// binary value (rounded)
                     v_cate_index = (v_cate_index << 1) | v_binary_value;
+                    if (v_cate_index >= category.Count)
+                    {
+                    }
                 }
                 var v_dt_row = v_dt_table.NewRow();
-                var v_str_cname = category[v_cate_index];   // Tạo 1 vòng đệ quy lấy giá trị gần nhất với v_cate_index nếu nó vượt quá chỉ số mảng
+                var v_str_cname = Predict(category, v_cate_index);  // category[v_cate_index];
                 v_dt_row[0] = v_str_cname;
                 v_dt_table.Rows.Add(v_dt_row);
             }
             return v_dt_table;
+        }
+
+        // Đệ quy lấy giá trị gần nhất với v_cate_index nếu nó vượt quá chỉ số mảng
+        private string Predict(IList<string> source, int ip_over_index)
+        {
+            try
+            {
+                return source[ip_over_index];
+            }
+            catch (Exception) //IndexOutOfRangeException
+            {
+                return Predict(source, ip_over_index - 1);
+            }
         }
 
         public void Preprocessing()

@@ -33,73 +33,104 @@ namespace DemoDropOut
 
         #region Private Members
 
-        private DataTable m_dt_samples = null;
-        private Hashtable m_ht_dimension = null;
-        private List<string> m_list_dimension = null;
         #endregion
 
         #region Private Methods
 
-        private void OpenRawDataFormFile(string ip_fileName)
-        {
+        #region Backup Old
+        //private DataTable m_dt_samples = null;
+        //private Hashtable m_ht_dimension = null;
+        //private List<string> m_list_dimension = null;
+        //public void LoadProcessedDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
+        //{
+        //    Debug.Assert(ip_c1Grid != null, "Chưa khởi tạo C1 grid control: Null");
+        //    Debug.Assert(ip_table != null, "Bảng không chứa dữ liệu: Null");
+        //    // var v_current_row = ip_c1Gird.Row;
+        //    // Xóa dữ liệu trong bảng
+        //    ip_c1Grid.Rows.Count = ip_c1Grid.Rows.Fixed; // xóa dữ liệu bằng cách đặt lại số row = fixed
+        //    ip_c1Grid.Cols.Count = ip_table.Columns.Count + ip_c1Grid.Cols.Fixed; //Số cột = số cột fixed + số cột dữ liệu
+        //    // Đọc số cột & ghi tiêu đề
+        //    m_ht_dimension = new Hashtable();
+        //    m_list_dimension = new List<string>();
+        //    for (int i = ip_c1Grid.Cols.Fixed, table_index = 0; i < ip_c1Grid.Cols.Count; i++, table_index++)
+        //    {
+        //        var v_str_caption = ip_table.Columns[table_index].Caption;
+        //        ip_c1Grid[0, i] = v_str_caption;
+        //        ip_c1Grid.Cols[i].Caption = v_str_caption;
+        //        ip_c1Grid.Cols[i].Name = v_str_caption;//ip_table.Columns[table_index].ColumnName;
 
-        }
+        //        #region Đọc thông tin các cột dữ liệu: kiểu dữ liệu categories ?? --> được mã (encoded) trong bao nhiêu cột
+        //        if (v_str_caption.Contains(":") == true)
+        //        {
+        //            var v_str_tokens = v_str_caption.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+        //            // Tên thuộc tính
+        //            var v_str_fieldName = v_str_tokens[0];
+        //            // Giá trị thuộc tính
+        //            var v_str_value = v_str_tokens[1];
+        //            if (m_ht_dimension.Contains(v_str_fieldName) == true)
+        //            {
+        //                m_ht_dimension[v_str_fieldName] = (int)m_ht_dimension[v_str_fieldName] + 1;
+        //            }
+        //            else
+        //            {
+        //                m_list_dimension.Add(v_str_fieldName);
+        //                m_ht_dimension[v_str_fieldName] = 1;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            m_list_dimension.Add(v_str_caption);
+        //            m_ht_dimension.Add(v_str_caption, 1);
+        //        }
+        //        #endregion
+        //    }
+        //    for (int i = 0; i < ip_table.Rows.Count; i++)
+        //    {
+        //        // Đọc từng mẫu dữ liệu
+        //        var v_dataRow = ip_table.Rows[i];
+        //        ip_c1Grid.Rows.Add();
+        //        for (int j = 0; j < ip_table.Columns.Count; j++)
+        //        {
+        //            //ip_c1Gird.Rows[j].UserData = v_dataRow[j];
+        //            ip_c1Grid[ip_c1Grid.Rows.Count - 1, ip_c1Grid.Cols.Fixed + j] = v_dataRow[j];
+        //        }
+        //    }
+        //}
+        //private void btnOpenProcessedData_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var v_openFileDialog = new OpenFileDialog();
+        //        v_openFileDialog.Filter = "Processed Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
+        //        var v_dialogResult = v_openFileDialog.ShowDialog();
+        //        if (v_dialogResult == DialogResult.OK)
+        //        {
+        //            var v_table = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
+        //            LoadProcessedDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+        //            // Gán tập mẫu: m_dt_samples
+        //            m_dt_samples = v_table;
+        //            // Load số cột vào combobox
+        //            tscboTarget.Items.Clear();
+        //            foreach (var targetItem in m_list_dimension)
+        //            {
+        //                // var v_cboText = targetItem;
+        //                tscboTarget.Items.Add(targetItem);
+        //            }
+        //            if (tscboTarget.Items.Count > 0)
+        //            {
+        //                // var v_selIndex = m_list_dimension.Count - 1;
+        //                tscboTarget.SelectedIndex = m_list_dimension.Count - 1; // v_selIndex;
+        //                //toolStripTargetLabel.Text = string.Format("Target [{0}]", m_ht_dimension[m_list_dimension[v_selIndex]]);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
-        public void LoadProcessedDataTableToC1Grid(C1FlexGrid ip_c1Grid, DataTable ip_table)
-        {
-            Debug.Assert(ip_c1Grid != null, "Chưa khởi tạo C1 grid control: Null");
-            Debug.Assert(ip_table != null, "Bảng không chứa dữ liệu: Null");
-            // var v_current_row = ip_c1Gird.Row;
-            // Xóa dữ liệu trong bảng
-            ip_c1Grid.Rows.Count = ip_c1Grid.Rows.Fixed; // xóa dữ liệu bằng cách đặt lại số row = fixed
-            ip_c1Grid.Cols.Count = ip_table.Columns.Count + ip_c1Grid.Cols.Fixed; //Số cột = số cột fixed + số cột dữ liệu
-            // Đọc số cột & ghi tiêu đề
-            m_ht_dimension = new Hashtable();
-            m_list_dimension = new List<string>();
-            for (int i = ip_c1Grid.Cols.Fixed, table_index = 0; i < ip_c1Grid.Cols.Count; i++, table_index++)
-            {
-                var v_str_caption = ip_table.Columns[table_index].Caption;
-                ip_c1Grid[0, i] = v_str_caption;
-                ip_c1Grid.Cols[i].Caption = v_str_caption;
-                ip_c1Grid.Cols[i].Name = v_str_caption;//ip_table.Columns[table_index].ColumnName;
-
-                #region Đọc thông tin các cột dữ liệu: kiểu dữ liệu categories ?? --> được mã (encoded) trong bao nhiêu cột
-                if (v_str_caption.Contains(":") == true)
-                {
-                    var v_str_tokens = v_str_caption.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                    // Tên thuộc tính
-                    var v_str_fieldName = v_str_tokens[0];
-                    // Giá trị thuộc tính
-                    var v_str_value = v_str_tokens[1];
-                    if (m_ht_dimension.Contains(v_str_fieldName) == true)
-                    {
-                        m_ht_dimension[v_str_fieldName] = (int)m_ht_dimension[v_str_fieldName] + 1;
-                    }
-                    else
-                    {
-                        m_list_dimension.Add(v_str_fieldName);
-                        m_ht_dimension[v_str_fieldName] = 1;
-                    }
-                }
-                else
-                {
-                    m_list_dimension.Add(v_str_caption);
-                    m_ht_dimension.Add(v_str_caption, 1);
-                }
-                #endregion
-            }
-            for (int i = 0; i < ip_table.Rows.Count; i++)
-            {
-                // Đọc từng mẫu dữ liệu
-                var v_dataRow = ip_table.Rows[i];
-                ip_c1Grid.Rows.Add();
-                for (int j = 0; j < ip_table.Columns.Count; j++)
-                {
-                    //ip_c1Gird.Rows[j].UserData = v_dataRow[j];
-                    ip_c1Grid[ip_c1Grid.Rows.Count - 1, ip_c1Grid.Cols.Fixed + j] = v_dataRow[j];
-                }
-            }
-        }
+        #endregion
 
         private void DrawErrorChart(List<double> ip_listError)
         {
@@ -118,11 +149,6 @@ namespace DemoDropOut
         /// Start Forecast
         /// </summary>
         private DropOutForecast m_dropOutForecast;
-        /// <summary>
-        /// Số biến xuất
-        /// </summary>
-        private int classes = 0;
-
         private List<double> listErrorChart;
 
         private void UpdateSettings()
@@ -137,56 +163,15 @@ namespace DemoDropOut
 
         #endregion
 
-        private void btnOpenRawData_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnOpenProcessedData_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var v_openFileDialog = new OpenFileDialog();
-                v_openFileDialog.Filter = "Processed Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
-                var v_dialogResult = v_openFileDialog.ShowDialog();
-                if (v_dialogResult == DialogResult.OK)
-                {
-                    var v_table = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
-                    LoadProcessedDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
-                    // Gán tập mẫu: m_dt_samples
-                    m_dt_samples = v_table;
-                    // Load số cột vào combobox
-                    tscboTarget.Items.Clear();
-                    foreach (var targetItem in m_list_dimension)
-                    {
-                        // var v_cboText = targetItem;
-                        tscboTarget.Items.Add(targetItem);
-                    }
-                    if (tscboTarget.Items.Count > 0)
-                    {
-                        // var v_selIndex = m_list_dimension.Count - 1;
-                        tscboTarget.SelectedIndex = m_list_dimension.Count - 1; // v_selIndex;
-                        //toolStripTargetLabel.Text = string.Format("Target [{0}]", m_ht_dimension[m_list_dimension[v_selIndex]]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void tscboTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var tsCbo = (ToolStripComboBox)sender;
-                if (tsCbo.Items.Count > 0 && m_ht_dimension != null)
-                {
-                    // Lấy thông tin số nút xuất của mạng
-                    classes = (int)m_ht_dimension[m_list_dimension[tsCbo.SelectedIndex]];
-                    tslblTarget.Text = string.Format("Target [{0}]", classes);
-                }
+                // gặp lỗi cho các thiết lập đầu ra, tạm thời return
+                return;
+                var v_ouput_index = ((ToolStripComboBox)sender).SelectedIndex;
+                m_dAnalysis_obj.SetOutput(v_ouput_index);
             }
             catch (Exception ex)
             {
@@ -239,7 +224,14 @@ namespace DemoDropOut
         {
             try
             {
-                MessageBox.Show("Đã xong !!\r\nSố bước lặp hoàn tất: " + iteration.ToString());
+                if (InvokeRequired == true)
+                {
+                    Invoke(new FinishHandler(m_dropOutForecast_Finish), sender, iteration);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Đã xong !!\r\nSố bước lặp hoàn tất: " + iteration.ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -249,9 +241,9 @@ namespace DemoDropOut
 
         private void m_dropOutForecast_NotifyError(double dbError, uint iteration)
         {
-            if (this.InvokeRequired == true)
+            if (InvokeRequired == true)
             {
-                this.Invoke(new NotifyErrorHandler(m_dropOutForecast_NotifyError), dbError, iteration);
+                Invoke(new NotifyErrorHandler(m_dropOutForecast_NotifyError), dbError, iteration);
             }
             else
             {
@@ -284,7 +276,31 @@ namespace DemoDropOut
                 var tabControl = (TabControl)sender;
                 if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
                 {
-                    DataQueryBlo.FormatGridViewInputData(this.c1ManualQueryFlexGrid, this.m_dAnalysis_obj.TrainingSet);
+                    var v_dt_samples = this.m_dAnalysis_obj.GetHeaderTable;
+                    DataQueryBlo.FormatManualC1FlexGrid(this.c1ManualQueryFlexGrid, v_dt_samples);
+                    // Format Output grid c1flex
+                    if (this.c1ManualQueryResultFlexGrid.Tag == null)
+                    {
+                        this.c1ManualQueryResultFlexGrid.Cols.Count = 1;
+                        this.c1ManualQueryResultFlexGrid.Cols.Fixed = 0;
+                        this.c1ManualQueryResultFlexGrid.Rows.Count = 2;
+                        this.c1ManualQueryResultFlexGrid.Rows.Fixed = 1;
+                        // set row height
+                        this.c1ManualQueryResultFlexGrid.Rows[1].Height = 60;
+                        var v_cstyle = c1ManualQueryResultFlexGrid.Styles.Add("Bold");
+                        v_cstyle.Font = new Font("tahoma", 25, FontStyle.Bold);
+                        this.c1ManualQueryResultFlexGrid.SetCellStyle(1, 0, v_cstyle);
+                        this.c1ManualQueryResultFlexGrid.Tag = string.Empty;
+                        this.c1ManualQueryResultFlexGrid.FocusRect = FocusRectEnum.None;
+                        this.c1ManualQueryResultFlexGrid.HighLight = HighLightEnum.Never;
+                    }
+                    var v_output_details = m_dAnalysis_obj.GetOuput();
+                    this.c1ManualQueryResultFlexGrid.Cols[0].Name = v_output_details.ColumnName;
+                    this.c1ManualQueryResultFlexGrid.Cols[0].Caption = v_output_details.ColumnName;
+                    this.c1ManualQueryResultFlexGrid[1, 0] = string.Empty; // "A";// 
+                    // Format result table
+                    DataQueryBlo.FormatResultTable(this.c1TableQueryFlexGrid, v_dt_samples);
+
                 }
                 // else if
             }
@@ -301,9 +317,15 @@ namespace DemoDropOut
                 var v_dt_table = DataQueryBlo.GetUserData(this.c1ManualQueryFlexGrid, 1);
                 var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
                 var output = m_dropOutForecast.ComputeOutputs(input);
-                
-                var v_column_details = m_dAnalysis_obj.GetOuputColumn();
+
+                var v_column_details = m_dAnalysis_obj.GetOuput();
                 v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
+
+                if (this.c1ManualQueryResultFlexGrid.DataSource == null)
+                {
+                    this.c1ManualQueryResultFlexGrid.Rows.Count = 1;
+                    this.c1ManualQueryResultFlexGrid.Rows.Fixed = 1;
+                }
                 this.c1ManualQueryResultFlexGrid.DataSource = v_dt_table;
             }
             catch (Exception ex)
@@ -326,7 +348,7 @@ namespace DemoDropOut
                     var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
                     var output = m_dropOutForecast.ComputeOutputs(input);
 
-                    var v_column_details = m_dAnalysis_obj.GetOuputColumn();
+                    var v_column_details = m_dAnalysis_obj.GetOuput();
                     v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
                     this.c1TableQueryFlexGrid.DataSource = v_dt_table;
                 }
@@ -335,7 +357,7 @@ namespace DemoDropOut
             {
                 MessageBox.Show(ex.Message);
             }
-        }       
+        }
 
         #region Thông số lớp nghiệp vụ
         /// <summary>
@@ -434,8 +456,12 @@ namespace DemoDropOut
                 {
                     m_dAnalysis_obj = new DataAnalysisBlo();
                     var v_table = m_dAnalysis_obj.Analyze(v_openFileDialog.FileName);
+                    if (this.c1RawDataFlexGrid.DataSource == null)
+                        this.c1RawDataFlexGrid.Rows.Count = 1;
+                    this.c1RawDataFlexGrid.Rows.Fixed = 1;
+                    this.c1RawDataFlexGrid.Cols.Count = 1;
+                    this.c1RawDataFlexGrid.Cols.Fixed = 1;
                     C1Helper.LoadDataTableToC1Grid(this.c1RawDataFlexGrid, v_table);
-                    //c1RawDataFlexGrid.DataSource = v_table;
 
                     tscboTarget.Items.Clear();
                     foreach (var v_str_item in m_dAnalysis_obj.ColumnName)
@@ -540,6 +566,10 @@ namespace DemoDropOut
                 m_dPreprocessing_obj.Preprocessing();
 
                 var v_table = m_dPreprocessing_obj.EncodedData;
+                if (this.c1ProcessedDataFlexGrid.DataSource == null)
+                    this.c1ProcessedDataFlexGrid.Rows.Count = 1;
+                this.c1ProcessedDataFlexGrid.Rows.Fixed = 1;
+                this.c1ProcessedDataFlexGrid.Cols.Count = 0;
                 C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
                 this.tabControl1.SelectedTab = this.tabPreprocessingPage;
             }
