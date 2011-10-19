@@ -163,6 +163,7 @@ namespace DemoDropOut
 
         #endregion
 
+        #region Training Tab Handler
 
         private void tscboTarget_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -256,7 +257,6 @@ namespace DemoDropOut
             }
         }
 
-
         private void btnStop_Click(object sender, EventArgs e)
         {
             try
@@ -268,6 +268,8 @@ namespace DemoDropOut
                 MessageBox.Show(ex.Message);
             }
         }
+
+        #endregion
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -290,9 +292,9 @@ namespace DemoDropOut
                         var v_cstyle = c1ManualQueryResultFlexGrid.Styles.Add("Bold");
                         v_cstyle.Font = new Font("tahoma", 25, FontStyle.Bold);
                         this.c1ManualQueryResultFlexGrid.SetCellStyle(1, 0, v_cstyle);
-                        this.c1ManualQueryResultFlexGrid.Tag = string.Empty;
                         this.c1ManualQueryResultFlexGrid.FocusRect = FocusRectEnum.None;
                         this.c1ManualQueryResultFlexGrid.HighLight = HighLightEnum.Never;
+                        this.c1ManualQueryResultFlexGrid.Tag = string.Empty;
                     }
                     var v_output_details = m_dAnalysis_obj.GetOuput();
                     this.c1ManualQueryResultFlexGrid.Cols[0].Name = v_output_details.ColumnName;
@@ -310,6 +312,12 @@ namespace DemoDropOut
             }
         }
 
+        #region Test Tab Handler
+
+        #endregion
+
+        #region Query Tab Handler
+
         private void btnManualQuery_Click(object sender, EventArgs e)
         {
             try
@@ -323,10 +331,14 @@ namespace DemoDropOut
 
                 if (this.c1ManualQueryResultFlexGrid.DataSource == null)
                 {
-                    this.c1ManualQueryResultFlexGrid.Rows.Count = 1;
+                    this.c1ManualQueryResultFlexGrid.Rows.Count = 2;
                     this.c1ManualQueryResultFlexGrid.Rows.Fixed = 1;
+                    //this.c1ManualQueryResultFlexGrid[1, 0] = string.Empty;
                 }
                 this.c1ManualQueryResultFlexGrid.DataSource = v_dt_table;
+                var v_cstyle = this.c1ManualQueryResultFlexGrid.Styles["Bold"];
+                this.c1ManualQueryResultFlexGrid.Rows[1].Height = 60;
+                this.c1ManualQueryResultFlexGrid.SetCellStyle(1, 0, v_cstyle);
             }
             catch (Exception ex)
             {
@@ -343,14 +355,18 @@ namespace DemoDropOut
                 var v_dialogResult = v_openFileDialog.ShowDialog();
                 if (v_dialogResult == DialogResult.OK)
                 {
-                    var v_dt_table = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
-                    DataQueryBlo.LabelDataWithOutAnalysis(ref v_dt_table, m_dAnalysis_obj.AnalyzedDataSet.Columns);
-                    var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
+                    var v_dt_input = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
+                    DataQueryBlo.LabelDataWithOutAnalysis(ref v_dt_input, m_dAnalysis_obj.AnalyzedDataSet.Columns);
+                    var input = m_dPreprocessing_obj.Preprocessing(v_dt_input);
                     var output = m_dropOutForecast.ComputeOutputs(input);
 
                     var v_column_details = m_dAnalysis_obj.GetOuput();
-                    v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
-                    this.c1TableQueryFlexGrid.DataSource = v_dt_table;
+                    var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
+                    DataHelper.MergeTableColumns(ref v_dt_input, v_dt_output);
+                    this.c1TableQueryFlexGrid.DataSource = null;
+                    this.c1TableQueryFlexGrid.Rows.Count = 1;
+                    this.c1TableQueryFlexGrid.Rows.Fixed = 1;
+                    this.c1TableQueryFlexGrid.DataSource = v_dt_input;
                 }
             }
             catch (Exception ex)
@@ -358,6 +374,29 @@ namespace DemoDropOut
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void SetOutputResultQueryTable(DataTable ip_dt_input, DataTable ip_dt_output, bool ip_bl_clean)
+        {
+            if (ip_bl_clean == true)
+            {
+                this.c1TableQueryFlexGrid.DataSource = null;
+                this.c1TableQueryFlexGrid.Rows.Count = 1;
+            }
+        }
+
+        private void tsbtnQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tabControl1.SelectedTab = this.tabQueryPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #endregion
 
         #region Thông số lớp nghiệp vụ
         /// <summary>
@@ -551,7 +590,7 @@ namespace DemoDropOut
 
         #endregion
 
-        #region Xử lý các sự kiện: Tiền xử lý dữ liệu
+        #region Preprocessing Tab Handler: Tiền xử lý dữ liệu
 
         private void tsbtnPreprocess1_ButtonClick(object sender, EventArgs e)
         {
@@ -572,18 +611,6 @@ namespace DemoDropOut
                 this.c1ProcessedDataFlexGrid.Cols.Count = 0;
                 C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
                 this.tabControl1.SelectedTab = this.tabPreprocessingPage;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void tsbtnQuery_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                tabControl1.SelectedTab = this.tabQueryPage;
             }
             catch (Exception ex)
             {

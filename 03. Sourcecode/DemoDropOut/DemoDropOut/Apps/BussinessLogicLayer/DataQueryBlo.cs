@@ -115,7 +115,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             var v_flex = sender as C1FlexGrid;
             if (v_flex.RowSel == 1)
-                v_flex.StartEditing();
+                v_flex.StartEditing(v_flex.RowSel, v_flex.ColSel);
         }
 
         private static void ip_gird_c1flex_KeyPress(object sender, KeyPressEventArgs e)
