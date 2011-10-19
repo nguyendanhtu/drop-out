@@ -1,0 +1,32 @@
+<?xml version="1.0"  encoding="UTF-8" standalone="yes" ?>
+<neurointelligence_project_configuration>
+	<version><![CDATA[2.2.1]]></version>
+	<dataset_configuration>
+		<columns>
+			<count>8</count>
+			<column id="0">
+				<header><![CDATA[X1_TUOI_HOC_VIEN]]></header>
+				<enabled>1</enabled>
+				<format>Numeric</format>
+				<type>Input</type>
+				
+			</column>
+			<column id="1">
+				<header><![CDATA[X2_GIOI_TINH]]></header>
+				<enabled>1</enabled>
+				<format>Enumerative</format>
+				<type>Input</type>
+				
+			</column>
+			<column id="2">
+				<header><![CDATA[X8_TON_GIAO]]></header>
+				<enabled>0</enabled>
+				<format></format>
+				
+			</column>
+			
+		</columns>
+		
+	</dataset_configuration>
+	
+</neurointelligence_project_configuration>
