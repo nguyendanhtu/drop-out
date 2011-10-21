@@ -84,18 +84,21 @@
             this.tsAnalysisRawData = new System.Windows.Forms.ToolStrip();
             this.tsbtnAnalyze2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbtnTrainingSet = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnValidationSet = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnTestSet = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSetTrainingSet = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSetValidationSet = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnSetTestSet = new System.Windows.Forms.ToolStripButton();
             this.tsbtnAcceptRow = new System.Windows.Forms.ToolStripButton();
             this.tsbtnRejectRow = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.tslblTarget = new System.Windows.Forms.ToolStripLabel();
             this.tscboTarget = new System.Windows.Forms.ToolStripComboBox();
+            this.controlTitle4 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
             this.panelAnalysisReport = new System.Windows.Forms.Panel();
             this.panelAnalysisReport2 = new System.Windows.Forms.Panel();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.tsAnalysisReport = new System.Windows.Forms.ToolStrip();
+            this.controlTitle3 = new DropOut.Uc.ControlTitle();
             this.tabPreprocessingPage = new System.Windows.Forms.TabPage();
             this.panelProcessedData = new System.Windows.Forms.Panel();
             this.c1ProcessedDataFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -104,12 +107,15 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnPreprocess2 = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSavePreprocessedData = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle1 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
             this.panelDataReport = new System.Windows.Forms.Panel();
             this.panelProcessedDataControl = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelProcessedDataInfo = new System.Windows.Forms.Panel();
             this.textProcessedDataReport = new System.Windows.Forms.TextBox();
             this.tsPreprocessingReport = new System.Windows.Forms.ToolStrip();
+            this.controlTitle2 = new DropOut.Uc.ControlTitle();
             this.tabTrainingPage = new System.Windows.Forms.TabPage();
             this.panelTrainingMainPage = new System.Windows.Forms.Panel();
             this.chartErrorTraining = new AForge.Controls.Chart();
@@ -118,6 +124,8 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnNetworkProperties = new System.Windows.Forms.ToolStripButton();
             this.tsbtnTrainOptions = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle6 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
             this.panelTrainingReport = new System.Windows.Forms.Panel();
             this.panelTrainingControl = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
@@ -125,6 +133,7 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.tsTrainingReport = new System.Windows.Forms.ToolStrip();
             this.btnStart = new System.Windows.Forms.Button();
+            this.controlTitle5 = new DropOut.Uc.ControlTitle();
             this.chkErrorLimit = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -147,14 +156,19 @@
             this.tsActualVsOutput = new System.Windows.Forms.ToolStrip();
             this.toolStripButton29 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton30 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton31 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton32 = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnTestTrainingSet = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnTestValidationSet = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnTestTestSet = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsLabelMeanCCR = new System.Windows.Forms.ToolStripLabel();
+            this.controlTitle11 = new DropOut.Uc.ControlTitle();
+            this.collapsibleSplitter4 = new DropOut.Uc.CollapsibleSplitter();
             this.panelTestingReport = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tsTestingReport = new System.Windows.Forms.ToolStrip();
+            this.controlTitle7 = new DropOut.Uc.ControlTitle();
             this.tabQueryPage = new System.Windows.Forms.TabPage();
             this.panelTableQuery = new System.Windows.Forms.Panel();
             this.c1TableQueryFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
@@ -163,6 +177,7 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle15 = new DropOut.Uc.ControlTitle();
             this.panelManualQuery = new System.Windows.Forms.Panel();
             this.c1ManualQueryFlexGrid = new C1.Win.C1FlexGrid.C1FlexGrid();
             this.splitter4 = new System.Windows.Forms.Splitter();
@@ -171,6 +186,7 @@
             this.btnManualQuery = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.btnShowHideMaxMin = new System.Windows.Forms.ToolStripButton();
+            this.controlTitle14 = new DropOut.Uc.ControlTitle();
             this.txtEvenLog = new System.Windows.Forms.TextBox();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -192,28 +208,12 @@
             this.optionsToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.networkPropertiesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbtnTest1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnTestMainTab = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.tsbtnQuery = new System.Windows.Forms.ToolStripButton();
             this.tsbtnQueryDataset = new System.Windows.Forms.ToolStripButton();
             this.tsbtnQueryFile = new System.Windows.Forms.ToolStripButton();
             this.tsbtnHelp = new System.Windows.Forms.ToolStripButton();
-            this.controlTitle4 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter2 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle3 = new DropOut.Uc.ControlTitle();
-            this.controlTitle1 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter1 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle2 = new DropOut.Uc.ControlTitle();
-            this.controlTitle6 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter3 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle5 = new DropOut.Uc.ControlTitle();
-            this.controlTitle11 = new DropOut.Uc.ControlTitle();
-            this.collapsibleSplitter4 = new DropOut.Uc.CollapsibleSplitter();
-            this.controlTitle7 = new DropOut.Uc.ControlTitle();
-            this.controlTitle15 = new DropOut.Uc.ControlTitle();
-            this.controlTitle14 = new DropOut.Uc.ControlTitle();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsLabelMeanCCR = new System.Windows.Forms.ToolStripLabel();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -636,12 +636,12 @@
             this.c1RawDataFlexGrid.AllowSorting = C1.Win.C1FlexGrid.AllowSortingEnum.None;
             this.c1RawDataFlexGrid.ColumnInfo = "0,0,0,0,0,90,Columns:";
             this.c1RawDataFlexGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 45);
+            this.c1RawDataFlexGrid.Location = new System.Drawing.Point(0, 20);
             this.c1RawDataFlexGrid.Name = "c1RawDataFlexGrid";
             this.c1RawDataFlexGrid.Rows.Count = 0;
             this.c1RawDataFlexGrid.Rows.Fixed = 0;
             this.c1RawDataFlexGrid.SelectionMode = C1.Win.C1FlexGrid.SelectionModeEnum.RowRange;
-            this.c1RawDataFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1RawDataFlexGrid.Size = new System.Drawing.Size(620, 378);
             this.c1RawDataFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1RawDataFlexGrid.Styles"));
             this.c1RawDataFlexGrid.TabIndex = 2;
             // 
@@ -651,9 +651,9 @@
             this.tsAnalysisRawData.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnAnalyze2,
             this.toolStripSeparator14,
-            this.tsbtnTrainingSet,
-            this.tsbtnValidationSet,
-            this.tsbtnTestSet,
+            this.tsbtnSetTrainingSet,
+            this.tsbtnSetValidationSet,
+            this.tsbtnSetTestSet,
             this.tsbtnAcceptRow,
             this.tsbtnRejectRow,
             this.toolStripSeparator15,
@@ -664,6 +664,7 @@
             this.tsAnalysisRawData.Size = new System.Drawing.Size(620, 25);
             this.tsAnalysisRawData.TabIndex = 5;
             this.tsAnalysisRawData.Text = "toolStrip1";
+            this.tsAnalysisRawData.Visible = false;
             // 
             // tsbtnAnalyze2
             // 
@@ -679,32 +680,32 @@
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(6, 25);
             // 
-            // tsbtnTrainingSet
+            // tsbtnSetTrainingSet
             // 
-            this.tsbtnTrainingSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnTrainingSet.Image = global::DemoDropOut.Properties.Resources.trainingset_icon_2;
-            this.tsbtnTrainingSet.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnTrainingSet.Name = "tsbtnTrainingSet";
-            this.tsbtnTrainingSet.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnTrainingSet.Text = "Assign to Training Set";
+            this.tsbtnSetTrainingSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSetTrainingSet.Image = global::DemoDropOut.Properties.Resources.trainingset_icon_2;
+            this.tsbtnSetTrainingSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSetTrainingSet.Name = "tsbtnSetTrainingSet";
+            this.tsbtnSetTrainingSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnSetTrainingSet.Text = "Assign to Training Set";
             // 
-            // tsbtnValidationSet
+            // tsbtnSetValidationSet
             // 
-            this.tsbtnValidationSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnValidationSet.Image = global::DemoDropOut.Properties.Resources.validationset_icon_1;
-            this.tsbtnValidationSet.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnValidationSet.Name = "tsbtnValidationSet";
-            this.tsbtnValidationSet.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnValidationSet.Text = "Assign to Validation Set";
+            this.tsbtnSetValidationSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSetValidationSet.Image = global::DemoDropOut.Properties.Resources.validationset_icon_1;
+            this.tsbtnSetValidationSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSetValidationSet.Name = "tsbtnSetValidationSet";
+            this.tsbtnSetValidationSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnSetValidationSet.Text = "Assign to Validation Set";
             // 
-            // tsbtnTestSet
+            // tsbtnSetTestSet
             // 
-            this.tsbtnTestSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnTestSet.Image = global::DemoDropOut.Properties.Resources.testset_icon_1;
-            this.tsbtnTestSet.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnTestSet.Name = "tsbtnTestSet";
-            this.tsbtnTestSet.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnTestSet.Text = "Assign to Test Set";
+            this.tsbtnSetTestSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnSetTestSet.Image = global::DemoDropOut.Properties.Resources.testset_icon_1;
+            this.tsbtnSetTestSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSetTestSet.Name = "tsbtnSetTestSet";
+            this.tsbtnSetTestSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnSetTestSet.Text = "Assign to Test Set";
             // 
             // tsbtnAcceptRow
             // 
@@ -745,6 +746,30 @@
             this.tscboTarget.Size = new System.Drawing.Size(121, 25);
             this.tscboTarget.SelectedIndexChanged += new System.EventHandler(this.tscboTarget_SelectedIndexChanged);
             // 
+            // controlTitle4
+            // 
+            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle4.Name = "controlTitle4";
+            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle4.TabIndex = 0;
+            this.controlTitle4.Title = "Raw Data";
+            // 
+            // collapsibleSplitter2
+            // 
+            this.collapsibleSplitter2.AnimationDelay = 20;
+            this.collapsibleSplitter2.AnimationStep = 20;
+            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
+            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter2.ExpandParentForm = false;
+            this.collapsibleSplitter2.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter2.TabIndex = 9;
+            this.collapsibleSplitter2.TabStop = false;
+            this.collapsibleSplitter2.UseAnimations = false;
+            // 
             // panelAnalysisReport
             // 
             this.panelAnalysisReport.Controls.Add(this.panelAnalysisReport2);
@@ -783,6 +808,16 @@
             this.tsAnalysisReport.Size = new System.Drawing.Size(200, 25);
             this.tsAnalysisReport.TabIndex = 3;
             this.tsAnalysisReport.Text = "toolStrip2";
+            // 
+            // controlTitle3
+            // 
+            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle3.Name = "controlTitle3";
+            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle3.TabIndex = 0;
+            this.controlTitle3.Title = "Tab Report";
             // 
             // tabPreprocessingPage
             // 
@@ -868,6 +903,30 @@
             this.tsbtnSavePreprocessedData.Size = new System.Drawing.Size(23, 22);
             this.tsbtnSavePreprocessedData.Text = "toolStripButton14";
             // 
+            // controlTitle1
+            // 
+            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle1.Name = "controlTitle1";
+            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle1.TabIndex = 0;
+            this.controlTitle1.Title = "Processed Data";
+            // 
+            // collapsibleSplitter1
+            // 
+            this.collapsibleSplitter1.AnimationDelay = 20;
+            this.collapsibleSplitter1.AnimationStep = 20;
+            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
+            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter1.ExpandParentForm = false;
+            this.collapsibleSplitter1.Location = new System.Drawing.Point(625, 0);
+            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
+            this.collapsibleSplitter1.TabIndex = 6;
+            this.collapsibleSplitter1.TabStop = false;
+            this.collapsibleSplitter1.UseAnimations = false;
+            // 
             // panelDataReport
             // 
             this.panelDataReport.Controls.Add(this.panelProcessedDataControl);
@@ -925,6 +984,16 @@
             this.tsPreprocessingReport.Size = new System.Drawing.Size(200, 25);
             this.tsPreprocessingReport.TabIndex = 3;
             this.tsPreprocessingReport.Text = "toolStrip1";
+            // 
+            // controlTitle2
+            // 
+            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle2.Name = "controlTitle2";
+            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle2.TabIndex = 0;
+            this.controlTitle2.Title = "Tab Report";
             // 
             // tabTrainingPage
             // 
@@ -1006,6 +1075,30 @@
             this.tsbtnTrainOptions.Name = "tsbtnTrainOptions";
             this.tsbtnTrainOptions.Size = new System.Drawing.Size(23, 22);
             this.tsbtnTrainOptions.Text = "Training Options";
+            // 
+            // controlTitle6
+            // 
+            this.controlTitle6.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle6.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle6.Name = "controlTitle6";
+            this.controlTitle6.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle6.TabIndex = 0;
+            this.controlTitle6.Title = "Graph Visualize Error";
+            // 
+            // collapsibleSplitter3
+            // 
+            this.collapsibleSplitter3.AnimationDelay = 20;
+            this.collapsibleSplitter3.AnimationStep = 20;
+            this.collapsibleSplitter3.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
+            this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter3.ExpandParentForm = false;
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(625, 0);
+            this.collapsibleSplitter3.Name = "collapsibleSplitter3";
+            this.collapsibleSplitter3.TabIndex = 4;
+            this.collapsibleSplitter3.TabStop = false;
+            this.collapsibleSplitter3.UseAnimations = false;
             // 
             // panelTrainingReport
             // 
@@ -1090,6 +1183,16 @@
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnTraining_Click);
+            // 
+            // controlTitle5
+            // 
+            this.controlTitle5.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle5.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle5.Name = "controlTitle5";
+            this.controlTitle5.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle5.TabIndex = 0;
+            this.controlTitle5.Title = "Tab Report";
             // 
             // chkErrorLimit
             // 
@@ -1271,9 +1374,9 @@
             this.tsActualVsOutput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton29,
             this.toolStripSeparator13,
-            this.toolStripButton30,
-            this.toolStripButton31,
-            this.toolStripButton32,
+            this.tsbtnTestTrainingSet,
+            this.tsbtnTestValidationSet,
+            this.tsbtnTestTestSet,
             this.toolStripSeparator9,
             this.tsLabelMeanCCR});
             this.tsActualVsOutput.Location = new System.Drawing.Point(0, 20);
@@ -1296,32 +1399,71 @@
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             this.toolStripSeparator13.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton30
+            // tsbtnTestTrainingSet
             // 
-            this.toolStripButton30.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton30.Image = global::DemoDropOut.Properties.Resources.testing_trn_icon_1;
-            this.toolStripButton30.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton30.Name = "toolStripButton30";
-            this.toolStripButton30.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton30.Text = "Training Set";
+            this.tsbtnTestTrainingSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnTestTrainingSet.Image = global::DemoDropOut.Properties.Resources.testing_trn_icon_1;
+            this.tsbtnTestTrainingSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnTestTrainingSet.Name = "tsbtnTestTrainingSet";
+            this.tsbtnTestTrainingSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnTestTrainingSet.Text = "Training Set";
+            this.tsbtnTestTrainingSet.Click += new System.EventHandler(this.btnTestTrainingSet_Click);
             // 
-            // toolStripButton31
+            // tsbtnTestValidationSet
             // 
-            this.toolStripButton31.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton31.Image = global::DemoDropOut.Properties.Resources.testing_vld_icon_1;
-            this.toolStripButton31.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton31.Name = "toolStripButton31";
-            this.toolStripButton31.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton31.Text = "Validation Set";
+            this.tsbtnTestValidationSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnTestValidationSet.Image = global::DemoDropOut.Properties.Resources.testing_vld_icon_1;
+            this.tsbtnTestValidationSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnTestValidationSet.Name = "tsbtnTestValidationSet";
+            this.tsbtnTestValidationSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnTestValidationSet.Text = "Validation Set";
+            this.tsbtnTestValidationSet.Click += new System.EventHandler(this.btnTestValidationSet_Click);
             // 
-            // toolStripButton32
+            // tsbtnTestTestSet
             // 
-            this.toolStripButton32.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton32.Image = global::DemoDropOut.Properties.Resources.testing_tst_icon_1;
-            this.toolStripButton32.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton32.Name = "toolStripButton32";
-            this.toolStripButton32.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton32.Text = "Test Set";
+            this.tsbtnTestTestSet.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnTestTestSet.Image = global::DemoDropOut.Properties.Resources.testing_tst_icon_1;
+            this.tsbtnTestTestSet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnTestTestSet.Name = "tsbtnTestTestSet";
+            this.tsbtnTestTestSet.Size = new System.Drawing.Size(23, 22);
+            this.tsbtnTestTestSet.Text = "Test Set";
+            this.tsbtnTestTestSet.Click += new System.EventHandler(this.btnTestTestSet_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsLabelMeanCCR
+            // 
+            this.tsLabelMeanCCR.ForeColor = System.Drawing.Color.Purple;
+            this.tsLabelMeanCCR.Name = "tsLabelMeanCCR";
+            this.tsLabelMeanCCR.Size = new System.Drawing.Size(63, 22);
+            this.tsLabelMeanCCR.Text = "Mean CCR";
+            // 
+            // controlTitle11
+            // 
+            this.controlTitle11.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle11.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle11.Name = "controlTitle11";
+            this.controlTitle11.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle11.TabIndex = 3;
+            this.controlTitle11.Title = "Actual vs. Ouput Table";
+            // 
+            // collapsibleSplitter4
+            // 
+            this.collapsibleSplitter4.AnimationDelay = 20;
+            this.collapsibleSplitter4.AnimationStep = 20;
+            this.collapsibleSplitter4.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+            this.collapsibleSplitter4.ControlToHide = this.panelTestingReport;
+            this.collapsibleSplitter4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.collapsibleSplitter4.ExpandParentForm = false;
+            this.collapsibleSplitter4.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter4.Name = "collapsibleSplitter4";
+            this.collapsibleSplitter4.TabIndex = 0;
+            this.collapsibleSplitter4.TabStop = false;
+            this.collapsibleSplitter4.UseAnimations = false;
             // 
             // panelTestingReport
             // 
@@ -1368,6 +1510,16 @@
             this.tsTestingReport.Size = new System.Drawing.Size(200, 25);
             this.tsTestingReport.TabIndex = 3;
             this.tsTestingReport.Text = "toolStrip5";
+            // 
+            // controlTitle7
+            // 
+            this.controlTitle7.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle7.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle7.Name = "controlTitle7";
+            this.controlTitle7.Size = new System.Drawing.Size(200, 20);
+            this.controlTitle7.TabIndex = 0;
+            this.controlTitle7.Title = "Tab Report";
             // 
             // tabQueryPage
             // 
@@ -1449,6 +1601,16 @@
             this.toolStripButton15.Name = "toolStripButton15";
             this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton15.Text = "Clear";
+            // 
+            // controlTitle15
+            // 
+            this.controlTitle15.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle15.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle15.Name = "controlTitle15";
+            this.controlTitle15.Size = new System.Drawing.Size(828, 20);
+            this.controlTitle15.TabIndex = 8;
+            this.controlTitle15.Title = "Results Table";
             // 
             // panelManualQuery
             // 
@@ -1538,6 +1700,16 @@
             this.btnShowHideMaxMin.Size = new System.Drawing.Size(23, 22);
             this.btnShowHideMaxMin.Text = "Show/Hide Max/Min";
             // 
+            // controlTitle14
+            // 
+            this.controlTitle14.BackColor = System.Drawing.Color.Gray;
+            this.controlTitle14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.controlTitle14.Location = new System.Drawing.Point(0, 0);
+            this.controlTitle14.Name = "controlTitle14";
+            this.controlTitle14.Size = new System.Drawing.Size(828, 20);
+            this.controlTitle14.TabIndex = 10;
+            this.controlTitle14.Title = "Manual Query";
+            // 
             // txtEvenLog
             // 
             this.txtEvenLog.BackColor = System.Drawing.SystemColors.Window;
@@ -1589,7 +1761,7 @@
             this.toolStripSeparator3,
             this.tsbtnTrain1,
             this.toolStripSeparator5,
-            this.tsbtnTest1,
+            this.tsbtnTestMainTab,
             this.toolStripButton7,
             this.toolStripSeparator6,
             this.tsbtnQuery,
@@ -1722,13 +1894,13 @@
             this.networkPropertiesToolStripMenuItem1.Text = "Network Properties...";
             this.networkPropertiesToolStripMenuItem1.ToolTipText = "Design network architecture";
             // 
-            // tsbtnTest1
+            // tsbtnTestMainTab
             // 
-            this.tsbtnTest1.Image = global::DemoDropOut.Properties.Resources.test_icon_1;
-            this.tsbtnTest1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnTest1.Name = "tsbtnTest1";
-            this.tsbtnTest1.Size = new System.Drawing.Size(49, 22);
-            this.tsbtnTest1.Text = "Test";
+            this.tsbtnTestMainTab.Image = global::DemoDropOut.Properties.Resources.test_icon_1;
+            this.tsbtnTestMainTab.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnTestMainTab.Name = "tsbtnTestMainTab";
+            this.tsbtnTestMainTab.Size = new System.Drawing.Size(49, 22);
+            this.tsbtnTestMainTab.Text = "Test";
             // 
             // toolStripButton7
             // 
@@ -1775,173 +1947,6 @@
             this.tsbtnHelp.Name = "tsbtnHelp";
             this.tsbtnHelp.Size = new System.Drawing.Size(23, 22);
             this.tsbtnHelp.Text = "Help";
-            // 
-            // controlTitle4
-            // 
-            this.controlTitle4.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle4.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle4.Name = "controlTitle4";
-            this.controlTitle4.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle4.TabIndex = 0;
-            this.controlTitle4.Title = "Raw Data";
-            // 
-            // collapsibleSplitter2
-            // 
-            this.collapsibleSplitter2.AnimationDelay = 20;
-            this.collapsibleSplitter2.AnimationStep = 20;
-            this.collapsibleSplitter2.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter2.ControlToHide = this.panelAnalysisReport;
-            this.collapsibleSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter2.ExpandParentForm = false;
-            this.collapsibleSplitter2.Location = new System.Drawing.Point(620, 0);
-            this.collapsibleSplitter2.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter2.TabIndex = 9;
-            this.collapsibleSplitter2.TabStop = false;
-            this.collapsibleSplitter2.UseAnimations = false;
-            // 
-            // controlTitle3
-            // 
-            this.controlTitle3.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle3.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle3.Name = "controlTitle3";
-            this.controlTitle3.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle3.TabIndex = 0;
-            this.controlTitle3.Title = "Tab Report";
-            // 
-            // controlTitle1
-            // 
-            this.controlTitle1.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle1.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle1.Name = "controlTitle1";
-            this.controlTitle1.Size = new System.Drawing.Size(625, 20);
-            this.controlTitle1.TabIndex = 0;
-            this.controlTitle1.Title = "Processed Data";
-            // 
-            // collapsibleSplitter1
-            // 
-            this.collapsibleSplitter1.AnimationDelay = 20;
-            this.collapsibleSplitter1.AnimationStep = 20;
-            this.collapsibleSplitter1.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter1.ControlToHide = this.panelDataReport;
-            this.collapsibleSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter1.ExpandParentForm = false;
-            this.collapsibleSplitter1.Location = new System.Drawing.Point(625, 0);
-            this.collapsibleSplitter1.Name = "collapsibleSplitter1";
-            this.collapsibleSplitter1.TabIndex = 6;
-            this.collapsibleSplitter1.TabStop = false;
-            this.collapsibleSplitter1.UseAnimations = false;
-            // 
-            // controlTitle2
-            // 
-            this.controlTitle2.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle2.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle2.Name = "controlTitle2";
-            this.controlTitle2.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle2.TabIndex = 0;
-            this.controlTitle2.Title = "Tab Report";
-            // 
-            // controlTitle6
-            // 
-            this.controlTitle6.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle6.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle6.Name = "controlTitle6";
-            this.controlTitle6.Size = new System.Drawing.Size(625, 20);
-            this.controlTitle6.TabIndex = 0;
-            this.controlTitle6.Title = "Graph Visualize Error";
-            // 
-            // collapsibleSplitter3
-            // 
-            this.collapsibleSplitter3.AnimationDelay = 20;
-            this.collapsibleSplitter3.AnimationStep = 20;
-            this.collapsibleSplitter3.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
-            this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter3.ExpandParentForm = false;
-            this.collapsibleSplitter3.Location = new System.Drawing.Point(625, 0);
-            this.collapsibleSplitter3.Name = "collapsibleSplitter3";
-            this.collapsibleSplitter3.TabIndex = 4;
-            this.collapsibleSplitter3.TabStop = false;
-            this.collapsibleSplitter3.UseAnimations = false;
-            // 
-            // controlTitle5
-            // 
-            this.controlTitle5.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle5.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle5.Name = "controlTitle5";
-            this.controlTitle5.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle5.TabIndex = 0;
-            this.controlTitle5.Title = "Tab Report";
-            // 
-            // controlTitle11
-            // 
-            this.controlTitle11.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle11.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle11.Name = "controlTitle11";
-            this.controlTitle11.Size = new System.Drawing.Size(620, 20);
-            this.controlTitle11.TabIndex = 3;
-            this.controlTitle11.Title = "Actual vs. Ouput Table";
-            // 
-            // collapsibleSplitter4
-            // 
-            this.collapsibleSplitter4.AnimationDelay = 20;
-            this.collapsibleSplitter4.AnimationStep = 20;
-            this.collapsibleSplitter4.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-            this.collapsibleSplitter4.ControlToHide = this.panelTestingReport;
-            this.collapsibleSplitter4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.collapsibleSplitter4.ExpandParentForm = false;
-            this.collapsibleSplitter4.Location = new System.Drawing.Point(620, 0);
-            this.collapsibleSplitter4.Name = "collapsibleSplitter4";
-            this.collapsibleSplitter4.TabIndex = 0;
-            this.collapsibleSplitter4.TabStop = false;
-            this.collapsibleSplitter4.UseAnimations = false;
-            // 
-            // controlTitle7
-            // 
-            this.controlTitle7.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle7.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle7.Name = "controlTitle7";
-            this.controlTitle7.Size = new System.Drawing.Size(200, 20);
-            this.controlTitle7.TabIndex = 0;
-            this.controlTitle7.Title = "Tab Report";
-            // 
-            // controlTitle15
-            // 
-            this.controlTitle15.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle15.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle15.Name = "controlTitle15";
-            this.controlTitle15.Size = new System.Drawing.Size(828, 20);
-            this.controlTitle15.TabIndex = 8;
-            this.controlTitle15.Title = "Results Table";
-            // 
-            // controlTitle14
-            // 
-            this.controlTitle14.BackColor = System.Drawing.Color.Gray;
-            this.controlTitle14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.controlTitle14.Location = new System.Drawing.Point(0, 0);
-            this.controlTitle14.Name = "controlTitle14";
-            this.controlTitle14.Size = new System.Drawing.Size(828, 20);
-            this.controlTitle14.TabIndex = 10;
-            this.controlTitle14.Title = "Manual Query";
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsLabelMeanCCR
-            // 
-            this.tsLabelMeanCCR.Name = "tsLabelMeanCCR";
-            this.tsLabelMeanCCR.Size = new System.Drawing.Size(63, 22);
-            this.tsLabelMeanCCR.Text = "Mean CCR";
             // 
             // F001_MainProgram
             // 
@@ -2071,7 +2076,7 @@
         private System.Windows.Forms.ToolStripButton tsbtnQuery;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton tsbtnTest1;
+        private System.Windows.Forms.ToolStripButton tsbtnTestMainTab;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton tsbtnHelp;
         private System.Windows.Forms.StatusStrip statusStripMain;
@@ -2185,14 +2190,14 @@
         private System.Windows.Forms.ToolStrip tsActualVsOutput;
         private System.Windows.Forms.ToolStripButton toolStripButton29;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
-        private System.Windows.Forms.ToolStripButton toolStripButton30;
-        private System.Windows.Forms.ToolStripButton toolStripButton31;
-        private System.Windows.Forms.ToolStripButton toolStripButton32;
+        private System.Windows.Forms.ToolStripButton tsbtnTestTrainingSet;
+        private System.Windows.Forms.ToolStripButton tsbtnTestValidationSet;
+        private System.Windows.Forms.ToolStripButton tsbtnTestTestSet;
         private DropOut.Uc.ControlTitle controlTitle11;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
-        private System.Windows.Forms.ToolStripButton tsbtnTrainingSet;
-        private System.Windows.Forms.ToolStripButton tsbtnValidationSet;
-        private System.Windows.Forms.ToolStripButton tsbtnTestSet;
+        private System.Windows.Forms.ToolStripButton tsbtnSetTrainingSet;
+        private System.Windows.Forms.ToolStripButton tsbtnSetValidationSet;
+        private System.Windows.Forms.ToolStripButton tsbtnSetTestSet;
         private System.Windows.Forms.ToolStripButton tsbtnAcceptRow;
         private System.Windows.Forms.ToolStripButton tsbtnRejectRow;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;

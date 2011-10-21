@@ -69,6 +69,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 {
                     v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_training_set[i]].ItemArray);
                 }
+                //var v_copy_list = new List<int>(m_list_training_set);
+                v_table.ExtendedProperties["IndexList"] = m_list_training_set;
                 return v_table;
             }
         }
@@ -84,6 +86,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 {
                     v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_validation_set[i]].ItemArray);
                 }
+                //var v_copy_list = new List<int>(m_list_validation_set);
+                v_table.ExtendedProperties["IndexList"] = m_list_validation_set;
                 return v_table;
             }
         }
@@ -99,6 +103,9 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 {
                     v_table.Rows.Add(m_dt_analyzed_set.Rows[m_list_test_set[i]].ItemArray);
                 }
+                // v_copy_list để hiển thị trên Test tab
+                // var v_copy_list = new List<int>(m_list_test_set);
+                v_table.ExtendedProperties["IndexList"] = m_list_test_set;
                 return v_table;
             }
         }
@@ -173,6 +180,10 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 // for ... test count
                 m_list_test_set = v_partition_population;
+                // sort index list
+                m_list_test_set.Sort();
+                m_list_training_set.Sort();
+                m_list_validation_set.Sort();
             }
         }
 
