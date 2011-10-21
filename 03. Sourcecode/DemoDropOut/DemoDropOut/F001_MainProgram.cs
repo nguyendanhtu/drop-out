@@ -314,6 +314,75 @@ namespace DemoDropOut
 
         #region Test Tab Handler
 
+        private double TestDataset(DataTable ip_dt_dataset)
+        {
+            var v_dt_copy = ip_dt_dataset.Copy();
+            var v_output_index = (int)v_dt_copy.ExtendedProperties["OutputIndex"];
+            v_dt_copy.Columns.RemoveAt(v_output_index);
+
+            var input = m_dPreprocessing_obj.Preprocessing(v_dt_copy);
+            var ouput = m_dropOutForecast.ComputeOutputs(input);
+
+            var v_output_details = m_dAnalysis_obj.GetOuput();
+            var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(ouput, v_output_details);
+
+            var v_dt_result = DataTestingBlo.CompareResultTable(v_dt_output, ip_dt_dataset);
+            var v_db_ccr = (double)v_dt_result.ExtendedProperties["CCR"];
+            DataTestingBlo.FormatTestingTable(this.c1ActualVsOuputFlexGrid, v_dt_result);
+            return v_db_ccr;
+        }
+
+        private void btnTestTrainingSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tsbtnTestTestSet.Checked = false;
+                this.tsbtnTestTrainingSet.Checked = true;
+                this.tsbtnTestValidationSet.Checked = false;
+
+                var v_dt_training_set = m_dAnalysis_obj.TrainingSet;
+                tsLabelMeanCCR.Text = string.Format("Mean CCR: {0}", TestDataset(v_dt_training_set));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnTestValidationSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tsbtnTestTestSet.Checked = false;
+                this.tsbtnTestTrainingSet.Checked = false;
+                this.tsbtnTestValidationSet.Checked = true;
+
+                var v_dt_validation_set = m_dAnalysis_obj.ValidationSet;
+                tsLabelMeanCCR.Text = string.Format("Mean CCR: {0}", TestDataset(v_dt_validation_set));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnTestTestSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tsbtnTestTestSet.Checked = true;
+                this.tsbtnTestTrainingSet.Checked = false;
+                this.tsbtnTestValidationSet.Checked = false;
+
+                var v_dt_test_set = m_dAnalysis_obj.TestSet;
+                tsLabelMeanCCR.Text = string.Format("Mean CCR: {0}", TestDataset(v_dt_test_set));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         #endregion
 
         #region Query Tab Handler
