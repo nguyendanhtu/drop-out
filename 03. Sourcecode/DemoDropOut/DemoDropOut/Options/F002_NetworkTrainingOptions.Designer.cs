@@ -69,14 +69,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 245);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(540, 51);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // btnDefault
             // 
             this.btnDefault.Location = new System.Drawing.Point(12, 19);
             this.btnDefault.Name = "btnDefault";
             this.btnDefault.Size = new System.Drawing.Size(75, 23);
-            this.btnDefault.TabIndex = 1;
+            this.btnDefault.TabIndex = 2;
             this.btnDefault.Text = "Default";
             this.btnDefault.UseVisualStyleBackColor = true;
             // 
@@ -86,7 +86,7 @@
             this.btnCancel.Location = new System.Drawing.Point(453, 19);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -108,7 +108,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(540, 245);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -119,7 +119,7 @@
             this.groupBox3.Location = new System.Drawing.Point(279, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(249, 106);
-            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Stop Training Conditions";
             // 
@@ -129,7 +129,7 @@
             this.chkUseIterations.Location = new System.Drawing.Point(6, 22);
             this.chkUseIterations.Name = "chkUseIterations";
             this.chkUseIterations.Size = new System.Drawing.Size(113, 17);
-            this.chkUseIterations.TabIndex = 11;
+            this.chkUseIterations.TabIndex = 2;
             this.chkUseIterations.Text = "Use iterations limit";
             this.chkUseIterations.UseVisualStyleBackColor = true;
             // 
@@ -139,7 +139,7 @@
             this.chkUseError.Location = new System.Drawing.Point(6, 45);
             this.chkUseError.Name = "chkUseError";
             this.chkUseError.Size = new System.Drawing.Size(92, 17);
-            this.chkUseError.TabIndex = 11;
+            this.chkUseError.TabIndex = 3;
             this.chkUseError.Text = "Use error limit";
             this.chkUseError.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +148,7 @@
             this.txtErrorLimitBox.Location = new System.Drawing.Point(124, 43);
             this.txtErrorLimitBox.Name = "txtErrorLimitBox";
             this.txtErrorLimitBox.Size = new System.Drawing.Size(101, 21);
-            this.txtErrorLimitBox.TabIndex = 6;
+            this.txtErrorLimitBox.TabIndex = 1;
             this.txtErrorLimitBox.Text = "0.01";
             // 
             // txtIterationsBox
@@ -156,7 +156,7 @@
             this.txtIterationsBox.Location = new System.Drawing.Point(125, 20);
             this.txtIterationsBox.Name = "txtIterationsBox";
             this.txtIterationsBox.Size = new System.Drawing.Size(101, 21);
-            this.txtIterationsBox.TabIndex = 4;
+            this.txtIterationsBox.TabIndex = 0;
             this.txtIterationsBox.Text = "500";
             // 
             // groupBox2
@@ -175,7 +175,7 @@
             this.groupBox2.Location = new System.Drawing.Point(12, 124);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(516, 115);
-            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Training algorithm\'s parameters";
             // 
@@ -185,7 +185,7 @@
             this.radioButton2.Location = new System.Drawing.Point(318, 48);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(160, 17);
-            this.radioButton2.TabIndex = 11;
+            this.radioButton2.TabIndex = 4;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Manual randomization range";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             this.chkAutoRandomizeRange.Location = new System.Drawing.Point(318, 25);
             this.chkAutoRandomizeRange.Name = "chkAutoRandomizeRange";
             this.chkAutoRandomizeRange.Size = new System.Drawing.Size(174, 17);
-            this.chkAutoRandomizeRange.TabIndex = 11;
+            this.chkAutoRandomizeRange.TabIndex = 3;
             this.chkAutoRandomizeRange.TabStop = true;
             this.chkAutoRandomizeRange.Text = "Automatic randomization range";
             this.chkAutoRandomizeRange.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@
             this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(188, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 10;
             this.label1.Text = "Quick propagation coefficent [0..100]";
             // 
             // label16
@@ -226,7 +226,7 @@
             this.label3.Location = new System.Drawing.Point(452, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 14);
-            this.label3.TabIndex = 10;
+            this.label3.TabIndex = 6;
             this.label3.Text = "±";
             // 
             // label2
@@ -236,7 +236,7 @@
             this.label2.Location = new System.Drawing.Point(318, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 13);
-            this.label2.TabIndex = 10;
+            this.label2.TabIndex = 7;
             this.label2.Text = "Randomization Range W = ";
             // 
             // label15
@@ -245,7 +245,7 @@
             this.label15.Location = new System.Drawing.Point(98, 80);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(96, 13);
-            this.label15.TabIndex = 10;
+            this.label15.TabIndex = 8;
             this.label15.Text = "Momentum [0 .. 1]";
             // 
             // txtQuickPropagationCoefficientBox
@@ -253,7 +253,7 @@
             this.txtQuickPropagationCoefficientBox.Location = new System.Drawing.Point(200, 24);
             this.txtQuickPropagationCoefficientBox.Name = "txtQuickPropagationCoefficientBox";
             this.txtQuickPropagationCoefficientBox.Size = new System.Drawing.Size(101, 21);
-            this.txtQuickPropagationCoefficientBox.TabIndex = 5;
+            this.txtQuickPropagationCoefficientBox.TabIndex = 0;
             this.txtQuickPropagationCoefficientBox.Text = "1.75";
             // 
             // txtLearningRateBox
@@ -261,7 +261,7 @@
             this.txtLearningRateBox.Location = new System.Drawing.Point(200, 51);
             this.txtLearningRateBox.Name = "txtLearningRateBox";
             this.txtLearningRateBox.Size = new System.Drawing.Size(101, 21);
-            this.txtLearningRateBox.TabIndex = 5;
+            this.txtLearningRateBox.TabIndex = 1;
             this.txtLearningRateBox.Text = "0.1";
             // 
             // txtRandomizationRangeBox
@@ -269,7 +269,7 @@
             this.txtRandomizationRangeBox.Location = new System.Drawing.Point(468, 72);
             this.txtRandomizationRangeBox.Name = "txtRandomizationRangeBox";
             this.txtRandomizationRangeBox.Size = new System.Drawing.Size(42, 21);
-            this.txtRandomizationRangeBox.TabIndex = 3;
+            this.txtRandomizationRangeBox.TabIndex = 5;
             this.txtRandomizationRangeBox.Text = "0.3";
             // 
             // txtMomentumBox
@@ -277,7 +277,7 @@
             this.txtMomentumBox.Location = new System.Drawing.Point(200, 77);
             this.txtMomentumBox.Name = "txtMomentumBox";
             this.txtMomentumBox.Size = new System.Drawing.Size(101, 21);
-            this.txtMomentumBox.TabIndex = 3;
+            this.txtMomentumBox.TabIndex = 2;
             this.txtMomentumBox.Text = "0.1";
             // 
             // groupBox1
@@ -298,7 +298,7 @@
             this.chkAlgQuickPropagation.Location = new System.Drawing.Point(7, 44);
             this.chkAlgQuickPropagation.Name = "chkAlgQuickPropagation";
             this.chkAlgQuickPropagation.Size = new System.Drawing.Size(112, 17);
-            this.chkAlgQuickPropagation.TabIndex = 0;
+            this.chkAlgQuickPropagation.TabIndex = 1;
             this.chkAlgQuickPropagation.Text = "Quick Propagation";
             this.chkAlgQuickPropagation.UseVisualStyleBackColor = true;
             // 
