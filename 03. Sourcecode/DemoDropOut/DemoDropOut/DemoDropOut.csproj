@@ -84,14 +84,23 @@
     <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
     <Compile Include="Apps\Objects\DataSamples.cs" />
     <Compile Include="Apps\Objects\DateEncoding.cs" />
+    <Compile Include="Apps\Objects\NetworkParameters.cs" />
+    <Compile Include="Apps\Objects\TrainingAlgorithmEnum.cs" />
+    <Compile Include="Apps\Objects\TrainingAlgorithmParameters.cs" />
     <Compile Include="Common\C1Styles.cs" />
     <Compile Include="Common\C1Helper.cs" />
     <Compile Include="Common\DataHelper.cs" />
-    <Compile Include="Options\F002_NetworkProperties.cs">
+    <Compile Include="Options\F002_NetworkTrainingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Options\F002_NetworkProperties.Designer.cs">
-      <DependentUpon>F002_NetworkProperties.cs</DependentUpon>
+    <Compile Include="Options\F002_NetworkTrainingOptions.Designer.cs">
+      <DependentUpon>F002_NetworkTrainingOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\F003_NetworkProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F003_NetworkProperties.Designer.cs">
+      <DependentUpon>F003_NetworkProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Uc\CollapsibleSplitter.cs">
       <SubType>Component</SubType>
@@ -120,8 +129,11 @@
     <EmbeddedResource Include="F001_NetworkSet.resx">
       <DependentUpon>F001_NetworkSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Options\F002_NetworkProperties.resx">
-      <DependentUpon>F002_NetworkProperties.cs</DependentUpon>
+    <EmbeddedResource Include="Options\F002_NetworkTrainingOptions.resx">
+      <DependentUpon>F002_NetworkTrainingOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F003_NetworkProperties.resx">
+      <DependentUpon>F003_NetworkProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

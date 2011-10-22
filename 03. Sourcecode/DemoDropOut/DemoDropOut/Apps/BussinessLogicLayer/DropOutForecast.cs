@@ -6,6 +6,7 @@ using HeatonResearchNeural.Feedforward;
 using HeatonResearchNeural.Feedforward.Train;
 using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using System.Data;
+using DemoDropOut.Apps.Objects;
 
 namespace DemoDropOut.Apps.BussinessLogicLayer
 {
@@ -15,10 +16,6 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
     public class DropOutForecast
     {
         #region Private fields
-        /// <summary>
-        /// Số tập mẫu
-        /// </summary>
-        private int _samples = 0;
         /// <summary>
         /// Số biến nhập (input count)
         /// </summary>
@@ -32,28 +29,43 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// </summary>
         private int _hiddenNeurons = 0;
 
-        private double _learningRate = 0.1;
-        private double _momentumValue = 2;
-        private double _learningErrorLimit = 0.1;
-        private uint _learningIterationLimit = 1000;
-        private bool _useErrorLimit = true;
+        //private double _learningRate = 0.1;
+        //private double _momentumValue = 2;
+        //private double _learningErrorLimit = 0.1;
+        //private uint _learningIterationLimit = 1000;
+        //private bool _useErrorLimit = true;
 
-        private double[][] _input = null; // new double[samples][];  // training set
-        private double[][] _output = null; // new double[samples][]; // ideal output
+        private TrainingAlgorithmParameters m_trn_parameter;
+        private NetworkParameters m_net_parameters;
+
+        public NetworkParameters NetworkParameters
+        {
+            get { return m_net_parameters; }
+            set { m_net_parameters = value; }
+        }
+
+        public TrainingAlgorithmParameters TrainingAlgorithmParameters
+        {
+            get { return m_trn_parameter; }
+            set { m_trn_parameter = value; }
+        }
+
+        private double[][] _trainingSet = null; // new double[samples][];  // training set
+        private double[][] _outputIdeal = null; // new double[samples][]; // ideal output
 
         private double[][] _validationSet = null;
         private double[][] _testSet = null;
 
         public double[][] TrainingInputSet
         {
-            get { return _input; }
-            set { _input = value; }
+            get { return _trainingSet; }
+            set { _trainingSet = value; }
         }
 
         public double[][] TrainingOutputSet
         {
-            get { return _output; }
-            set { _output = value; }
+            get { return _outputIdeal; }
+            set { _outputIdeal = value; }
         }
 
         public double[][] ValidationSet
@@ -85,7 +97,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// </summary>
         public int Samples
         {
-            get { return _input.GetLength(0); }
+            get { return _trainingSet.GetLength(0); }
         }
         /// <summary>
         /// Get: số biến nhập
@@ -117,43 +129,43 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             set { _hiddenNeurons = value; }
         }
 
-        public double LearningRate
-        {
-            get { return _learningRate; }
-            set { _learningRate = value; }
-        }
+        //public double LearningRate
+        //{
+        //    get { return _learningRate; }
+        //    set { _learningRate = value; }
+        //}
 
-        public double Momentum
-        {
-            get { return _momentumValue; }
-            set { _momentumValue = value; }
-        }
+        //public double Momentum
+        //{
+        //    get { return _momentumValue; }
+        //    set { _momentumValue = value; }
+        //}
 
-        public double ErrorLimit
-        {
-            get { return _learningErrorLimit; }
-            set
-            {
-                _learningErrorLimit = value;
-                _useErrorLimit = true;
-            }
-        }
+        //public double ErrorLimit
+        //{
+        //    get { return _learningErrorLimit; }
+        //    set
+        //    {
+        //        _learningErrorLimit = value;
+        //        _useErrorLimit = true;
+        //    }
+        //}
 
-        public uint IterationLimit
-        {
-            get { return _learningIterationLimit; }
-            set
-            {
-                _learningIterationLimit = value;
-                _useErrorLimit = false;
-            }
-        }
+        //public uint IterationLimit
+        //{
+        //    get { return _learningIterationLimit; }
+        //    set
+        //    {
+        //        _learningIterationLimit = value;
+        //        _useErrorLimit = false;
+        //    }
+        //}
 
-        public bool IsCheckError
-        {
-            get { return _useErrorLimit; }
-            set { _useErrorLimit = value; }
-        }
+        //public bool IsCheckError
+        //{
+        //    get { return _useErrorLimit; }
+        //    set { _useErrorLimit = value; }
+        //}
 
         #endregion
 
@@ -192,7 +204,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 network.AddLayer(new FeedforwardLayer(_classes));
                 network.Reset(); // randomize Weights & Threshold
                 //network.CalculateNeuronCount();
-                Train teacher = new Backpropagation(network, _input, _output, _learningRate, _momentumValue); // 0.7, 0.9); //0.7 0.9
+                Train teacher = new Backpropagation(network, _trainingSet, _outputIdeal, m_trn_parameter.LearningRate, m_trn_parameter.Momentum); // 0.7, 0.9); //0.7 0.9
 
                 uint epoch = 0;
 
@@ -205,12 +217,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     OnNotifyError(teacher.Error, epoch);
 
                     // stop ??
-                    if (_useErrorLimit == true)
+                    if (m_trn_parameter.UseErrorLimit == true && m_trn_parameter.UseIterationsLimit == true)
                     {
-                        if (teacher.Error <= _learningErrorLimit)
+                        if (teacher.Error <= m_trn_parameter.ErrorLimit || epoch >= m_trn_parameter.IterationsLimit)
                             break;
                     }
-                    else if (epoch >= _learningIterationLimit)
+                    else if (m_trn_parameter.UseErrorLimit == true && teacher.Error <= m_trn_parameter.ErrorLimit)
+                    {
+                        break;
+                    }
+                    else if (m_trn_parameter.UseIterationsLimit == true && epoch >= m_trn_parameter.IterationsLimit)
                     {
                         break;
                     }
