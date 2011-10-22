@@ -180,40 +180,44 @@ namespace DemoDropOut
             }
         }
 
+        private void TrainDataset()
+        {
+            listErrorChart = new List<double>();
+            m_dropOutForecast = new DropOutForecast();
+
+            // Set tập mẫu luyện
+            m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
+            m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
+            m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
+
+            // Cấu hình mạng (default)
+            m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
+            m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
+            m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
+
+            // Thông số mạng
+            m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
+            m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
+
+            m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
+            m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
+
+            m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
+
+            m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
+            m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
+
+            UpdateSettings();
+
+            m_dropOutForecast.Train();
+        }
+
         private void btnTraining_Click(object sender, EventArgs e)
         {
             try
             {
                 this.tabControl1.SelectedTab = this.tabTrainingPage;
-                listErrorChart = new List<double>();
-                m_dropOutForecast = new DropOutForecast();
-
-                // Set tập mẫu luyện
-                m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
-                m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
-                m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
-
-                // Cấu hình mạng (default)
-                m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
-                m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
-                m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
-
-                // Thông số mạng
-                m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
-                m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
-
-                m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
-                m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
-
-                m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
-
-                m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
-                m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
-
-                UpdateSettings();
-
-                m_dropOutForecast.Train();
-
+                TrainDataset();
             }
             catch (Exception ex)
             {
@@ -276,7 +280,23 @@ namespace DemoDropOut
             try
             {
                 var tabControl = (TabControl)sender;
-                if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
+                if (tabControl.SelectedTab.Name.Equals(tabTestingPage.Name) == true)
+                {
+                    if (m_bl_trained == null)
+                    {
+                        var v_dr_result = MessageBox.Show("Dataset has not trained!", "Train Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (v_dr_result == DialogResult.Yes)
+                        {
+                            btnTraining_Click(tsbtnTestTrainingSet, e);
+
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+                else if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
                 {
                     var v_dt_samples = this.m_dAnalysis_obj.GetHeaderTable;
                     DataQueryBlo.FormatManualC1FlexGrid(this.c1ManualQueryFlexGrid, v_dt_samples);
@@ -476,6 +496,11 @@ namespace DemoDropOut
         /// Đối tượng xử lý nghiệp vụ tiền xử lý, biến đổi kiểu dữ liệu thô
         /// </summary>
         private DataPreprocessingBlo m_dPreprocessing_obj = null;
+        /// <summary>
+        /// Kiểm tra dữ liệu mới đưa vào đã được luyện chưa
+        /// </summary>
+        private bool m_bl_trained = false;
+        private bool m_bl_preprocessed = false;
 
         #endregion
 
@@ -551,7 +576,7 @@ namespace DemoDropOut
 
         #endregion
 
-        #region Xử lý các sự kiện phân tích dữ liệu
+        #region Analysis Tab Handler: Xử lý các sự kiện phân tích dữ liệu
 
         private void tsbtnOpenRawData_ButtonClick(object sender, EventArgs e)
         {
@@ -579,6 +604,9 @@ namespace DemoDropOut
                     if (this.tscboTarget.Items.Count > 0)
                         this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
                     this.PartitionDataset(0.68, 0.16, 0.16);
+                    this.m_bl_trained = false;  // dữ liệu chưa được luyện
+                    this.m_bl_preprocessed = false;
+                    this.PreprocessData();
                 }
             }
             catch (Exception ex)
@@ -628,7 +656,7 @@ namespace DemoDropOut
 
         #endregion
 
-        #region Xử lý các sự kiện của form: F001_MainProgram
+        #region Form Handler: Xử lý các sự kiện form
 
         private void F001_MainProgram_Load(object sender, EventArgs e)
         {
@@ -661,24 +689,29 @@ namespace DemoDropOut
 
         #region Preprocessing Tab Handler: Tiền xử lý dữ liệu
 
+        private void PreprocessData()
+        {
+            m_dPreprocessing_obj = new DataPreprocessingBlo();
+            m_dPreprocessing_obj.CategoricalEncoding = CategoricalEncoding.Binary;
+            m_dPreprocessing_obj.DateEncoding = DateEncoding.Weekly;
+            m_dPreprocessing_obj.TrainingSet = m_dAnalysis_obj.TrainingSet;
+            m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
+            m_dPreprocessing_obj.TestSet = m_dAnalysis_obj.TestSet;
+            m_dPreprocessing_obj.Preprocessing();
+
+            var v_table = m_dPreprocessing_obj.EncodedData;
+            if (this.c1ProcessedDataFlexGrid.DataSource == null)
+                this.c1ProcessedDataFlexGrid.Rows.Count = 1;
+            this.c1ProcessedDataFlexGrid.Rows.Fixed = 1;
+            this.c1ProcessedDataFlexGrid.Cols.Count = 0;
+            C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+        }
+
         private void tsbtnPreprocess1_ButtonClick(object sender, EventArgs e)
         {
             try
             {
-                m_dPreprocessing_obj = new DataPreprocessingBlo();
-                m_dPreprocessing_obj.CategoricalEncoding = CategoricalEncoding.Binary;
-                m_dPreprocessing_obj.DateEncoding = DateEncoding.Weekly;
-                m_dPreprocessing_obj.TrainingSet = m_dAnalysis_obj.TrainingSet;
-                m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
-                m_dPreprocessing_obj.TestSet = m_dAnalysis_obj.TestSet;
-                m_dPreprocessing_obj.Preprocessing();
-
-                var v_table = m_dPreprocessing_obj.EncodedData;
-                if (this.c1ProcessedDataFlexGrid.DataSource == null)
-                    this.c1ProcessedDataFlexGrid.Rows.Count = 1;
-                this.c1ProcessedDataFlexGrid.Rows.Fixed = 1;
-                this.c1ProcessedDataFlexGrid.Cols.Count = 0;
-                C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
+                this.PreprocessData();
                 this.tabControl1.SelectedTab = this.tabPreprocessingPage;
             }
             catch (Exception ex)

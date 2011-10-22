@@ -20,6 +20,42 @@ namespace DemoDropOut.Common
             owner.AcceptChanges();
         }
 
+        public static DataTable GetColumns(this DataTable ip_dt_source, params int[] ip_index_column)
+        {
+            if (ip_index_column == null)
+            {
+                return ip_dt_source.Copy();
+            }
+
+            var v_dt_table = new DataTable();
+            for (int i = 0; i < ip_index_column.Length; i++)
+            {
+                var v_int_colindex = ip_index_column[i];
+                var v_str_colname = ip_dt_source.Columns[v_int_colindex].ColumnName;
+                var v_obj_type = ip_dt_source.Columns[v_int_colindex].DataType;
+                v_dt_table.Columns.Add(v_str_colname, v_obj_type);
+                foreach (var key in ip_dt_source.ExtendedProperties.Keys)
+                {
+                    var v_obj_value = ip_dt_source.Columns[v_int_colindex].ExtendedProperties[key];
+                    v_dt_table.Columns[i].ExtendedProperties.Add(key, v_obj_value);
+                }
+            }
+
+            for (int i = 0; i < ip_dt_source.Rows.Count; i++)
+            {
+                var v_dt_row = v_dt_table.NewRow();
+                for (int j = 0; j < ip_index_column.Length; j++)
+                {
+                    var v_int_colindex = ip_index_column[i];
+                    var v_str_colname = ip_dt_source.Columns[v_int_colindex].ColumnName;
+                    v_dt_row[v_str_colname] = ip_dt_source.Rows[i][v_str_colname];
+                    v_dt_table.Rows.Add(v_dt_row);
+                }
+            }
+
+            return v_dt_table;
+        }
+
         public static void MergeTableColumns(ref DataTable ip_dt_dest, DataTable ip_dt_src)
         {
             if (ip_dt_dest.Rows.Count <= 0)
