@@ -275,7 +275,10 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 throw new NullReferenceException("Dữ liệu mẫu đưa vào chưa được phân tích trước khi SetOutput");
             }
         }
-
+        /// <summary>
+        /// Get details of output column
+        /// </summary>
+        /// <returns>ColumnDetails</returns>
         public ColumnDetails GetOuput()
         {
             var v_output_index = (int)m_dt_analyzed_set.ExtendedProperties["OutputIndex"];

@@ -87,6 +87,12 @@
     <Compile Include="Common\C1Styles.cs" />
     <Compile Include="Common\C1Helper.cs" />
     <Compile Include="Common\DataHelper.cs" />
+    <Compile Include="Options\F002_NetworkProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F002_NetworkProperties.Designer.cs">
+      <DependentUpon>F002_NetworkProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uc\CollapsibleSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="F001_NetworkSet.resx">
       <DependentUpon>F001_NetworkSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F002_NetworkProperties.resx">
+      <DependentUpon>F002_NetworkProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
