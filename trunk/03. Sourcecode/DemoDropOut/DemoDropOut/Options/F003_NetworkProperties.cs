@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace DemoDropOut.Options
 {
-    public partial class F002_NetworkProperties : Form
+    public partial class F003_NetworkProperties : Form
     {
-        public F002_NetworkProperties()
+        public F003_NetworkProperties()
         {
             InitializeComponent();
         }

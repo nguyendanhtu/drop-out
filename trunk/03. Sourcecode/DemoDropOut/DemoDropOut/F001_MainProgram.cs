@@ -21,6 +21,7 @@ using AForge;
 using DemoDropOut.Apps.BussinessLogicLayer;
 using DemoDropOut.Apps.DataAccessLayer;
 using DemoDropOut.Common;
+using DemoDropOut.Options;
 
 namespace DemoDropOut
 {
@@ -153,12 +154,12 @@ namespace DemoDropOut
 
         private void UpdateSettings()
         {
-            learningRateBox.Text = m_dropOutForecast.LearningRate.ToString();
-            alphaBox.Text = m_dropOutForecast.Momentum.ToString();
-            errorLimitBox.Text = m_dropOutForecast.ErrorLimit.ToString();
-            iterationsBox.Text = m_dropOutForecast.IterationLimit.ToString();
+            learningRateBox.Text = m_dropOutForecast.TrainingAlgorithmParameters.LearningRate.ToString();
+            alphaBox.Text = m_dropOutForecast.TrainingAlgorithmParameters.Momentum.ToString();
+            errorLimitBox.Text = m_dropOutForecast.TrainingAlgorithmParameters.ErrorLimit.ToString();
+            iterationsBox.Text = m_dropOutForecast.TrainingAlgorithmParameters.IterationsLimit.ToString();
 
-            chkErrorLimit.Checked = m_dropOutForecast.IsCheckError;
+            chkErrorLimit.Checked = m_dropOutForecast.TrainingAlgorithmParameters.UseErrorLimit;
         }
 
         #endregion
@@ -185,31 +186,39 @@ namespace DemoDropOut
             listErrorChart = new List<double>();
             m_dropOutForecast = new DropOutForecast();
 
-            // Set tập mẫu luyện
-            m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
-            m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
-            m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
+            var v_fNetworkTrainingOptions = new F002_NetworkTrainingOptions();
+            var v_dr_result = v_fNetworkTrainingOptions.ShowDialog(this);
+            if (v_dr_result == DialogResult.OK)
+            {
+                m_dropOutForecast.TrainingAlgorithmParameters = v_fNetworkTrainingOptions.TrainingParameters;
+                // Set tập mẫu luyện
+                m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
+                m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
+                m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
 
-            // Cấu hình mạng (default)
-            m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
-            m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
-            m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
+                // Cấu hình mạng (default)
+                m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
+                m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
+                m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
 
-            // Thông số mạng
-            m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
-            m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
+                // Tham số luyện mạng
 
-            m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
-            m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
+                //m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
+                //m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
 
-            m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
+                //m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
+                //m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
 
-            m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
-            m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
+                //m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
 
-            UpdateSettings();
+                m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
+                m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
 
-            m_dropOutForecast.Train();
+                UpdateSettings();
+
+                // Luyện mạng
+                m_dropOutForecast.Train();
+            }
         }
 
         private void btnTraining_Click(object sender, EventArgs e)
