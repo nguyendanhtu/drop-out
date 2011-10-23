@@ -12,6 +12,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 {
     public delegate void NotifyErrorHandler(double dbError, uint iteration);
     public delegate void FinishHandler(object sender, uint iteration);
+    public delegate void StartTrainingHandler(object sender);
 
     public class DropOutForecast
     {
@@ -59,7 +60,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         public double[][] TrainingInputSet
         {
             get { return _trainingSet; }
-            set { _trainingSet = value; }
+            set
+            {
+                _trainingSet = value;
+                m_bl_trained_data = false;
+            }
         }
 
         public double[][] TrainingOutputSet
@@ -169,9 +174,24 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         #endregion
 
+        #region Controls Fields
+        private bool m_bl_trained_data;
+        /// <summary>
+        /// Dữ liệu đã được luyện
+        /// </summary>
+        public bool IsTrainedData
+        {
+            get { return m_bl_trained_data; }
+            set { m_bl_trained_data = value; }
+        }
+
+
+        #endregion
+
         #region Events
 
         public event NotifyErrorHandler NotifyError;
+        public event StartTrainingHandler StartTraining;
         public event FinishHandler Finish;
         #endregion
 
@@ -184,8 +204,17 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
         }
 
+        protected virtual void OnStartTraining(object sender)
+        {
+            if (StartTraining != null)
+            {
+                StartTraining(sender);
+            }
+        }
+
         protected virtual void OnFinish(object sender, uint iteration)
         {
+            m_bl_trained_data = true;
             if (Finish != null)
             {
                 Finish(sender, iteration);
@@ -267,6 +296,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             signalStop = false;
             worker = new Thread(startTraining);
             worker.Start();
+            OnStartTraining(this);
         }
 
         public void Stop()

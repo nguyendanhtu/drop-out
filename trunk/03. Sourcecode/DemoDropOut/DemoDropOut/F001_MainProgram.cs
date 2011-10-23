@@ -183,13 +183,14 @@ namespace DemoDropOut
 
         private void TrainDataset()
         {
-            listErrorChart = new List<double>();
-            m_dropOutForecast = new DropOutForecast();
-
             var v_fNetworkTrainingOptions = new F002_NetworkTrainingOptions();
             var v_dr_result = v_fNetworkTrainingOptions.ShowDialog(this);
             if (v_dr_result == DialogResult.OK)
             {
+                // Khởi tạo hệ thống
+                listErrorChart = new List<double>();
+                m_dropOutForecast = new DropOutForecast();
+
                 m_dropOutForecast.TrainingAlgorithmParameters = v_fNetworkTrainingOptions.TrainingParameters;
                 // Set tập mẫu luyện
                 m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
@@ -212,6 +213,7 @@ namespace DemoDropOut
                 //m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
 
                 m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
+                m_dropOutForecast.StartTraining += new StartTrainingHandler(m_dropOutForecast_StartTraining);
                 m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
 
                 UpdateSettings();
@@ -227,6 +229,26 @@ namespace DemoDropOut
             {
                 this.tabControl1.SelectedTab = this.tabTrainingPage;
                 TrainDataset();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void m_dropOutForecast_StartTraining(object sender)
+        {
+            try
+            {
+                if (InvokeRequired == true && sender != null)
+                {
+                    Invoke(new StartTrainingHandler(m_dropOutForecast_StartTraining), sender);
+                }
+                else
+                {
+                    var v_dropout_forecast = sender as DropOutForecast;
+                    this.lbNetArchitecture.Text = string.Format("Net: {0}-{1}-{2}", v_dropout_forecast.NetworkParameters.InputNeurons, v_dropout_forecast.NetworkParameters.HiddenNeurons, v_dropout_forecast.NetworkParameters.OutputNeurons);
+                }
             }
             catch (Exception ex)
             {
@@ -283,55 +305,102 @@ namespace DemoDropOut
         }
 
         #endregion
-
+        /// <summary>
+        /// Xử lý các sự kiện người dùng chuyển tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                if (m_dAnalysis_obj == null)
+                    return; // Người dùng chưa mở dữ liệu, nên return luôn không cần nhắc nhở gì cả
                 var tabControl = (TabControl)sender;
                 if (tabControl.SelectedTab.Name.Equals(tabTestingPage.Name) == true)
                 {
-                    if (m_bl_trained == null)
+                    if (m_dPreprocessing_obj.IsProcessedData == false)
                     {
-                        var v_dr_result = MessageBox.Show("Dataset has not trained!", "Train Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        var v_dr_result = MessageBox.Show("Dataset has not preprocessed!\r\rWould you like automate them", "Preprocess Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (v_dr_result == DialogResult.Yes)
                         {
-                            btnTraining_Click(tsbtnTestTrainingSet, e);
-
+                            tsbtnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
                         }
                         else
                         {
                             return;
                         }
                     }
+                    else if (m_dropOutForecast.IsTrainedData == false)
+                    {
+                        var v_dr_result = MessageBox.Show("Dataset has not trained!\r\rWould you like automate them", "Train Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (v_dr_result == DialogResult.Yes)
+                        {
+                            btnTraining_Click(tsbtnTestTrainingSet, e);
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        btnTestTrainingSet_Click(tsbtnTestTestSet, e);
+                    }
                 }
                 else if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
                 {
-                    var v_dt_samples = this.m_dAnalysis_obj.GetHeaderTable;
-                    DataQueryBlo.FormatManualC1FlexGrid(this.c1ManualQueryFlexGrid, v_dt_samples);
-                    // Format Output grid c1flex
-                    if (this.c1ManualQueryResultFlexGrid.Tag == null)
+                    if (m_dPreprocessing_obj.IsProcessedData == false)
                     {
-                        this.c1ManualQueryResultFlexGrid.Cols.Count = 1;
-                        this.c1ManualQueryResultFlexGrid.Cols.Fixed = 0;
-                        this.c1ManualQueryResultFlexGrid.Rows.Count = 2;
-                        this.c1ManualQueryResultFlexGrid.Rows.Fixed = 1;
-                        // set row height
-                        this.c1ManualQueryResultFlexGrid.Rows[1].Height = 60;
-                        var v_cstyle = c1ManualQueryResultFlexGrid.Styles.Add("Bold");
-                        v_cstyle.Font = new Font("tahoma", 25, FontStyle.Bold);
-                        this.c1ManualQueryResultFlexGrid.SetCellStyle(1, 0, v_cstyle);
-                        this.c1ManualQueryResultFlexGrid.FocusRect = FocusRectEnum.None;
-                        this.c1ManualQueryResultFlexGrid.HighLight = HighLightEnum.Never;
-                        this.c1ManualQueryResultFlexGrid.Tag = string.Empty;
+                        var v_dr_result = MessageBox.Show("Dataset has not preprocessed!\r\rWould you like automate them", "Preprocess Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (v_dr_result == DialogResult.Yes)
+                        {
+                            tsbtnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
-                    var v_output_details = m_dAnalysis_obj.GetOuput();
-                    this.c1ManualQueryResultFlexGrid.Cols[0].Name = v_output_details.ColumnName;
-                    this.c1ManualQueryResultFlexGrid.Cols[0].Caption = v_output_details.ColumnName;
-                    this.c1ManualQueryResultFlexGrid[1, 0] = string.Empty; // "A";// 
-                    // Format result table
-                    DataQueryBlo.FormatResultTable(this.c1TableQueryFlexGrid, v_dt_samples);
-
+                    else if (m_dropOutForecast.IsTrainedData == false)
+                    {
+                        var v_dr_result = MessageBox.Show("Dataset has not trained!\r\rWould you like automate them", "Train Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (v_dr_result == DialogResult.Yes)
+                        {
+                            btnTraining_Click(tsbtnTestTrainingSet, e);
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        var v_dt_samples = this.m_dAnalysis_obj.GetHeaderTable;
+                        DataQueryBlo.FormatManualC1FlexGrid(this.c1ManualQueryFlexGrid, v_dt_samples);
+                        // Format Output grid c1flex
+                        if (this.c1ManualQueryResultFlexGrid.Tag == null)
+                        {
+                            this.c1ManualQueryResultFlexGrid.Cols.Count = 1;
+                            this.c1ManualQueryResultFlexGrid.Cols.Fixed = 0;
+                            this.c1ManualQueryResultFlexGrid.Rows.Count = 2;
+                            this.c1ManualQueryResultFlexGrid.Rows.Fixed = 1;
+                            // set row height
+                            this.c1ManualQueryResultFlexGrid.Rows[1].Height = 60;
+                            var v_cstyle = c1ManualQueryResultFlexGrid.Styles.Add("Bold");
+                            v_cstyle.Font = new Font("tahoma", 25, FontStyle.Bold);
+                            this.c1ManualQueryResultFlexGrid.SetCellStyle(1, 0, v_cstyle);
+                            this.c1ManualQueryResultFlexGrid.FocusRect = FocusRectEnum.None;
+                            this.c1ManualQueryResultFlexGrid.HighLight = HighLightEnum.Never;
+                            this.c1ManualQueryResultFlexGrid.Tag = string.Empty;
+                        }
+                        var v_output_details = m_dAnalysis_obj.GetOuput();
+                        this.c1ManualQueryResultFlexGrid.Cols[0].Name = v_output_details.ColumnName;
+                        this.c1ManualQueryResultFlexGrid.Cols[0].Caption = v_output_details.ColumnName;
+                        this.c1ManualQueryResultFlexGrid[1, 0] = string.Empty; // "A";// 
+                        // Format result table
+                        DataQueryBlo.FormatResultTable(this.c1TableQueryFlexGrid, v_dt_samples);
+                    }
                 }
                 // else if
             }
@@ -508,8 +577,6 @@ namespace DemoDropOut
         /// <summary>
         /// Kiểm tra dữ liệu mới đưa vào đã được luyện chưa
         /// </summary>
-        private bool m_bl_trained = false;
-        private bool m_bl_preprocessed = false;
 
         #endregion
 
@@ -613,8 +680,6 @@ namespace DemoDropOut
                     if (this.tscboTarget.Items.Count > 0)
                         this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
                     this.PartitionDataset(0.68, 0.16, 0.16);
-                    this.m_bl_trained = false;  // dữ liệu chưa được luyện
-                    this.m_bl_preprocessed = false;
                     this.PreprocessData();
                 }
             }
@@ -683,6 +748,10 @@ namespace DemoDropOut
         {
             this.c1RawDataFlexGrid.DrawMode = DrawModeEnum.OwnerDraw;
             this.c1RawDataFlexGrid.OwnerDrawCell += new OwnerDrawCellEventHandler(c1FlexGrid_OwnerDrawCell);
+            // Dropout Forecast
+            //m_dAnalysis_obj = new DataAnalysisBlo();
+            //m_dPreprocessing_obj = new DataPreprocessingBlo();
+            //m_dropOutForecast = new DropOutForecast();
         }
 
         public void c1FlexGrid_OwnerDrawCell(object sender, OwnerDrawCellEventArgs e)
@@ -707,6 +776,9 @@ namespace DemoDropOut
             m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
             m_dPreprocessing_obj.TestSet = m_dAnalysis_obj.TestSet;
             m_dPreprocessing_obj.Preprocessing();
+            // Dữ liệu chưa được luyện
+            m_dropOutForecast = new DropOutForecast();
+            m_dropOutForecast.IsTrainedData = false;
 
             var v_table = m_dPreprocessing_obj.EncodedData;
             if (this.c1ProcessedDataFlexGrid.DataSource == null)
@@ -720,8 +792,8 @@ namespace DemoDropOut
         {
             try
             {
-                this.PreprocessData();
                 this.tabControl1.SelectedTab = this.tabPreprocessingPage;
+                this.PreprocessData();
             }
             catch (Exception ex)
             {
