@@ -41,11 +41,21 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         private DataTable m_dt_training_set_enc = null;
         private DataTable m_dt_validation_set_enc = null;
         private DataTable m_dt_test_set_enc = null;
+        private bool m_bl_processedData = false;
+
+        public bool IsProcessedData
+        {
+            get { return m_bl_processedData; }
+        }
 
         public DataTable TrainingSet
         {
             get { return m_dt_training_set_enc; }
-            set { m_dt_training_set_enc = value; }
+            set
+            {
+                m_dt_training_set_enc = value;
+                m_bl_processedData = false;
+            }
         }
 
         public DataTable ValidationSet
@@ -353,6 +363,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             m_dt_training_set_enc = Preprocessing(m_dt_training_set_enc);
             m_dt_validation_set_enc = Preprocessing(m_dt_validation_set_enc);
             m_dt_test_set_enc = Preprocessing(m_dt_test_set_enc);
+            m_bl_processedData = true;
         }
 
         public DataTable Preprocessing(DataTable ip_raw_data)

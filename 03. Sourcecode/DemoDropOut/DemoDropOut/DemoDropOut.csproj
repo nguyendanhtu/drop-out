@@ -81,6 +81,7 @@
     <Compile Include="Apps\BussinessLogicLayer\DataTestingBlo.cs" />
     <Compile Include="Apps\DataAccessLayer\CsvDataAccess.cs" />
     <Compile Include="Apps\BussinessLogicLayer\DropOutForecast.cs" />
+    <Compile Include="Apps\Objects\ActivationFunctionEnum.cs" />
     <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
     <Compile Include="Apps\Objects\DataSamples.cs" />
     <Compile Include="Apps\Objects\DateEncoding.cs" />
@@ -114,10 +115,10 @@
     <Compile Include="F001_MainProgram.Designer.cs">
       <DependentUpon>F001_MainProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="F001_NetworkSet.cs">
+    <Compile Include="Options\F001_NetworkSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F001_NetworkSet.Designer.cs">
+    <Compile Include="Options\F001_NetworkSet.Designer.cs">
       <DependentUpon>F001_NetworkSet.cs</DependentUpon>
     </Compile>
     <Compile Include="Apps\Objects\ColumnDetails.cs" />
@@ -126,7 +127,7 @@
     <EmbeddedResource Include="F001_MainProgram.resx">
       <DependentUpon>F001_MainProgram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F001_NetworkSet.resx">
+    <EmbeddedResource Include="Options\F001_NetworkSet.resx">
       <DependentUpon>F001_NetworkSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options\F002_NetworkTrainingOptions.resx">
