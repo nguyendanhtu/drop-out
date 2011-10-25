@@ -247,7 +247,8 @@ namespace DemoDropOut
                 else
                 {
                     var v_dropout_forecast = sender as DropOutForecast;
-                    this.lbNetArchitecture.Text = string.Format("Net: {0}-{1}-{2}", v_dropout_forecast.NetworkParameters.InputNeurons, v_dropout_forecast.NetworkParameters.HiddenNeurons, v_dropout_forecast.NetworkParameters.OutputNeurons);
+                    this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
+                    //this.lbNetArchitecture.Text = string.Format("Net: {0} - {1} - {2}", v_dropout_forecast.NetworkParameters.InputNeurons, v_dropout_forecast.NetworkParameters.HiddenNeurons, v_dropout_forecast.NetworkParameters.OutputNeurons);
                 }
             }
             catch (Exception ex)
