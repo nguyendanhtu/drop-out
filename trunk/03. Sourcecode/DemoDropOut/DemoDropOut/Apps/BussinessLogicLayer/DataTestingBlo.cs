@@ -49,6 +49,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
             var v_db_ccr = ((double)(v_list_index.Count - v_error_count) * 100) / v_list_index.Count;
             v_dt_result.ExtendedProperties["CCR"] = v_db_ccr;
+            v_dt_result.ExtendedProperties["Dataset"] = ip_dt_target.ExtendedProperties["Dataset"];
             return v_dt_result;
         }
         public static void FormatTestingTable(C1FlexGrid ip_c1flex_grid, DataTable ip_dt_result)
@@ -58,9 +59,22 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             ip_c1flex_grid.Rows.Count = 1;
             ip_c1flex_grid.Rows.Fixed = 1;
             ip_c1flex_grid.Cols.Count = 1;
-            ip_c1flex_grid.Cols.Fixed = 1;
+            ip_c1flex_grid.Cols.Fixed = 0;
 
             ip_c1flex_grid.DataSource = ip_dt_result;
+            var v_dataset_type = (DemoDropOut.Apps.Objects.DatasetEnum)ip_dt_result.ExtendedProperties["Dataset"];
+            switch (v_dataset_type)
+            {
+                case DemoDropOut.Apps.Objects.DatasetEnum.TrainingSet:
+                    // set màu cho grid
+                    break;
+                case DemoDropOut.Apps.Objects.DatasetEnum.ValidationSet:
+                    // set màu cho grid
+                    break;
+                case DemoDropOut.Apps.Objects.DatasetEnum.TestSet:
+                    // set màu cho grid
+                    break;
+            }
         }
     }
 }

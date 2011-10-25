@@ -71,6 +71,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 //var v_copy_list = new List<int>(m_list_training_set);
                 v_table.ExtendedProperties["IndexList"] = m_list_training_set;
+                v_table.ExtendedProperties["Dataset"] = DatasetEnum.TrainingSet;
                 return v_table;
             }
         }
@@ -88,6 +89,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 //var v_copy_list = new List<int>(m_list_validation_set);
                 v_table.ExtendedProperties["IndexList"] = m_list_validation_set;
+                v_table.ExtendedProperties["Dataset"] = DatasetEnum.ValidationSet;
                 return v_table;
             }
         }
@@ -106,6 +108,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 // v_copy_list để hiển thị trên Test tab
                 // var v_copy_list = new List<int>(m_list_test_set);
                 v_table.ExtendedProperties["IndexList"] = m_list_test_set;
+                v_table.ExtendedProperties["Dataset"] = DatasetEnum.ValidationSet;
                 return v_table;
             }
         }

@@ -288,7 +288,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Model: {0}-{1}-{2}", _variables, HiddenNeuros, _classes);
+            return string.Format("Net: {0}-{1}-{2}", _variables, HiddenNeuros, _classes); //Model: {0}-{1}-{2}
         }
 
         public void Train()
