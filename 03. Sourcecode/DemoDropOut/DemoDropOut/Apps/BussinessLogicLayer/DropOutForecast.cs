@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using HeatonResearchNeural.Feedforward;
-using HeatonResearchNeural.Feedforward.Train;
-using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using System.Data;
 using DemoDropOut.Apps.Objects;
+using Vux.Neuro.App.DataTransferObjects.Feedforward;
+using Vux.Neuro.App.BussinessLogicLayer.Training.Backpropagation;
+using Vux.Neuro.App.BussinessLogicLayer.Training;
 
 namespace DemoDropOut.Apps.BussinessLogicLayer
 {
@@ -233,7 +233,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 network.AddLayer(new FeedforwardLayer(_classes));
                 network.Reset(); // randomize Weights & Threshold
                 //network.CalculateNeuronCount();
-                Train teacher = new Backpropagation(network, _trainingSet, _outputIdeal, m_trn_parameter.LearningRate, m_trn_parameter.Momentum); // 0.7, 0.9); //0.7 0.9
+                ITrain teacher = new Backpropagation(network, _trainingSet, _outputIdeal, m_trn_parameter.LearningRate, m_trn_parameter.Momentum); // 0.7, 0.9); //0.7 0.9
 
                 uint epoch = 0;
 
