@@ -257,6 +257,12 @@
   <ItemGroup>
     <None Include="Resources\table-row-delete-1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vux.Neuro\Vux.Neuro.csproj">
+      <Project>{8C69201A-6FC2-4AE6-8E8E-D13FF33DB4F8}</Project>
+      <Name>Vux.Neuro</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
