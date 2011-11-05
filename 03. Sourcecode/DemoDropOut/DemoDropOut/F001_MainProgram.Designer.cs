@@ -163,6 +163,7 @@
             this.tsbtnTestTestSet = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tsLabelMeanCCR = new System.Windows.Forms.ToolStripLabel();
+            this.chkUseBestNetwork = new System.Windows.Forms.ToolStripButton();
             this.controlTitle11 = new DropOut.Uc.ControlTitle();
             this.collapsibleSplitter4 = new DropOut.Uc.CollapsibleSplitter();
             this.panelTestingReport = new System.Windows.Forms.Panel();
@@ -201,7 +202,7 @@
             this.datasetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featureSelectionToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbtnPartition1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPartitionOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtnPreprocess1 = new System.Windows.Forms.ToolStripSplitButton();
             this.datasetOptionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -1212,6 +1213,7 @@
             // chkErrorLimit
             // 
             this.chkErrorLimit.AutoSize = true;
+            this.chkErrorLimit.Enabled = false;
             this.chkErrorLimit.Location = new System.Drawing.Point(7, 160);
             this.chkErrorLimit.Name = "chkErrorLimit";
             this.chkErrorLimit.Size = new System.Drawing.Size(182, 17);
@@ -1238,6 +1240,7 @@
             // 
             // learningRateBox
             // 
+            this.learningRateBox.Enabled = false;
             this.learningRateBox.Location = new System.Drawing.Point(93, 56);
             this.learningRateBox.Name = "learningRateBox";
             this.learningRateBox.Size = new System.Drawing.Size(101, 21);
@@ -1255,6 +1258,7 @@
             // 
             // alphaBox
             // 
+            this.alphaBox.Enabled = false;
             this.alphaBox.Location = new System.Drawing.Point(93, 82);
             this.alphaBox.Name = "alphaBox";
             this.alphaBox.Size = new System.Drawing.Size(101, 21);
@@ -1272,6 +1276,7 @@
             // 
             // errorLimitBox
             // 
+            this.errorLimitBox.Enabled = false;
             this.errorLimitBox.Location = new System.Drawing.Point(93, 108);
             this.errorLimitBox.Name = "errorLimitBox";
             this.errorLimitBox.Size = new System.Drawing.Size(101, 21);
@@ -1289,6 +1294,7 @@
             // 
             // iterationsBox
             // 
+            this.iterationsBox.Enabled = false;
             this.iterationsBox.Location = new System.Drawing.Point(93, 134);
             this.iterationsBox.Name = "iterationsBox";
             this.iterationsBox.Size = new System.Drawing.Size(101, 21);
@@ -1379,7 +1385,7 @@
             this.c1ActualVsOuputFlexGrid.Name = "c1ActualVsOuputFlexGrid";
             this.c1ActualVsOuputFlexGrid.Rows.Count = 0;
             this.c1ActualVsOuputFlexGrid.Rows.Fixed = 0;
-            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(625, 353);
+            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(620, 353);
             this.c1ActualVsOuputFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ActualVsOuputFlexGrid.Styles"));
             this.c1ActualVsOuputFlexGrid.TabIndex = 5;
             // 
@@ -1393,10 +1399,11 @@
             this.tsbtnTestValidationSet,
             this.tsbtnTestTestSet,
             this.toolStripSeparator9,
+            this.chkUseBestNetwork,
             this.tsLabelMeanCCR});
             this.tsActualVsOutput.Location = new System.Drawing.Point(0, 20);
             this.tsActualVsOutput.Name = "tsActualVsOutput";
-            this.tsActualVsOutput.Size = new System.Drawing.Size(625, 25);
+            this.tsActualVsOutput.Size = new System.Drawing.Size(620, 25);
             this.tsActualVsOutput.TabIndex = 4;
             this.tsActualVsOutput.Text = "toolStrip9";
             // 
@@ -1456,13 +1463,25 @@
             this.tsLabelMeanCCR.Size = new System.Drawing.Size(63, 22);
             this.tsLabelMeanCCR.Text = "Mean CCR";
             // 
+            // chkUseBestNetwork
+            // 
+            this.chkUseBestNetwork.Checked = true;
+            this.chkUseBestNetwork.CheckOnClick = true;
+            this.chkUseBestNetwork.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUseBestNetwork.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.chkUseBestNetwork.Image = global::DemoDropOut.Properties.Resources.test_icon_1;
+            this.chkUseBestNetwork.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.chkUseBestNetwork.Name = "chkUseBestNetwork";
+            this.chkUseBestNetwork.Size = new System.Drawing.Size(23, 22);
+            this.chkUseBestNetwork.Text = "Use Best Network";
+            // 
             // controlTitle11
             // 
             this.controlTitle11.BackColor = System.Drawing.Color.Gray;
             this.controlTitle11.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle11.Location = new System.Drawing.Point(0, 0);
             this.controlTitle11.Name = "controlTitle11";
-            this.controlTitle11.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle11.Size = new System.Drawing.Size(620, 20);
             this.controlTitle11.TabIndex = 3;
             this.controlTitle11.Title = "Actual vs. Ouput Table";
             // 
@@ -1474,7 +1493,7 @@
             this.collapsibleSplitter4.ControlToHide = this.panelTestingReport;
             this.collapsibleSplitter4.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter4.ExpandParentForm = false;
-            this.collapsibleSplitter4.Location = new System.Drawing.Point(625, 0);
+            this.collapsibleSplitter4.Location = new System.Drawing.Point(620, 0);
             this.collapsibleSplitter4.Name = "collapsibleSplitter4";
             this.collapsibleSplitter4.TabIndex = 0;
             this.collapsibleSplitter4.TabStop = false;
@@ -1837,7 +1856,7 @@
             // tsbtnPartition1
             // 
             this.tsbtnPartition1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem1});
+            this.btnPartitionOptions});
             this.tsbtnPartition1.Image = global::DemoDropOut.Properties.Resources.partition_icon_1;
             this.tsbtnPartition1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnPartition1.Name = "tsbtnPartition1";
@@ -1845,11 +1864,12 @@
             this.tsbtnPartition1.Text = "Partition";
             this.tsbtnPartition1.ButtonClick += new System.EventHandler(this.tsbtnPartition1_ButtonClick);
             // 
-            // optionsToolStripMenuItem1
+            // btnPartitionOptions
             // 
-            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
-            this.optionsToolStripMenuItem1.Text = "Options...";
+            this.btnPartitionOptions.Name = "btnPartitionOptions";
+            this.btnPartitionOptions.Size = new System.Drawing.Size(125, 22);
+            this.btnPartitionOptions.Text = "Options...";
+            this.btnPartitionOptions.Click += new System.EventHandler(this.btnPartitionOptions_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1916,6 +1936,7 @@
             this.tsbtnTestMainTab.Name = "tsbtnTestMainTab";
             this.tsbtnTestMainTab.Size = new System.Drawing.Size(49, 22);
             this.tsbtnTestMainTab.Text = "Test";
+            this.tsbtnTestMainTab.Click += new System.EventHandler(this.tsbtnTestMainTab_Click);
             // 
             // toolStripButton7
             // 
@@ -1974,7 +1995,7 @@
             this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.Name = "F001_MainProgram";
-            this.Text = "Form1";
+            this.Text = "DropOut Forecast";
             this.Load += new System.EventHandler(this.F001_MainProgram_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
@@ -2105,7 +2126,7 @@
         private System.Windows.Forms.ToolStripSplitButton tsbtnOpenRawData;
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.ToolStripSplitButton tsbtnPartition1;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem btnPartitionOptions;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSplitButton tsbtnPreprocess1;
         private System.Windows.Forms.ToolStripMenuItem datasetOptionsToolStripMenuItem1;
@@ -2224,6 +2245,7 @@
         private System.Windows.Forms.ToolStripLabel tsLabelMeanCCR;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripLabel lbNetArchitecture;
+        private System.Windows.Forms.ToolStripButton chkUseBestNetwork;
     }
 }
 

@@ -5,6 +5,7 @@ using System.Text;
 using C1.Win.C1FlexGrid;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace DemoDropOut.Apps.BussinessLogicLayer
 {
@@ -36,7 +37,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 var v_output = ip_dt_output.Rows[i][0].ToString(); //ip_dt_output.Rows[i]["Output"].ToString();
 
                 var v_dt_row = v_dt_result.NewRow();
-                v_dt_row["Row"] = v_list_index[i];
+                v_dt_row["Row"] = v_list_index[i] + 1;
                 v_dt_row["Target"] = v_target;
                 v_dt_row["Output"] = v_output;
                 v_dt_row["Match"] = "OK";
@@ -60,21 +61,25 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             ip_c1flex_grid.Rows.Fixed = 1;
             ip_c1flex_grid.Cols.Count = 1;
             ip_c1flex_grid.Cols.Fixed = 0;
-
-            ip_c1flex_grid.DataSource = ip_dt_result;
+            // type prop
             var v_dataset_type = (DemoDropOut.Apps.Objects.DatasetEnum)ip_dt_result.ExtendedProperties["Dataset"];
             switch (v_dataset_type)
             {
                 case DemoDropOut.Apps.Objects.DatasetEnum.TrainingSet:
                     // set màu cho grid
+                    ip_c1flex_grid.ForeColor = System.Drawing.Color.Blue;
                     break;
                 case DemoDropOut.Apps.Objects.DatasetEnum.ValidationSet:
                     // set màu cho grid
+                    ip_c1flex_grid.ForeColor = Color.Green;
                     break;
                 case DemoDropOut.Apps.Objects.DatasetEnum.TestSet:
                     // set màu cho grid
+                    ip_c1flex_grid.ForeColor = Color.Red;
                     break;
             }
+            // set datasource
+            ip_c1flex_grid.DataSource = ip_dt_result;
         }
     }
 }

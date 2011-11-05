@@ -12,6 +12,8 @@
     <AssemblyName>DemoDropOut</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,18 +41,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\Aforge\AForge.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Genetic, Version=2.1.3.0, Culture=neutral, PublicKeyToken=4336634eeb41b69b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLLs\Aforge\AForge.Genetic.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Math, Version=2.1.4.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLLs\Aforge\AForge.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Neuro, Version=2.1.1.0, Culture=neutral, PublicKeyToken=2094f4ea39731d4f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLLs\Aforge\AForge.Neuro.dll</HintPath>
-    </Reference>
     <Reference Include="C1.Common, Version=1.0.20031.116, Culture=neutral, PublicKeyToken=e272bb32d11b1948">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\C1 Controls\C1.Common.dll</HintPath>
@@ -58,10 +48,6 @@
     <Reference Include="C1.Win.C1FlexGrid, Version=2.5.20044.189, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLs\C1 Controls\C1.Win.C1FlexGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="HeatonResearchNeural, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLLs\Aforge\HeatonResearchNeural.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -83,6 +69,7 @@
     <Compile Include="Apps\BussinessLogicLayer\DropOutForecast.cs" />
     <Compile Include="Apps\Objects\ActivationFunctionEnum.cs" />
     <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
+    <Compile Include="Apps\Objects\DataPartitionOptions.cs" />
     <Compile Include="Apps\Objects\DataSamples.cs" />
     <Compile Include="Apps\Objects\DatasetEnum.cs" />
     <Compile Include="Apps\Objects\DateEncoding.cs" />

@@ -32,25 +32,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\BussinessLogicLayer\Training\Backpropagation\Backpropagation.cs" />
     <Compile Include="App\BussinessLogicLayer\Training\Backpropagation\BackpropagationLayer.cs" />
     <Compile Include="App\BussinessLogicLayer\Training\ITrain.cs" />
+    <Compile Include="App\BussinessLogicLayer\Training\Quickpropagation\Backpropagation.cs" />
+    <Compile Include="App\BussinessLogicLayer\Training\Quickpropagation\IBackpropagation.cs" />
+    <Compile Include="App\BussinessLogicLayer\Training\Quickpropagation\Quickpropagation.cs" />
     <Compile Include="App\DataTransferObjects\ActivationFunc\ActivationSigmoid.cs" />
     <Compile Include="App\DataTransferObjects\ActivationFunc\ActivationTANH.cs" />
     <Compile Include="App\DataTransferObjects\ActivationFunc\IActivationFunction.cs" />
+    <Compile Include="App\DataTransferObjects\NeuralForecast\INeuralForecast.cs" />
     <Compile Include="App\DataTransferObjects\Exception\MatrixError.cs" />
     <Compile Include="App\DataTransferObjects\Exception\NeuralNetworkError.cs" />
     <Compile Include="App\DataTransferObjects\Feedforward\FeedforwardLayer.cs" />
@@ -63,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\BussinessLogicLayer\Training\Quickpropagation\" />
     <Folder Include="App\DataAccessLayer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
