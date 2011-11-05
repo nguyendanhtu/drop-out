@@ -108,7 +108,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 // v_copy_list để hiển thị trên Test tab
                 // var v_copy_list = new List<int>(m_list_test_set);
                 v_table.ExtendedProperties["IndexList"] = m_list_test_set;
-                v_table.ExtendedProperties["Dataset"] = DatasetEnum.ValidationSet;
+                v_table.ExtendedProperties["Dataset"] = DatasetEnum.TestSet;
                 return v_table;
             }
         }

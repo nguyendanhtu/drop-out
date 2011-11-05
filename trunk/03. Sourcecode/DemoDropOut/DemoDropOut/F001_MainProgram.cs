@@ -12,16 +12,12 @@ using C1.Win.C1FlexGrid;
 using System.Collections;
 using DemoDropOut.Apps.Objects;
 using System.Threading;
-using AForge.Neuro;
-using AForge.Neuro.Learning;
-using HeatonResearchNeural.Feedforward;
-using HeatonResearchNeural.Feedforward.Train;
-using HeatonResearchNeural.Feedforward.Train.Backpropagation;
 using AForge;
 using DemoDropOut.Apps.BussinessLogicLayer;
 using DemoDropOut.Apps.DataAccessLayer;
 using DemoDropOut.Common;
 using DemoDropOut.Options;
+using Vux.Neuro.App.DataTransferObjects.NeuralForecast;
 
 namespace DemoDropOut
 {
@@ -33,7 +29,7 @@ namespace DemoDropOut
         }
 
         #region Private Members
-
+        private DataPartitionOptions m_traing_partition;
         #endregion
 
         #region Private Methods
@@ -150,7 +146,10 @@ namespace DemoDropOut
         /// Start Forecast
         /// </summary>
         private DropOutForecast m_dropOutForecast;
-        private List<double> listErrorChart;
+        private List<double> listTrnErrorChart;
+        private List<double> listVldErrorChart;
+
+        private bool m_bl_istraining = false;
 
         private void UpdateSettings()
         {
@@ -188,14 +187,16 @@ namespace DemoDropOut
             if (v_dr_result == DialogResult.OK)
             {
                 // Khởi tạo hệ thống
-                listErrorChart = new List<double>();
+                listTrnErrorChart = new List<double>();
+                listVldErrorChart = new List<double>();
                 m_dropOutForecast = new DropOutForecast();
 
                 m_dropOutForecast.TrainingAlgorithmParameters = v_fNetworkTrainingOptions.TrainingParameters;
                 // Set tập mẫu luyện
                 m_dropOutForecast.TrainingInputSet = m_dPreprocessing_obj.TrainingSetInputToDoubles();
                 m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
-                m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetToDoubles();
+                m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetInputToDoubles();
+                m_dropOutForecast.ValidationOutputSet = m_dPreprocessing_obj.ValidationSetOutputToDoubles();
 
                 // Cấu hình mạng (default)
                 m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
@@ -227,8 +228,18 @@ namespace DemoDropOut
         {
             try
             {
-                this.tabControl1.SelectedTab = this.tabTrainingPage;
-                TrainDataset();
+                if (m_dPreprocessing_obj != null)
+                {
+                    if (m_bl_istraining == false)
+                    {
+                        this.tabControl1.SelectedTab = this.tabTrainingPage;
+                        TrainDataset();
+                    }
+                    else if (m_dropOutForecast != null)
+                    {
+                        m_dropOutForecast.Stop();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -248,7 +259,16 @@ namespace DemoDropOut
                 {
                     var v_dropout_forecast = sender as DropOutForecast;
                     this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
+                    this.listTrnErrorChart.Clear();
+                    this.listVldErrorChart.Clear();
+                    this.chartErrorTraining.UpdateDataSeries("TrnError", null);
+                    this.chartErrorTraining.UpdateDataSeries("VldError", null);
                     //this.lbNetArchitecture.Text = string.Format("Net: {0} - {1} - {2}", v_dropout_forecast.NetworkParameters.InputNeurons, v_dropout_forecast.NetworkParameters.HiddenNeurons, v_dropout_forecast.NetworkParameters.OutputNeurons);
+                    this.tsbtnTrain1.Image = DemoDropOut.Properties.Resources.train_stop_icon_1;
+                    this.tsbtnTrain2.Image = DemoDropOut.Properties.Resources.train_stop_icon_1;
+                    this.m_bl_istraining = true;
+                    //this.tsbtnTrain1.Tag = true;
+                    //this.tsbtnTrain2.Tag = true;
                 }
             }
             catch (Exception ex)
@@ -267,6 +287,14 @@ namespace DemoDropOut
                 }
                 else
                 {
+                    // Lấy mạng có khả năng dự đoán tốt nhất
+                    m_best_forecast = m_dropOutForecast.BestForecast;
+
+                    this.tsbtnTrain1.Image = DemoDropOut.Properties.Resources.train_start_icon_1;
+                    this.tsbtnTrain2.Image = DemoDropOut.Properties.Resources.train_start_icon_1;
+                    m_bl_istraining = false;
+                    //this.tsbtnTrain1.Tag = false;
+                    //this.tsbtnTrain2.Tag = false;
                     MessageBox.Show(this, "Đã xong !!\r\nSố bước lặp hoàn tất: " + iteration.ToString());
                 }
             }
@@ -276,19 +304,66 @@ namespace DemoDropOut
             }
         }
 
-        private void m_dropOutForecast_NotifyError(double dbError, uint iteration)
+        private ushort m_overfit_index = 0;
+        private double m_overfit_value = double.MaxValue;
+        private INeuralForecast m_best_forecast;
+
+        private double[,] GetOverFitGraphData(ushort x)
+        {
+            var overfit = new double[listTrnErrorChart.Count, 2];
+            for (int i = 0; i < listTrnErrorChart.Count; i++)
+            {
+                if (i < x)
+                {
+                    overfit[i, 0] = i;
+                    overfit[i, 1] = chartErrorTraining.RangeY.Min;
+                }
+                else
+                {
+                    overfit[i, 0] = i;
+                    overfit[i, 1] = chartErrorTraining.RangeY.Max;
+                }
+            }
+            return overfit;
+        }
+
+        private void m_dropOutForecast_NotifyError(double dbError, double vlError, uint iteration)
         {
             if (InvokeRequired == true)
             {
-                Invoke(new NotifyErrorHandler(m_dropOutForecast_NotifyError), dbError, iteration);
+                Invoke(new NotifyErrorHandler(m_dropOutForecast_NotifyError), dbError, vlError, iteration);
             }
             else
             {
                 this.txtCurrentErrorBox.Text = dbError.ToString();
                 this.txtCurrentIterationBox.Text = iteration.ToString();
-                this.listErrorChart.Add(dbError);
-                if (listErrorChart.Count % 3 == 0)
+                this.listTrnErrorChart.Add(dbError);
+                this.listVldErrorChart.Add(vlError);
+                if (listTrnErrorChart.Count % 3 == 0)
                 {
+                    // show error's dynamics
+                    var trnError = new double[listTrnErrorChart.Count, 2];
+                    var vldError = new double[listVldErrorChart.Count, 2];
+
+                    for (ushort i = 0; i < listTrnErrorChart.Count; i++)
+                    {
+                        trnError[i, 0] = i;
+                        trnError[i, 1] = listTrnErrorChart[i];
+
+                        vldError[i, 0] = i;
+                        vldError[i, 1] = listVldErrorChart[i];// +0.01;
+                        //if (listVldErrorChart[i] < m_overfit_value)
+                        //{
+                        //    m_overfit_value = listVldErrorChart[i];
+                        //    m_overfit_index = i;
+                        //}
+                    }
+                    m_overfit_index = m_dropOutForecast.BestEpoch;
+                    // draw
+                    chartErrorTraining.RangeX = new DoubleRange(0, listTrnErrorChart.Count - 1);
+                    chartErrorTraining.UpdateDataSeries("TrnError", trnError);
+                    chartErrorTraining.UpdateDataSeries("VldError", vldError);
+                    chartErrorTraining.UpdateDataSeries("Overfit", GetOverFitGraphData(m_overfit_index));
                 }
             }
         }
@@ -297,7 +372,10 @@ namespace DemoDropOut
         {
             try
             {
-                m_dropOutForecast.Stop();
+                if (m_dropOutForecast != null && m_bl_istraining == true)
+                {
+                    m_dropOutForecast.Stop();
+                }
             }
             catch (Exception ex)
             {
@@ -420,7 +498,7 @@ namespace DemoDropOut
             v_dt_copy.Columns.RemoveAt(v_output_index);
 
             var input = m_dPreprocessing_obj.Preprocessing(v_dt_copy);
-            var ouput = m_dropOutForecast.ComputeOutputs(input);
+            var ouput = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input.ToDoubles()) : m_dropOutForecast.ComputeOutputs(input);
 
             var v_output_details = m_dAnalysis_obj.GetOuput();
             var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(ouput, v_output_details);
@@ -492,7 +570,7 @@ namespace DemoDropOut
             {
                 var v_dt_table = DataQueryBlo.GetUserData(this.c1ManualQueryFlexGrid, 1);
                 var input = m_dPreprocessing_obj.Preprocessing(v_dt_table);
-                var output = m_dropOutForecast.ComputeOutputs(input);
+                var output = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input.ToDoubles()) : m_dropOutForecast.ComputeOutputs(input);
 
                 var v_column_details = m_dAnalysis_obj.GetOuput();
                 v_dt_table = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
@@ -518,23 +596,26 @@ namespace DemoDropOut
         {
             try
             {
-                var v_openFileDialog = new OpenFileDialog();
-                v_openFileDialog.Filter = "All Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
-                var v_dialogResult = v_openFileDialog.ShowDialog();
-                if (v_dialogResult == DialogResult.OK)
+                if (m_dropOutForecast != null)
                 {
-                    var v_dt_input = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
-                    DataQueryBlo.LabelDataWithOutAnalysis(ref v_dt_input, m_dAnalysis_obj.AnalyzedDataSet.Columns);
-                    var input = m_dPreprocessing_obj.Preprocessing(v_dt_input);
-                    var output = m_dropOutForecast.ComputeOutputs(input);
+                    var v_openFileDialog = new OpenFileDialog();
+                    v_openFileDialog.Filter = "All Data Format (*.csv, *.txt)|*.csv;*.txt|Comma Separated Values(*.csv)|*.csv|All Files (*.*)|*.*";
+                    var v_dialogResult = v_openFileDialog.ShowDialog();
+                    if (v_dialogResult == DialogResult.OK)
+                    {
+                        var v_dt_input = CsvDataAccess.OpenCommaDelimitedFile(v_openFileDialog.FileName);
+                        DataQueryBlo.LabelDataWithOutAnalysis(ref v_dt_input, m_dAnalysis_obj.AnalyzedDataSet.Columns);
+                        var input = m_dPreprocessing_obj.Preprocessing(v_dt_input);
+                        var output = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input.ToDoubles()) : m_dropOutForecast.ComputeOutputs(input);
 
-                    var v_column_details = m_dAnalysis_obj.GetOuput();
-                    var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
-                    DataHelper.MergeTableColumns(ref v_dt_input, v_dt_output);
-                    this.c1TableQueryFlexGrid.DataSource = null;
-                    this.c1TableQueryFlexGrid.Rows.Count = 1;
-                    this.c1TableQueryFlexGrid.Rows.Fixed = 1;
-                    this.c1TableQueryFlexGrid.DataSource = v_dt_input;
+                        var v_column_details = m_dAnalysis_obj.GetOuput();
+                        var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(output, v_column_details);
+                        DataHelper.MergeTableColumns(ref v_dt_input, v_dt_output);
+                        this.c1TableQueryFlexGrid.DataSource = null;
+                        this.c1TableQueryFlexGrid.Rows.Count = 1;
+                        this.c1TableQueryFlexGrid.Rows.Fixed = 1;
+                        this.c1TableQueryFlexGrid.DataSource = v_dt_input;
+                    }
                 }
             }
             catch (Exception ex)
@@ -556,7 +637,8 @@ namespace DemoDropOut
         {
             try
             {
-                tabControl1.SelectedTab = this.tabQueryPage;
+                if (m_dropOutForecast != null)
+                    tabControl1.SelectedTab = this.tabQueryPage;
             }
             catch (Exception ex)
             {
@@ -583,9 +665,9 @@ namespace DemoDropOut
 
         #region Xử lý hiển thị dữ liệu
 
-        private void PartitionDataset(double ip_training_percent, double ip_validation_percent, double ip_test_percent)
+        private void PartitionDataset(DataPartitionOptions ip_training_option)
         {
-            if (ip_training_percent + ip_validation_percent + ip_test_percent > 1)
+            if (ip_training_option.TrainPcent + ip_training_option.ValidPcent + ip_training_option.TestPcent > 1)
             {
                 throw new Exception("Tỉ lệ phân chia tập dữ liệu không hợp lệ");
             }
@@ -612,7 +694,7 @@ namespace DemoDropOut
             //cstyle.Font = new Font("Tahoma", 8, FontStyle.Bold);
 
             // Thực hiện phân chia dữ liệu (test)
-            m_dAnalysis_obj.Partition(ip_training_percent, ip_validation_percent, ip_test_percent);
+            m_dAnalysis_obj.Partition(ip_training_option.TrainPcent, ip_training_option.ValidPcent, ip_training_option.TestPcent);
             var v_row = 0;
             var v_col = 0;
             for (int i = 0; i < m_dAnalysis_obj.TrainingSetIndex.Count; i++)
@@ -680,8 +762,10 @@ namespace DemoDropOut
                     }
                     if (this.tscboTarget.Items.Count > 0)
                         this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
-                    this.PartitionDataset(0.68, 0.16, 0.16);
+                    this.PartitionDataset(this.m_traing_partition);
                     this.PreprocessData();
+                    this.Text = string.Format("{0} - DropOut Forecast", Path.GetFileName(v_openFileDialog.FileName));
+                    this.tabControl1.SelectedTab = this.tabAnalysisPage;
                 }
             }
             catch (Exception ex)
@@ -695,7 +779,7 @@ namespace DemoDropOut
             try
             {
                 if (m_dAnalysis_obj != null)
-                    PartitionDataset(0.68, 0.16, 0.16);
+                    PartitionDataset(this.m_traing_partition);
             }
             catch (Exception ex)
             {
@@ -749,10 +833,35 @@ namespace DemoDropOut
         {
             this.c1RawDataFlexGrid.DrawMode = DrawModeEnum.OwnerDraw;
             this.c1RawDataFlexGrid.OwnerDrawCell += new OwnerDrawCellEventHandler(c1FlexGrid_OwnerDrawCell);
+            this.chartErrorTraining.AddDataSeries("TrnError", Color.Red, AForge.Controls.Chart.SeriesType.Line, 1);
+            this.chartErrorTraining.AddDataSeries("VldError", Color.Green, AForge.Controls.Chart.SeriesType.Line, 1);   // mặc định là true;
+            this.chartErrorTraining.AddDataSeries("Overfit", Color.Blue, AForge.Controls.Chart.SeriesType.Line, 1, false);     // dữ liệu này không làm thay đổi hiển thị trên trục Y
+
+            // form
+            this.FormClosing += new FormClosingEventHandler(F001_MainProgram_FormClosing);
+
             // Dropout Forecast
             //m_dAnalysis_obj = new DataAnalysisBlo();
             //m_dPreprocessing_obj = new DataPreprocessingBlo();
             //m_dropOutForecast = new DropOutForecast();
+
+            #region Partition Options
+            m_traing_partition.TrainPcent = 0.68;
+            m_traing_partition.ValidPcent = 0.16;
+            m_traing_partition.TestPcent = 0.16;
+            #endregion
+        }
+
+        void F001_MainProgram_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                btnStop_Click(btnStop, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void c1FlexGrid_OwnerDrawCell(object sender, OwnerDrawCellEventArgs e)
@@ -793,8 +902,11 @@ namespace DemoDropOut
         {
             try
             {
-                this.tabControl1.SelectedTab = this.tabPreprocessingPage;
-                this.PreprocessData();
+                if (m_dAnalysis_obj != null)
+                {
+                    this.tabControl1.SelectedTab = this.tabPreprocessingPage;
+                    this.PreprocessData();
+                }
             }
             catch (Exception ex)
             {
@@ -802,6 +914,39 @@ namespace DemoDropOut
             }
         }
         #endregion
+
+        private void btnPartitionOptions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frmPartitionOptions = new F004_DataPartitionOptions();
+                frmPartitionOptions.LoadPartition(m_traing_partition);
+                var v_dr_result = frmPartitionOptions.ShowDialog(this);
+                if (v_dr_result == DialogResult.OK)
+                {
+                    this.m_traing_partition.TrainPcent = frmPartitionOptions.TrainingPercentage;
+                    this.m_traing_partition.ValidPcent = frmPartitionOptions.ValidtionPercentage;
+                    this.m_traing_partition.TestPcent = frmPartitionOptions.TestPercentage;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsbtnTestMainTab_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_dropOutForecast != null)
+                    this.tabControl1.SelectedTab = this.tabTestingPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
 
     }

@@ -444,14 +444,14 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var v_output_index = (int)m_dt_training_set_enc.ExtendedProperties["OutputIndex"];
             var v_output_count = (int)m_dt_training_set_enc.ExtendedProperties["OutputCount"];
             var v_index2 = v_output_index + v_output_count;
-            return m_dt_training_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_training_set_enc.Columns.Count - v_index2);
+            return m_dt_validation_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_validation_set_enc.Columns.Count - v_index2);
         }
 
         public double[][] ValidationSetOutputToDoubles()
         {
             var v_output_index = (int)m_dt_validation_set_enc.ExtendedProperties["OutputIndex"];
             var v_output_count = (int)m_dt_validation_set_enc.ExtendedProperties["OutputCount"];
-            return m_dt_training_set_enc.ToDoubles(v_output_index, v_output_count);
+            return m_dt_validation_set_enc.ToDoubles(v_output_index, v_output_count);
         }
 
         public double[][] TestSetToDoubles()
@@ -464,14 +464,14 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var v_output_index = (int)m_dt_test_set_enc.ExtendedProperties["OutputIndex"];
             var v_output_count = (int)m_dt_test_set_enc.ExtendedProperties["OutputCount"];
             var v_index2 = v_output_index + v_output_count;
-            return m_dt_training_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_test_set_enc.Columns.Count - v_index2);
+            return m_dt_test_set_enc.ToDoubles(0, v_output_index, v_index2, m_dt_test_set_enc.Columns.Count - v_index2);
         }
 
         public double[][] TestSetOutputToDoubles()
         {
             var v_output_index = (int)m_dt_test_set_enc.ExtendedProperties["OutputIndex"];
             var v_output_count = (int)m_dt_test_set_enc.ExtendedProperties["OutputCount"];
-            return m_dt_training_set_enc.ToDoubles(v_output_index, v_output_count);
+            return m_dt_test_set_enc.ToDoubles(v_output_index, v_output_count);
         }
 
         #endregion

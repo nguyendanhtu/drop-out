@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
 using Vux.Neuro.App.DataTransferObjects.Feedforward;
 using Vux.Neuro.App.DataTransferObjects.Exception;
+using Vux.Neuro.App.DataTransferObjects.NeuralForecast;
 
 namespace Vux.Neuro.App.BussinessLogicLayer.Training.Backpropagation
 {
-    public class Backpropagation : ITrain
+    public class Backpropagation : ITrain, INeuralForecast
     {
         /// <summary>
         /// Get the current best neural network.
@@ -121,7 +122,7 @@ namespace Vux.Neuro.App.BussinessLogicLayer.Training.Backpropagation
             {
                 GetBackpropagationLayer(layer).ClearError();
             }
-
+            // truyền ngược
             for (int i = this.network.Layers.Count - 1; i >= 0; i--)
             {
                 FeedforwardLayer layer = this.network.Layers[i];
@@ -190,5 +191,24 @@ namespace Vux.Neuro.App.BussinessLogicLayer.Training.Backpropagation
 
         }
 
+
+        #region INeuralForecast Members
+
+        public double[] ComputeOutput(double[] ip_db_input)
+        {
+            return network.ComputeOutputs(ip_db_input);
+        }
+
+        #endregion
+
+        #region INeuralForecast Members
+
+
+        public double[][] ComputeOutput(double[][] ip_db_input)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
