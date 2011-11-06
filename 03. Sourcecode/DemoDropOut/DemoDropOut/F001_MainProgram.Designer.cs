@@ -122,8 +122,8 @@
             this.tsTrainingControl = new System.Windows.Forms.ToolStrip();
             this.tsbtnTrain2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbtnNetworkProperties = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnTrainOptions = new System.Windows.Forms.ToolStripButton();
+            this.btnNetworkProperties = new System.Windows.Forms.ToolStripButton();
+            this.btnTrainOptions = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.lbNetArchitecture = new System.Windows.Forms.ToolStripLabel();
             this.controlTitle6 = new DropOut.Uc.ControlTitle();
@@ -162,8 +162,8 @@
             this.tsbtnTestValidationSet = new System.Windows.Forms.ToolStripButton();
             this.tsbtnTestTestSet = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsLabelMeanCCR = new System.Windows.Forms.ToolStripLabel();
             this.chkUseBestNetwork = new System.Windows.Forms.ToolStripButton();
+            this.tsLabelMeanCCR = new System.Windows.Forms.ToolStripLabel();
             this.controlTitle11 = new DropOut.Uc.ControlTitle();
             this.collapsibleSplitter4 = new DropOut.Uc.CollapsibleSplitter();
             this.panelTestingReport = new System.Windows.Forms.Panel();
@@ -1027,7 +1027,7 @@
             this.chartErrorTraining.Location = new System.Drawing.Point(0, 45);
             this.chartErrorTraining.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.chartErrorTraining.Name = "chartErrorTraining";
-            this.chartErrorTraining.Size = new System.Drawing.Size(625, 353);
+            this.chartErrorTraining.Size = new System.Drawing.Size(620, 353);
             this.chartErrorTraining.TabIndex = 2;
             this.chartErrorTraining.Text = "Error Chart";
             // 
@@ -1037,13 +1037,13 @@
             this.tsTrainingControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbtnTrain2,
             this.toolStripSeparator4,
-            this.tsbtnNetworkProperties,
-            this.tsbtnTrainOptions,
+            this.btnNetworkProperties,
+            this.btnTrainOptions,
             this.toolStripSeparator12,
             this.lbNetArchitecture});
             this.tsTrainingControl.Location = new System.Drawing.Point(0, 20);
             this.tsTrainingControl.Name = "tsTrainingControl";
-            this.tsTrainingControl.Size = new System.Drawing.Size(625, 25);
+            this.tsTrainingControl.Size = new System.Drawing.Size(620, 25);
             this.tsTrainingControl.TabIndex = 1;
             this.tsTrainingControl.Text = "toolStrip5";
             // 
@@ -1062,23 +1062,24 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // tsbtnNetworkProperties
+            // btnNetworkProperties
             // 
-            this.tsbtnNetworkProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnNetworkProperties.Image = global::DemoDropOut.Properties.Resources.networkProperties_icon_1;
-            this.tsbtnNetworkProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnNetworkProperties.Name = "tsbtnNetworkProperties";
-            this.tsbtnNetworkProperties.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnNetworkProperties.Text = "Network Properties";
+            this.btnNetworkProperties.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNetworkProperties.Image = global::DemoDropOut.Properties.Resources.networkProperties_icon_1;
+            this.btnNetworkProperties.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNetworkProperties.Name = "btnNetworkProperties";
+            this.btnNetworkProperties.Size = new System.Drawing.Size(23, 22);
+            this.btnNetworkProperties.Text = "Network Properties";
+            this.btnNetworkProperties.Click += new System.EventHandler(this.btnNetworkProperties_Click);
             // 
-            // tsbtnTrainOptions
+            // btnTrainOptions
             // 
-            this.tsbtnTrainOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnTrainOptions.Image = global::DemoDropOut.Properties.Resources.training_options_icon_2;
-            this.tsbtnTrainOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnTrainOptions.Name = "tsbtnTrainOptions";
-            this.tsbtnTrainOptions.Size = new System.Drawing.Size(23, 22);
-            this.tsbtnTrainOptions.Text = "Training Options";
+            this.btnTrainOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnTrainOptions.Image = global::DemoDropOut.Properties.Resources.training_options_icon_2;
+            this.btnTrainOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTrainOptions.Name = "btnTrainOptions";
+            this.btnTrainOptions.Size = new System.Drawing.Size(23, 22);
+            this.btnTrainOptions.Text = "Training Options";
             // 
             // toolStripSeparator12
             // 
@@ -1098,7 +1099,7 @@
             this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle6.Location = new System.Drawing.Point(0, 0);
             this.controlTitle6.Name = "controlTitle6";
-            this.controlTitle6.Size = new System.Drawing.Size(625, 20);
+            this.controlTitle6.Size = new System.Drawing.Size(620, 20);
             this.controlTitle6.TabIndex = 0;
             this.controlTitle6.Title = "Graph Visualize Error";
             // 
@@ -1110,7 +1111,7 @@
             this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
             this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter3.ExpandParentForm = false;
-            this.collapsibleSplitter3.Location = new System.Drawing.Point(625, 0);
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(620, 0);
             this.collapsibleSplitter3.Name = "collapsibleSplitter3";
             this.collapsibleSplitter3.TabIndex = 4;
             this.collapsibleSplitter3.TabStop = false;
@@ -1385,7 +1386,7 @@
             this.c1ActualVsOuputFlexGrid.Name = "c1ActualVsOuputFlexGrid";
             this.c1ActualVsOuputFlexGrid.Rows.Count = 0;
             this.c1ActualVsOuputFlexGrid.Rows.Fixed = 0;
-            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(620, 353);
+            this.c1ActualVsOuputFlexGrid.Size = new System.Drawing.Size(625, 353);
             this.c1ActualVsOuputFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ActualVsOuputFlexGrid.Styles"));
             this.c1ActualVsOuputFlexGrid.TabIndex = 5;
             // 
@@ -1403,7 +1404,7 @@
             this.tsLabelMeanCCR});
             this.tsActualVsOutput.Location = new System.Drawing.Point(0, 20);
             this.tsActualVsOutput.Name = "tsActualVsOutput";
-            this.tsActualVsOutput.Size = new System.Drawing.Size(620, 25);
+            this.tsActualVsOutput.Size = new System.Drawing.Size(625, 25);
             this.tsActualVsOutput.TabIndex = 4;
             this.tsActualVsOutput.Text = "toolStrip9";
             // 
@@ -1456,13 +1457,6 @@
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
-            // tsLabelMeanCCR
-            // 
-            this.tsLabelMeanCCR.ForeColor = System.Drawing.Color.Purple;
-            this.tsLabelMeanCCR.Name = "tsLabelMeanCCR";
-            this.tsLabelMeanCCR.Size = new System.Drawing.Size(63, 22);
-            this.tsLabelMeanCCR.Text = "Mean CCR";
-            // 
             // chkUseBestNetwork
             // 
             this.chkUseBestNetwork.Checked = true;
@@ -1475,13 +1469,20 @@
             this.chkUseBestNetwork.Size = new System.Drawing.Size(23, 22);
             this.chkUseBestNetwork.Text = "Use Best Network";
             // 
+            // tsLabelMeanCCR
+            // 
+            this.tsLabelMeanCCR.ForeColor = System.Drawing.Color.Purple;
+            this.tsLabelMeanCCR.Name = "tsLabelMeanCCR";
+            this.tsLabelMeanCCR.Size = new System.Drawing.Size(63, 22);
+            this.tsLabelMeanCCR.Text = "Mean CCR";
+            // 
             // controlTitle11
             // 
             this.controlTitle11.BackColor = System.Drawing.Color.Gray;
             this.controlTitle11.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle11.Location = new System.Drawing.Point(0, 0);
             this.controlTitle11.Name = "controlTitle11";
-            this.controlTitle11.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle11.Size = new System.Drawing.Size(625, 20);
             this.controlTitle11.TabIndex = 3;
             this.controlTitle11.Title = "Actual vs. Ouput Table";
             // 
@@ -1493,7 +1494,7 @@
             this.collapsibleSplitter4.ControlToHide = this.panelTestingReport;
             this.collapsibleSplitter4.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter4.ExpandParentForm = false;
-            this.collapsibleSplitter4.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter4.Location = new System.Drawing.Point(625, 0);
             this.collapsibleSplitter4.Name = "collapsibleSplitter4";
             this.collapsibleSplitter4.TabIndex = 0;
             this.collapsibleSplitter4.TabStop = false;
@@ -2192,7 +2193,7 @@
         private System.Windows.Forms.ToolStrip tsTrainingControl;
         private System.Windows.Forms.ToolStripButton tsbtnTrain2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton tsbtnNetworkProperties;
+        private System.Windows.Forms.ToolStripButton btnNetworkProperties;
         private AForge.Controls.Chart chartErrorTraining;
         private DropOut.Uc.CollapsibleSplitter collapsibleSplitter1;
         private DropOut.Uc.CollapsibleSplitter collapsibleSplitter2;
@@ -2240,7 +2241,7 @@
         private System.Windows.Forms.ToolStripLabel tslblTarget;
         private System.Windows.Forms.ToolStripComboBox tscboTarget;
         private System.Windows.Forms.ToolStripButton tsbtnAnalyze2;
-        private System.Windows.Forms.ToolStripButton tsbtnTrainOptions;
+        private System.Windows.Forms.ToolStripButton btnTrainOptions;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripLabel tsLabelMeanCCR;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
