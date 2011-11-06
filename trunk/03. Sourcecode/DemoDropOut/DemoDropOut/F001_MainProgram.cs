@@ -129,16 +129,16 @@ namespace DemoDropOut
 
         #endregion
 
-        private void DrawErrorChart(List<double> ip_listError)
-        {
-            double[,] errorList = new double[ip_listError.Count, 1];
-            for (int i = 0; i < ip_listError.Count; i++)
-            {
-                errorList[i, 0] = ip_listError[i];
-            }
-            chartErrorTraining.RangeX = new DoubleRange(0, ip_listError.Count);
-            chartErrorTraining.UpdateDataSeries("Error Chart", errorList);
-        }
+        //private void DrawErrorChart(List<double> ip_listError)
+        //{
+        //    double[,] errorList = new double[ip_listError.Count, 1];
+        //    for (int i = 0; i < ip_listError.Count; i++)
+        //    {
+        //        errorList[i, 0] = ip_listError[i];
+        //    }
+        //    chartErrorTraining.RangeX = new DoubleRange(0, ip_listError.Count);
+        //    chartErrorTraining.UpdateDataSeries("Error Chart", errorList);
+        //}
         #endregion
 
         #region Luyện mạng
@@ -189,7 +189,6 @@ namespace DemoDropOut
                 // Khởi tạo hệ thống
                 listTrnErrorChart = new List<double>();
                 listVldErrorChart = new List<double>();
-                m_dropOutForecast = new DropOutForecast();
 
                 m_dropOutForecast.TrainingAlgorithmParameters = v_fNetworkTrainingOptions.TrainingParameters;
                 // Set tập mẫu luyện
@@ -197,25 +196,6 @@ namespace DemoDropOut
                 m_dropOutForecast.TrainingOutputSet = m_dPreprocessing_obj.TrainingSetOutputToDoubles();
                 m_dropOutForecast.ValidationSet = m_dPreprocessing_obj.ValidationSetInputToDoubles();
                 m_dropOutForecast.ValidationOutputSet = m_dPreprocessing_obj.ValidationSetOutputToDoubles();
-
-                // Cấu hình mạng (default)
-                m_dropOutForecast.Variables = m_dPreprocessing_obj.Variables;
-                m_dropOutForecast.HiddenNeuros = m_dPreprocessing_obj.HiddenNeurons;
-                m_dropOutForecast.Classes = m_dPreprocessing_obj.Classes;
-
-                // Tham số luyện mạng
-
-                //m_dropOutForecast.LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
-                //m_dropOutForecast.Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
-
-                //m_dropOutForecast.ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
-                //m_dropOutForecast.IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
-
-                //m_dropOutForecast.IsCheckError = chkErrorLimit.Checked;
-
-                m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
-                m_dropOutForecast.StartTraining += new StartTrainingHandler(m_dropOutForecast_StartTraining);
-                m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
 
                 UpdateSettings();
 
@@ -259,10 +239,10 @@ namespace DemoDropOut
                 {
                     var v_dropout_forecast = sender as DropOutForecast;
                     this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
-                    this.listTrnErrorChart.Clear();
-                    this.listVldErrorChart.Clear();
-                    this.chartErrorTraining.UpdateDataSeries("TrnError", null);
-                    this.chartErrorTraining.UpdateDataSeries("VldError", null);
+                    //this.listTrnErrorChart.Clear();
+                    //this.listVldErrorChart.Clear();
+                    //this.chartErrorTraining.UpdateDataSeries("TrnError", null);
+                    //this.chartErrorTraining.UpdateDataSeries("VldError", null);
                     //this.lbNetArchitecture.Text = string.Format("Net: {0} - {1} - {2}", v_dropout_forecast.NetworkParameters.InputNeurons, v_dropout_forecast.NetworkParameters.HiddenNeurons, v_dropout_forecast.NetworkParameters.OutputNeurons);
                     this.tsbtnTrain1.Image = DemoDropOut.Properties.Resources.train_stop_icon_1;
                     this.tsbtnTrain2.Image = DemoDropOut.Properties.Resources.train_stop_icon_1;
@@ -304,28 +284,9 @@ namespace DemoDropOut
             }
         }
 
-        private ushort m_overfit_index = 0;
-        private double m_overfit_value = double.MaxValue;
+        //private ushort m_overfit_index = 0;
+        //private double m_overfit_value = double.MaxValue;
         private INeuralForecast m_best_forecast;
-
-        private double[,] GetOverFitGraphData(ushort x)
-        {
-            var overfit = new double[listTrnErrorChart.Count, 2];
-            for (int i = 0; i < listTrnErrorChart.Count; i++)
-            {
-                if (i < x)
-                {
-                    overfit[i, 0] = i;
-                    overfit[i, 1] = chartErrorTraining.RangeY.Min;
-                }
-                else
-                {
-                    overfit[i, 0] = i;
-                    overfit[i, 1] = chartErrorTraining.RangeY.Max;
-                }
-            }
-            return overfit;
-        }
 
         private void m_dropOutForecast_NotifyError(double dbError, double vlError, uint iteration)
         {
@@ -344,6 +305,7 @@ namespace DemoDropOut
                     // show error's dynamics
                     var trnError = new double[listTrnErrorChart.Count, 2];
                     var vldError = new double[listVldErrorChart.Count, 2];
+                    var overfit = new double[listTrnErrorChart.Count, 2];
 
                     for (ushort i = 0; i < listTrnErrorChart.Count; i++)
                     {
@@ -352,18 +314,23 @@ namespace DemoDropOut
 
                         vldError[i, 0] = i;
                         vldError[i, 1] = listVldErrorChart[i];// +0.01;
-                        //if (listVldErrorChart[i] < m_overfit_value)
-                        //{
-                        //    m_overfit_value = listVldErrorChart[i];
-                        //    m_overfit_index = i;
-                        //}
+
+                        if (i <= m_dropOutForecast.BestEpoch)
+                        {
+                            overfit[i, 0] = i;
+                            overfit[i, 1] = chartErrorTraining.RangeY.Min;
+                        }
+                        else
+                        {
+                            overfit[i, 0] = i;
+                            overfit[i, 1] = chartErrorTraining.RangeY.Max;
+                        }
                     }
-                    m_overfit_index = m_dropOutForecast.BestEpoch;
                     // draw
                     chartErrorTraining.RangeX = new DoubleRange(0, listTrnErrorChart.Count - 1);
                     chartErrorTraining.UpdateDataSeries("TrnError", trnError);
                     chartErrorTraining.UpdateDataSeries("VldError", vldError);
-                    chartErrorTraining.UpdateDataSeries("Overfit", GetOverFitGraphData(m_overfit_index));
+                    chartErrorTraining.UpdateDataSeries("Overfit", overfit);
                 }
             }
         }
@@ -886,9 +853,16 @@ namespace DemoDropOut
             m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
             m_dPreprocessing_obj.TestSet = m_dAnalysis_obj.TestSet;
             m_dPreprocessing_obj.Preprocessing();
-            // Dữ liệu chưa được luyện
+            // Dữ liệu chưa được luyện, khởi tạo lại các tham số
             m_dropOutForecast = new DropOutForecast();
+
+            m_dropOutForecast.NotifyError += new NotifyErrorHandler(m_dropOutForecast_NotifyError);
+            m_dropOutForecast.StartTraining += new StartTrainingHandler(m_dropOutForecast_StartTraining);
+            m_dropOutForecast.Finish += new FinishHandler(m_dropOutForecast_Finish);
+
             m_dropOutForecast.IsTrainedData = false;
+            m_dropOutForecast.NetworkParameters = new NetworkParameters(this.m_dPreprocessing_obj.Variables, this.m_dPreprocessing_obj.HiddenNeurons, this.m_dPreprocessing_obj.Classes, false);
+            this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
 
             var v_table = m_dPreprocessing_obj.EncodedData;
             if (this.c1ProcessedDataFlexGrid.DataSource == null)
@@ -941,6 +915,27 @@ namespace DemoDropOut
             {
                 if (m_dropOutForecast != null)
                     this.tabControl1.SelectedTab = this.tabTestingPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnNetworkProperties_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_dropOutForecast != null)
+                {
+                    var f003 = new F003_NetworkProperties(m_dropOutForecast.NetworkParameters);
+                    var dr = f003.ShowDialog(this);
+                    if (dr == DialogResult.OK)
+                    {
+                        this.m_dropOutForecast.NetworkParameters = f003.NetworkParameters;
+                        this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
+                    }
+                }
             }
             catch (Exception ex)
             {

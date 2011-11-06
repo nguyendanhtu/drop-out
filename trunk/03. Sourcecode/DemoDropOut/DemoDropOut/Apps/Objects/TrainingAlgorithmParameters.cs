@@ -44,7 +44,8 @@ namespace DemoDropOut.Apps.Objects
         {
             get;
             set;
-        }   
+        }
+
         /// <summary>
         /// Khoảng sinh số ngẫu nhiên
         /// </summary>

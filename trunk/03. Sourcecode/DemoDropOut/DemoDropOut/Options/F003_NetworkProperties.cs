@@ -63,6 +63,7 @@ namespace DemoDropOut.Options
             {
                 m_net_parameters.ActivationFunction = (ActivationFunctionEnum)this.chkHiddenActivation.SelectedItem;
                 m_net_parameters.OutputFunction = (ActivationFunctionEnum)this.chkOutputActivationFx.SelectedItem;
+                m_net_parameters.UseCustomHiddenNeuro = chkDesignNet.Checked;
                 if (string.IsNullOrEmpty(txtHiddenNeurons.Text) == false)
                 {
                     m_net_parameters.HiddenNeurons = int.Parse(txtHiddenNeurons.Text);
@@ -83,7 +84,7 @@ namespace DemoDropOut.Options
                 this.chkHiddenActivation.SelectedItem = m_net_parameters.ActivationFunction;
 
                 this.chkOutputErrorFx.Enabled = false;
-                this.chkDesignNet.Checked = false;
+                this.chkDesignNet.Checked = m_net_parameters.UseCustomHiddenNeuro;
 
                 this.chkOutputActivationFx.Items.Add(ActivationFunctionEnum.Logistic);
                 this.chkOutputActivationFx.Items.Add(ActivationFunctionEnum.HiperbolicTangent);
@@ -94,6 +95,20 @@ namespace DemoDropOut.Options
                 this.txtOutputNeurons.Text = m_net_parameters.OutputNeurons.ToString();
 
                 this.lbNetArchitectureRecommend.Text = string.Format("Network Architecture Recomend: {0} - {1} - {2}", m_net_parameters.InputNeurons, m_net_parameters.GenerateHiddenNeurons(), m_net_parameters.OutputFunction);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDefalut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.txtInputNeurons.Text = m_net_parameters.InputNeurons.ToString();
+                this.txtHiddenNeurons.Text = m_net_parameters.GenerateHiddenNeurons().ToString();
+                this.txtOutputNeurons.Text = m_net_parameters.OutputNeurons.ToString();
             }
             catch (Exception ex)
             {

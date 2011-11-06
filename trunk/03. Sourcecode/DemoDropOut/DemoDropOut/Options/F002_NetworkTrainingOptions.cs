@@ -93,6 +93,16 @@ namespace DemoDropOut.Options
 
         private void SetParameters()
         {
+            // Tham số luyện mạng
+
+            //LearningRate = Math.Max(0.00001, Math.Min(1, double.Parse(learningRateBox.Text)));
+            //Momentum = Math.Max(0.01, Math.Min(100, double.Parse(alphaBox.Text)));
+
+            //ErrorLimit = Math.Max(0, double.Parse(errorLimitBox.Text));
+            //IterationLimit = (uint)Math.Max(0, int.Parse(iterationsBox.Text));
+
+            //IsCheckError = chkErrorLimit.Checked;
+
             var v_db_quick_coefficient = default(Double);
             var v_db_learning_rate = default(Double);
             var v_db_momentum = default(Double);

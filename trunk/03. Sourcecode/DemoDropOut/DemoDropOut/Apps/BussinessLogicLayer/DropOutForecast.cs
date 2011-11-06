@@ -24,24 +24,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
     public class DropOutForecast
     {
         #region Private fields
-        /// <summary>
-        /// Số biến nhập (input count)
-        /// </summary>
-        private int _variables = 0;
-        /// <summary>
-        /// Số lớp xuất (số biến xuất)
-        /// </summary>
-        private int _classes = 0;
-        /// <summary>
-        /// Số nơ ron lớp ẩn
-        /// </summary>
-        private int _hiddenNeurons = 0;
 
-        //private double _learningRate = 0.1;
-        //private double _momentumValue = 2;
-        //private double _learningErrorLimit = 0.1;
-        //private uint _learningIterationLimit = 1000;
-        //private bool _useErrorLimit = true;
+        #region Network Parameters
 
         private TrainingAlgorithmParameters m_trn_parameter;
         private NetworkParameters m_net_parameters;
@@ -57,6 +41,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             get { return m_trn_parameter; }
             set { m_trn_parameter = value; }
         }
+
+        #endregion
 
         private double[][] _trainingSet = null; // new double[samples][];  // training set
         private double[][] _trainingIdeal = null; // new double[samples][]; // ideal output
@@ -97,9 +83,6 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         // Thread
         private Thread worker = null;
 
-        // Network
-        private INeuralForecast forecast = null;
-
         #endregion
 
         #region Properties
@@ -111,73 +94,6 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             get { return _trainingSet.GetLength(0); }
         }
-        /// <summary>
-        /// Get: số biến nhập
-        /// </summary>
-        public int Variables
-        {
-            get { return _variables; }
-            set { _variables = value; }
-        }
-        /// <summary>
-        /// Set: số lớp xuất
-        /// </summary>
-        public int Classes
-        {
-            get { return _classes; }
-            set { _classes = value; }
-        }
-        /// <summary>
-        /// Get, set: số nơ ron lớp ẩn
-        /// </summary>
-        public int HiddenNeuros
-        {
-            get
-            {
-                //if (_hiddenNeuroCount <= 0)
-                //    return (_variables >> 1) + 1;  // (variables << 1) / 3 + 1;
-                return _hiddenNeurons;
-            }
-            set { _hiddenNeurons = value; }
-        }
-
-        //public double LearningRate
-        //{
-        //    get { return _learningRate; }
-        //    set { _learningRate = value; }
-        //}
-
-        //public double Momentum
-        //{
-        //    get { return _momentumValue; }
-        //    set { _momentumValue = value; }
-        //}
-
-        //public double ErrorLimit
-        //{
-        //    get { return _learningErrorLimit; }
-        //    set
-        //    {
-        //        _learningErrorLimit = value;
-        //        _useErrorLimit = true;
-        //    }
-        //}
-
-        //public uint IterationLimit
-        //{
-        //    get { return _learningIterationLimit; }
-        //    set
-        //    {
-        //        _learningIterationLimit = value;
-        //        _useErrorLimit = false;
-        //    }
-        //}
-
-        //public bool IsCheckError
-        //{
-        //    get { return _useErrorLimit; }
-        //    set { _useErrorLimit = value; }
-        //}
 
         #endregion
 
@@ -234,6 +150,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
         }
 
+        private INeuralForecast m_final_forecast;
         private INeuralForecast m_best_forecast;
         private double m_db_min_error = double.MaxValue;
         private ushort m_us_best_epoch;
@@ -260,8 +177,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             try
             {
-                var back = new Vux.Neuro.App.BussinessLogicLayer.Training.Quickpropagation.Backpropagation((ushort)_hiddenNeurons, _trainingSet, _trainingIdeal);
+                var back = new Vux.Neuro.App.BussinessLogicLayer.Training.Quickpropagation.Backpropagation((ushort)m_net_parameters.HiddenNeurons, _trainingSet, _trainingIdeal);
                 var epoch = default(ushort);
+                // Đặt lại
+                m_us_best_epoch = 0;
+                m_db_min_error = double.MaxValue;
                 do
                 {
                     back.Learn();
@@ -294,7 +214,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     }
                 } while (signalStop == false);
                 OnFinish(this, epoch);
-                this.forecast = back;
+                this.m_final_forecast = back;
                 return;
 
                 #region Version 1
@@ -362,7 +282,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Net: {0}-{1}-{2}", _variables, HiddenNeuros, _classes); //Model: {0}-{1}-{2}
+            return string.Format("Net: {0}-{1}-{2}", m_net_parameters.InputNeurons, m_net_parameters.HiddenNeurons, m_net_parameters.OutputNeurons); //Model: {0}-{1}-{2}
         }
 
         public void Train()
@@ -388,7 +308,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
         public double[] ComputeOutputs(double[] ip_ideal_input)
         {
-            return this.forecast.ComputeOutput(ip_ideal_input);
+            return this.m_final_forecast.ComputeOutput(ip_ideal_input);
         }
 
         public double[][] ComputeOutputs(double[][] ip_ideal_inputs)

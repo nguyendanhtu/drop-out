@@ -42,6 +42,7 @@
             this.chkDesignNet = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDefalut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -55,10 +56,11 @@
             // 
             // chkHiddenActivation
             // 
+            this.chkHiddenActivation.Enabled = false;
             this.chkHiddenActivation.FormattingEnabled = true;
             this.chkHiddenActivation.Location = new System.Drawing.Point(155, 10);
             this.chkHiddenActivation.Name = "chkHiddenActivation";
-            this.chkHiddenActivation.Size = new System.Drawing.Size(121, 21);
+            this.chkHiddenActivation.Size = new System.Drawing.Size(194, 21);
             this.chkHiddenActivation.TabIndex = 1;
             // 
             // label2
@@ -72,10 +74,11 @@
             // 
             // chkOutputErrorFx
             // 
+            this.chkOutputErrorFx.Enabled = false;
             this.chkOutputErrorFx.FormattingEnabled = true;
             this.chkOutputErrorFx.Location = new System.Drawing.Point(155, 37);
             this.chkOutputErrorFx.Name = "chkOutputErrorFx";
-            this.chkOutputErrorFx.Size = new System.Drawing.Size(121, 21);
+            this.chkOutputErrorFx.Size = new System.Drawing.Size(194, 21);
             this.chkOutputErrorFx.TabIndex = 1;
             // 
             // label3
@@ -89,10 +92,11 @@
             // 
             // chkOutputActivationFx
             // 
+            this.chkOutputActivationFx.Enabled = false;
             this.chkOutputActivationFx.FormattingEnabled = true;
             this.chkOutputActivationFx.Location = new System.Drawing.Point(155, 64);
             this.chkOutputActivationFx.Name = "chkOutputActivationFx";
-            this.chkOutputActivationFx.Size = new System.Drawing.Size(121, 21);
+            this.chkOutputActivationFx.Size = new System.Drawing.Size(194, 21);
             this.chkOutputActivationFx.TabIndex = 1;
             // 
             // label4
@@ -100,7 +104,7 @@
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.Location = new System.Drawing.Point(14, 147);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 2);
+            this.label4.Size = new System.Drawing.Size(335, 2);
             this.label4.TabIndex = 0;
             // 
             // lbNetArchitectureRecommend
@@ -114,26 +118,29 @@
             // 
             // txtInputNeurons
             // 
+            this.txtInputNeurons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInputNeurons.Enabled = false;
-            this.txtInputNeurons.Location = new System.Drawing.Point(99, 116);
+            this.txtInputNeurons.Location = new System.Drawing.Point(155, 116);
             this.txtInputNeurons.Name = "txtInputNeurons";
-            this.txtInputNeurons.Size = new System.Drawing.Size(55, 21);
+            this.txtInputNeurons.Size = new System.Drawing.Size(60, 21);
             this.txtInputNeurons.TabIndex = 2;
             // 
             // txtHiddenNeurons
             // 
+            this.txtHiddenNeurons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtHiddenNeurons.Enabled = false;
-            this.txtHiddenNeurons.Location = new System.Drawing.Point(160, 116);
+            this.txtHiddenNeurons.Location = new System.Drawing.Point(222, 116);
             this.txtHiddenNeurons.Name = "txtHiddenNeurons";
-            this.txtHiddenNeurons.Size = new System.Drawing.Size(55, 21);
+            this.txtHiddenNeurons.Size = new System.Drawing.Size(60, 21);
             this.txtHiddenNeurons.TabIndex = 2;
             // 
             // txtOutputNeurons
             // 
+            this.txtOutputNeurons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOutputNeurons.Enabled = false;
-            this.txtOutputNeurons.Location = new System.Drawing.Point(221, 116);
+            this.txtOutputNeurons.Location = new System.Drawing.Point(289, 116);
             this.txtOutputNeurons.Name = "txtOutputNeurons";
-            this.txtOutputNeurons.Size = new System.Drawing.Size(55, 21);
+            this.txtOutputNeurons.Size = new System.Drawing.Size(60, 21);
             this.txtOutputNeurons.TabIndex = 2;
             // 
             // chkDesignNet
@@ -141,15 +148,16 @@
             this.chkDesignNet.AutoSize = true;
             this.chkDesignNet.Location = new System.Drawing.Point(15, 118);
             this.chkDesignNet.Name = "chkDesignNet";
-            this.chkDesignNet.Size = new System.Drawing.Size(78, 17);
+            this.chkDesignNet.Size = new System.Drawing.Size(120, 17);
             this.chkDesignNet.TabIndex = 3;
-            this.chkDesignNet.Text = "Design Net";
+            this.chkDesignNet.Text = "Design Architecture";
             this.chkDesignNet.UseVisualStyleBackColor = true;
             this.chkDesignNet.CheckedChanged += new System.EventHandler(this.chkDesignNet_CheckedChanged);
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(107, 162);
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(184, 162);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 4;
@@ -160,12 +168,22 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(197, 162);
+            this.btnCancel.Location = new System.Drawing.Point(274, 162);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnDefalut
+            // 
+            this.btnDefalut.Location = new System.Drawing.Point(16, 162);
+            this.btnDefalut.Name = "btnDefalut";
+            this.btnDefalut.Size = new System.Drawing.Size(75, 23);
+            this.btnDefalut.TabIndex = 4;
+            this.btnDefalut.Text = "Default";
+            this.btnDefalut.UseVisualStyleBackColor = true;
+            this.btnDefalut.Click += new System.EventHandler(this.btnDefalut_Click);
             // 
             // F003_NetworkProperties
             // 
@@ -173,7 +191,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(291, 197);
+            this.ClientSize = new System.Drawing.Size(361, 197);
+            this.Controls.Add(this.btnDefalut);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.chkDesignNet);
@@ -218,5 +237,6 @@
         private System.Windows.Forms.CheckBox chkDesignNet;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnDefalut;
     }
 }
