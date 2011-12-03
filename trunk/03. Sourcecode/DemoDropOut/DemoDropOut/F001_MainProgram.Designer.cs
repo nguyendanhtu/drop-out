@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F001_MainProgram));
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,9 +133,7 @@
             this.panelTrainingControl = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnStop = new System.Windows.Forms.Button();
             this.tsTrainingReport = new System.Windows.Forms.ToolStrip();
-            this.btnStart = new System.Windows.Forms.Button();
             this.controlTitle5 = new DropOut.Uc.ControlTitle();
             this.chkErrorLimit = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -217,6 +216,10 @@
             this.tsbtnQueryDataset = new System.Windows.Forms.ToolStripButton();
             this.tsbtnQueryFile = new System.Windows.Forms.ToolStripButton();
             this.tsbtnHelp = new System.Windows.Forms.ToolStripButton();
+            this.contextColumnType = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.categoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.numericToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.panelMainPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -252,6 +255,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.c1ManualQueryResultFlexGrid)).BeginInit();
             this.tsManualQuery.SuspendLayout();
             this.toolStripMain.SuspendLayout();
+            this.contextColumnType.SuspendLayout();
             this.SuspendLayout();
             // 
             // testToolStripMenuItem
@@ -1147,9 +1151,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnStop);
             this.panel3.Controls.Add(this.tsTrainingReport);
-            this.panel3.Controls.Add(this.btnStart);
             this.panel3.Controls.Add(this.controlTitle5);
             this.panel3.Controls.Add(this.chkErrorLimit);
             this.panel3.Controls.Add(this.label16);
@@ -1173,16 +1175,6 @@
             this.panel3.Size = new System.Drawing.Size(200, 325);
             this.panel3.TabIndex = 0;
             // 
-            // btnStop
-            // 
-            this.btnStop.Location = new System.Drawing.Point(93, 282);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(76, 23);
-            this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
             // tsTrainingReport
             // 
             this.tsTrainingReport.Location = new System.Drawing.Point(0, 20);
@@ -1190,16 +1182,6 @@
             this.tsTrainingReport.Size = new System.Drawing.Size(200, 25);
             this.tsTrainingReport.TabIndex = 3;
             this.tsTrainingReport.Text = "toolStrip4";
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(7, 282);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(76, 23);
-            this.btnStart.TabIndex = 3;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnTraining_Click);
             // 
             // controlTitle5
             // 
@@ -1668,14 +1650,14 @@
             this.c1ManualQueryFlexGrid.Name = "c1ManualQueryFlexGrid";
             this.c1ManualQueryFlexGrid.Rows.Count = 0;
             this.c1ManualQueryFlexGrid.Rows.Fixed = 0;
-            this.c1ManualQueryFlexGrid.Size = new System.Drawing.Size(708, 98);
+            this.c1ManualQueryFlexGrid.Size = new System.Drawing.Size(645, 98);
             this.c1ManualQueryFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ManualQueryFlexGrid.Styles"));
             this.c1ManualQueryFlexGrid.TabIndex = 8;
             // 
             // splitter4
             // 
             this.splitter4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter4.Location = new System.Drawing.Point(708, 45);
+            this.splitter4.Location = new System.Drawing.Point(645, 45);
             this.splitter4.Name = "splitter4";
             this.splitter4.Size = new System.Drawing.Size(3, 98);
             this.splitter4.TabIndex = 9;
@@ -1689,12 +1671,12 @@
             this.c1ManualQueryResultFlexGrid.Dock = System.Windows.Forms.DockStyle.Right;
             this.c1ManualQueryResultFlexGrid.EditOptions = C1.Win.C1FlexGrid.EditFlags.None;
             this.c1ManualQueryResultFlexGrid.ExtendLastCol = true;
-            this.c1ManualQueryResultFlexGrid.Location = new System.Drawing.Point(711, 45);
+            this.c1ManualQueryResultFlexGrid.Location = new System.Drawing.Point(648, 45);
             this.c1ManualQueryResultFlexGrid.Name = "c1ManualQueryResultFlexGrid";
             this.c1ManualQueryResultFlexGrid.Rows.Count = 0;
             this.c1ManualQueryResultFlexGrid.Rows.Fixed = 0;
             this.c1ManualQueryResultFlexGrid.ShowSort = false;
-            this.c1ManualQueryResultFlexGrid.Size = new System.Drawing.Size(117, 98);
+            this.c1ManualQueryResultFlexGrid.Size = new System.Drawing.Size(180, 98);
             this.c1ManualQueryResultFlexGrid.Styles = new C1.Win.C1FlexGrid.CellStyleCollection(resources.GetString("c1ManualQueryResultFlexGrid.Styles"));
             this.c1ManualQueryResultFlexGrid.TabIndex = 7;
             // 
@@ -1985,6 +1967,33 @@
             this.tsbtnHelp.Size = new System.Drawing.Size(23, 22);
             this.tsbtnHelp.Text = "Help";
             // 
+            // contextColumnType
+            // 
+            this.contextColumnType.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.categoriesToolStripMenuItem,
+            this.numericToolStripMenuItem,
+            this.dateTimeToolStripMenuItem});
+            this.contextColumnType.Name = "contextColumnType";
+            this.contextColumnType.Size = new System.Drawing.Size(177, 70);
+            // 
+            // categoriesToolStripMenuItem
+            // 
+            this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.categoriesToolStripMenuItem.Text = "Mark as categorical";
+            // 
+            // numericToolStripMenuItem
+            // 
+            this.numericToolStripMenuItem.Name = "numericToolStripMenuItem";
+            this.numericToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.numericToolStripMenuItem.Text = "Mark as numeric";
+            // 
+            // dateTimeToolStripMenuItem
+            // 
+            this.dateTimeToolStripMenuItem.Name = "dateTimeToolStripMenuItem";
+            this.dateTimeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.dateTimeToolStripMenuItem.Text = "Mark as date";
+            // 
             // F001_MainProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2052,6 +2061,7 @@
             this.tsManualQuery.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            this.contextColumnType.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2166,8 +2176,6 @@
         private DropOut.Uc.ControlTitle controlTitle4;
         private System.Windows.Forms.Panel panelTrainingReport;
         private System.Windows.Forms.Panel panelTrainingControl;
-        private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.CheckBox chkErrorLimit;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -2247,6 +2255,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripLabel lbNetArchitecture;
         private System.Windows.Forms.ToolStripButton chkUseBestNetwork;
+        private System.Windows.Forms.ContextMenuStrip contextColumnType;
+        private System.Windows.Forms.ToolStripMenuItem categoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem numericToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dateTimeToolStripMenuItem;
     }
 }
 

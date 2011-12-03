@@ -4,12 +4,12 @@ using System.Text;
 
 namespace DemoDropOut.Apps.Objects
 {
-    public class ColumnDetails
+    public class DataColumnDetails
     {
         public double Mean = 0;
         public double StandardDeviation;
-        private ColumnType m_column_type;
-        private ColumnFormat m_column_format;
+        private DataColumnType m_column_type;
+        private DataColumnFormat m_column_format;
         private int encColumnInto;
         private IList<string> m_list_category = new List<string>();
         private ScalingRange m_scaling_range;
@@ -63,7 +63,7 @@ namespace DemoDropOut.Apps.Objects
         {
             get
             {
-                if (m_column_format != ColumnFormat.Numerical)
+                if (m_column_format != DataColumnFormat.Numerical)
                     throw new Exception("Dữ liệu không thuộc kiểu số");
                 return m_db_maxValue;
             }
@@ -73,7 +73,7 @@ namespace DemoDropOut.Apps.Objects
         {
             get
             {
-                if (m_column_format != ColumnFormat.Numerical)
+                if (m_column_format != DataColumnFormat.Numerical)
                     throw new Exception("Dữ liệu không thuộc kiểu số");
                 return m_db_minValue;
             }
@@ -99,7 +99,7 @@ namespace DemoDropOut.Apps.Objects
         {
             get
             {
-                if (m_column_format != ColumnFormat.Numerical)
+                if (m_column_format != DataColumnFormat.Numerical)
                 {
                     throw new ArgumentException("Dữ liệu không thuộc kiểu số, không thể định khoảng tỉ lệ", "ScalingRange");
                 }
@@ -116,12 +116,12 @@ namespace DemoDropOut.Apps.Objects
             }
         }
 
-        public ColumnFormat Format
+        public DataColumnFormat Format
         {
             get { return m_column_format; }
             set
             {
-                if (value == ColumnFormat.Numerical)
+                if (value == DataColumnFormat.Numerical)
                 {
                     m_scaling_range = new ScalingRange();
                 }
@@ -129,12 +129,12 @@ namespace DemoDropOut.Apps.Objects
             }
         }
 
-        public ColumnType Type
+        public DataColumnType Type
         {
             get { return m_column_type; }
             set
             {
-                if (value == ColumnType.Input)
+                if (value == DataColumnType.Input)
                 {
                     m_scaling_range = new ScalingRange(-1, 1);
                 }
@@ -150,15 +150,15 @@ namespace DemoDropOut.Apps.Objects
         {
             get
             {
-                if (m_column_format == ColumnFormat.Numerical)
+                if (m_column_format == DataColumnFormat.Numerical)
                 {
                     return 1;
                 }
-                else if (m_column_format == ColumnFormat.Date || m_column_format == ColumnFormat.Time)
+                else if (m_column_format == DataColumnFormat.Date || m_column_format == DataColumnFormat.Time)
                 {
                     return 2;
                 }
-                else if (m_column_format == ColumnFormat.Categorical)
+                else if (m_column_format == DataColumnFormat.Categorical)
                 {
                     return encColumnInto;
                 }
@@ -170,20 +170,20 @@ namespace DemoDropOut.Apps.Objects
             }
         }
 
-        public ColumnDetails()
+        public DataColumnDetails()
         {
-            m_column_type = ColumnType.Input;
-            m_column_format = ColumnFormat.Numerical;
+            m_column_type = DataColumnType.Input;
+            m_column_format = DataColumnFormat.Numerical;
             encColumnInto = 1;
         }
 
-        public ColumnDetails(ColumnType type, ColumnFormat format)
+        public DataColumnDetails(DataColumnType type, DataColumnFormat format)
         {
             Type = type;
             Format = format;
         }
 
-        public ColumnDetails(ColumnType type, ColumnFormat format, int encodeColNumber)
+        public DataColumnDetails(DataColumnType type, DataColumnFormat format, int encodeColNumber)
             : this(type, format)
         {
             encColumnInto = encodeColNumber;
@@ -195,7 +195,7 @@ namespace DemoDropOut.Apps.Objects
         }
     }
 
-    public enum ColumnFormat
+    public enum DataColumnFormat
     {
         Unknow,
         Numerical,
@@ -204,7 +204,7 @@ namespace DemoDropOut.Apps.Objects
         Time
     }
 
-    public enum ColumnType
+    public enum DataColumnType
     {
         Input,
         Ouput
