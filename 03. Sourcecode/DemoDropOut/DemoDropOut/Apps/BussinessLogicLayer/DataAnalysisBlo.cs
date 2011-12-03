@@ -15,7 +15,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
     public class DataAnalysisBlo
     {
         private string m_str_date_format = "MM/dd/yyyy";
-        private IList<ColumnDetails> m_list_cols_name;
+        private IList<DataColumnDetails> m_list_cols_name;
         private bool m_bl_specific_order;
 
         public bool SpecificOrder
@@ -138,7 +138,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             get { return m_list_invalid_population; }
         }
 
-        public IList<ColumnDetails> ColumnName
+        public IList<DataColumnDetails> ColumnName
         {
             get { return m_list_cols_name; }
         }
@@ -257,14 +257,21 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             m_list_valid_population = new List<int>();
         }
 
+        public void SetDataColumnFormat(int ip_index_column, DataColumnFormat ip_col_format)
+        {
+            if (m_dt_analyzed_set == null)
+                throw new NullReferenceException("Dữ liệu mẫu đưa vào chưa được phân tích trước khi SetOutput");
+            ((DataColumnDetails)m_dt_analyzed_set.Columns[ip_index_column].ExtendedProperties["Details"]).Format = ip_col_format;
+        }
+
         private void SetOutput(DataTable table, int index)
         {
             if (table.ExtendedProperties["OutputIndex"] != null)
             {
                 var v_col_index = (int)table.ExtendedProperties["OutputIndex"];
-                ((ColumnDetails)table.Columns[v_col_index].ExtendedProperties["Details"]).Type = ColumnType.Input;
+                ((DataColumnDetails)table.Columns[v_col_index].ExtendedProperties["Details"]).Type = DataColumnType.Input;
             }
-            ((ColumnDetails)table.Columns[index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
+            ((DataColumnDetails)table.Columns[index].ExtendedProperties["Details"]).Type = DataColumnType.Ouput;
             table.ExtendedProperties["OutputIndex"] = index;
             table.ExtendedProperties["OutputCount"] = 1;
         }
@@ -282,10 +289,10 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// Get details of output column
         /// </summary>
         /// <returns>ColumnDetails</returns>
-        public ColumnDetails GetOuput()
+        public DataColumnDetails GetOuput()
         {
             var v_output_index = (int)m_dt_analyzed_set.ExtendedProperties["OutputIndex"];
-            return m_dt_analyzed_set.Columns[v_output_index].ExtendedProperties["Details"] as ColumnDetails;
+            return m_dt_analyzed_set.Columns[v_output_index].ExtendedProperties["Details"] as DataColumnDetails;
         }
 
         public DataTable Analyze(DataTable ip_rawDataTable)
@@ -306,22 +313,22 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var v_dt_date = default(DateTime);
             for (int j = 0; j < v_cols_; j++)
             {
-                var v_column_details = new ColumnDetails();
+                var v_column_details = new DataColumnDetails();
                 var v_str_value = v_str_tokens[j].ToString();
                 v_column_details.ColumnName = v_dataTable.Columns[j].ColumnName;
                 if (double.TryParse(v_str_value, out v_db_value) == true)
                 {
                     v_column_details.MaxMinUpdateValue = v_db_value;
-                    v_column_details.Format = ColumnFormat.Numerical;
+                    v_column_details.Format = DataColumnFormat.Numerical;
                 }
                 else if (DateTime.TryParseExact(v_str_value, m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
                 {
-                    v_column_details.Format = ColumnFormat.Date;
+                    v_column_details.Format = DataColumnFormat.Date;
                     v_column_details.Categories.Add(v_dt_date.ToShortDateString());
                 }
                 else if (string.IsNullOrEmpty(v_str_value) == true)
                 {
-                    v_column_details.Format = ColumnFormat.Unknow;
+                    v_column_details.Format = DataColumnFormat.Unknow;
                     v_str_tokens[j] = "null";
                     v_dataRow.RowError = "Anomaly"; // Đánh dấu hàng này có lỗi
                     v_dataTable.Columns[j].ExtendedProperties.Add("Error", true);
@@ -329,7 +336,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 else if (v_column_details.Categories.Contains(v_str_value) == false)
                 {
                     v_column_details.Categories.Add(v_str_value);
-                    v_column_details.Format = ColumnFormat.Categorical;
+                    v_column_details.Format = DataColumnFormat.Categorical;
                 }
                 v_dataRow[j] = v_str_value;
                 // CD := Column Details
@@ -343,7 +350,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             #region Đọc các mẫu dữ liệu tiếp theo
             for (int j = 0; j < v_cols_; j++)
             {
-                var v_column_details = (ColumnDetails)v_dataTable.Columns[j].ExtendedProperties["Details"];
+                var v_column_details = (DataColumnDetails)v_dataTable.Columns[j].ExtendedProperties["Details"];
                 var v_str_value = v_str_tokens[j].ToString();
                 if (string.IsNullOrEmpty(v_str_value) == false)
                 {
@@ -351,7 +358,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     {
                         // Kiểm tra lại giá trị v_str_tokens[j] này có thuộc nhóm Numerical
                         // Nếu ko thuộc thì đây là lỗi, khác thì cập nhật giá trị max - min
-                        if (v_column_details.Format == ColumnFormat.Numerical)
+                        if (v_column_details.Format == DataColumnFormat.Numerical)
                         {
                             v_column_details.MaxMinUpdateValue = v_db_value;
                         }
@@ -362,7 +369,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     }
                     else if (DateTime.TryParseExact(v_str_value, m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
                     {
-                        if (v_column_details.Format == ColumnFormat.Date)
+                        if (v_column_details.Format == DataColumnFormat.Date)
                         {
                             var v_str_date = v_dt_date.ToShortDateString();
                             if (v_column_details.Categories.Contains(v_str_date) == false)
@@ -377,7 +384,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     }
                     else if (v_column_details.Categories.Contains(v_str_value) == false)
                     {
-                        if (v_column_details.Format == ColumnFormat.Categorical)
+                        if (v_column_details.Format == DataColumnFormat.Categorical)
                         {
                             v_column_details.Categories.Add(v_str_value);
                         }
@@ -402,12 +409,12 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             #region Format tên cột của bảng
             // Kiểm tra số trạng thái của cột số
             // Nếu số giá trị có chứa trong cột < 5 thì mặc định đặt nó là kiểu (categorical)
-            m_list_cols_name = new List<ColumnDetails>();
+            m_list_cols_name = new List<DataColumnDetails>();
             for (int i = 0; i < v_dataTable.Columns.Count; i++)
             {
-                var v_column_details = (ColumnDetails)v_dataTable.Columns[i].ExtendedProperties["Details"];
+                var v_column_details = (DataColumnDetails)v_dataTable.Columns[i].ExtendedProperties["Details"];
                 m_list_cols_name.Add(v_column_details);
-                if (v_column_details.Format == ColumnFormat.Numerical && v_column_details.NumericCount < 5)
+                if (v_column_details.Format == DataColumnFormat.Numerical && v_column_details.NumericCount < 5)
                 {
                     for (int j = 0; j < v_dataTable.Rows.Count; j++)
                     {
@@ -417,26 +424,26 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                             v_column_details.Categories.Add(v_cate_item);
                         }
                     }
-                    v_column_details.Format = ColumnFormat.Categorical;
+                    v_column_details.Format = DataColumnFormat.Categorical;
                 }
                 // Đặt lại tên cột
-                if (v_column_details.Format == ColumnFormat.Categorical)
+                if (v_column_details.Format == DataColumnFormat.Categorical)
                 {
                     v_dataTable.Columns[i].Caption = string.Format("(C{0}) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
                 }
-                else if (v_column_details.Format == ColumnFormat.Numerical)
+                else if (v_column_details.Format == DataColumnFormat.Numerical)
                 {
                     v_dataTable.Columns[i].Caption = string.Format("(N) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
                 }
-                else if (v_column_details.Format == ColumnFormat.Date)
+                else if (v_column_details.Format == DataColumnFormat.Date)
                 {
                     v_dataTable.Columns[i].Caption = string.Format("(D) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
                 }
-                else if (v_column_details.Format == ColumnFormat.Time)
+                else if (v_column_details.Format == DataColumnFormat.Time)
                 {
                     v_dataTable.Columns[i].Caption = string.Format("(T) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
                 }
-                else if (v_column_details.Format == ColumnFormat.Unknow)
+                else if (v_column_details.Format == DataColumnFormat.Unknow)
                 {
                     v_dataTable.Columns[i].Caption = string.Format("(U) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].Caption);
                 }
@@ -508,7 +515,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     var v_str_tokens = v_str_line.Split(',');
                     for (int j = 0; j < v_str_tokens.Length; j++)
                     {
-                        var v_column_details = new ColumnDetails();
+                        var v_column_details = new DataColumnDetails();
                         v_column_details.ColumnName = v_dataTable.Columns[j].ColumnName;
                         if (string.IsNullOrEmpty(v_str_tokens[j]) == true)
                         {
@@ -519,11 +526,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         else if (double.TryParse(v_str_tokens[j], out v_db_value) == true)
                         {
                             v_column_details.MaxMinUpdateValue = v_db_value;
-                            v_column_details.Format = ColumnFormat.Numerical;
+                            v_column_details.Format = DataColumnFormat.Numerical;
                         }
                         else if (DateTime.TryParseExact(v_str_tokens[j], m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
                         {
-                            v_column_details.Format = ColumnFormat.Date;
+                            v_column_details.Format = DataColumnFormat.Date;
                             if (v_column_details.Categories.Contains(v_dt_date.ToShortDateString()) == false)
                             {
                                 v_column_details.Categories.Add(v_dt_date.ToShortDateString());
@@ -532,7 +539,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         else if (v_column_details.Categories.Contains(v_str_tokens[j]) == false)
                         {
                             v_column_details.Categories.Add(v_str_tokens[j]);
-                            v_column_details.Format = ColumnFormat.Categorical;
+                            v_column_details.Format = DataColumnFormat.Categorical;
                         }
                         v_dataRow[j] = v_str_tokens[j];
                         // CD := Column Details
@@ -554,7 +561,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     // Đọc dữ liệu của mẫu: inputsCount
                     for (int v_col = 0; v_col < v_str_tokens.Length; v_col++)
                     {
-                        var v_column_details = (ColumnDetails)v_dataTable.Columns[v_col].ExtendedProperties["Details"];
+                        var v_column_details = (DataColumnDetails)v_dataTable.Columns[v_col].ExtendedProperties["Details"];
                         if (string.IsNullOrEmpty(v_str_tokens[v_col]) == true)
                         {
                             //v_str_tokens[j] = "null";
@@ -565,7 +572,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         {
                             // Kiểm tra lại giá trị v_str_tokens[j] này có thuộc nhóm Numerical
                             // Nếu ko thuộc thì đây là lỗi, khác thì cập nhật giá trị max - min
-                            if (v_column_details.Format == ColumnFormat.Numerical)
+                            if (v_column_details.Format == DataColumnFormat.Numerical)
                             {
                                 v_column_details.MaxMinUpdateValue = v_db_value;
                             }
@@ -577,7 +584,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         }
                         else if (DateTime.TryParseExact(v_str_tokens[v_col], m_str_date_format, CultureInfo.CurrentCulture, DateTimeStyles.None, out v_dt_date) == true)
                         {
-                            if (v_column_details.Format == ColumnFormat.Date)
+                            if (v_column_details.Format == DataColumnFormat.Date)
                             {
                                 var v_str_date = v_dt_date.ToShortDateString();
                                 if (v_column_details.Categories.Contains(v_str_date) == false)
@@ -593,7 +600,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         }
                         else if (v_column_details.Categories.Contains(v_str_tokens[v_col]) == false)
                         {
-                            if (v_column_details.Format == ColumnFormat.Categorical)
+                            if (v_column_details.Format == DataColumnFormat.Categorical)
                             {
                                 v_column_details.Categories.Add(v_str_tokens[v_col]);
                             }
@@ -628,12 +635,12 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 #region Đặt lại tên cột dữ liệu
                 // Kiểm tra số trạng thái của cột số
                 // Nếu số giá trị có chứa trong cột < 5 thì mặc định đặt nó là kiểu (categorical)
-                m_list_cols_name = new List<ColumnDetails>();
+                m_list_cols_name = new List<DataColumnDetails>();
                 for (int i = 0; i < v_dataTable.Columns.Count; i++)
                 {
-                    var v_column_details = (ColumnDetails)v_dataTable.Columns[i].ExtendedProperties["Details"];
+                    var v_column_details = (DataColumnDetails)v_dataTable.Columns[i].ExtendedProperties["Details"];
                     m_list_cols_name.Add(v_column_details);
-                    if (v_column_details.Format == ColumnFormat.Numerical && v_column_details.NumericCount < 5)
+                    if (v_column_details.Format == DataColumnFormat.Numerical && v_column_details.NumericCount < 5)
                     {
                         for (int j = 0; j < v_dataTable.Rows.Count; j++)
                         {
@@ -643,26 +650,26 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                                 v_column_details.Categories.Add(v_cate_item);
                             }
                         }
-                        v_column_details.Format = ColumnFormat.Categorical;
+                        v_column_details.Format = DataColumnFormat.Categorical;
                     }
                     // Đặt lại tên cột
-                    if (v_column_details.Format == ColumnFormat.Categorical)
+                    if (v_column_details.Format == DataColumnFormat.Categorical)
                     {
                         v_dataTable.Columns[i].Caption = string.Format("(C{0}) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
-                    else if (v_column_details.Format == ColumnFormat.Numerical)
+                    else if (v_column_details.Format == DataColumnFormat.Numerical)
                     {
                         v_dataTable.Columns[i].Caption = string.Format("(N) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
-                    else if (v_column_details.Format == ColumnFormat.Date)
+                    else if (v_column_details.Format == DataColumnFormat.Date)
                     {
                         v_dataTable.Columns[i].Caption = string.Format("(D) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
-                    else if (v_column_details.Format == ColumnFormat.Time)
+                    else if (v_column_details.Format == DataColumnFormat.Time)
                     {
                         v_dataTable.Columns[i].Caption = string.Format("(T) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
-                    else if (v_column_details.Format == ColumnFormat.Unknow)
+                    else if (v_column_details.Format == DataColumnFormat.Unknow)
                     {
                         v_dataTable.Columns[i].Caption = string.Format("(U) {1}", v_column_details.Categories.Count, v_dataTable.Columns[i].ColumnName);
                     }
@@ -672,7 +679,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 
                 #region Mặc định cột cuối cùng là đầu ra
                 var v_output_index = v_dataTable.Columns.Count - 1;
-                ((ColumnDetails)v_dataTable.Columns[v_output_index].ExtendedProperties["Details"]).Type = ColumnType.Ouput;
+                ((DataColumnDetails)v_dataTable.Columns[v_output_index].ExtendedProperties["Details"]).Type = DataColumnType.Ouput;
                 v_dataTable.ExtendedProperties["OutputIndex"] = v_output_index;
                 v_dataTable.ExtendedProperties["OutputCount"] = 1;
                 #endregion

@@ -58,18 +58,18 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 // Duyệt cột vào trước cột ra
                 for (; v_input_index < v_output_index; v_input_index++)
                 {
-                    var v_column_details = ip_dt_samples.Columns[v_input_index].ExtendedProperties["Details"] as ColumnDetails;
+                    var v_column_details = ip_dt_samples.Columns[v_input_index].ExtendedProperties["Details"] as DataColumnDetails;
                     ip_gird_c1flex.Cols[v_input_index].UserData = v_column_details;
                     ip_gird_c1flex.Cols[v_input_index].Name = ip_dt_samples.Columns[v_input_index].ColumnName;
                     ip_gird_c1flex.Cols[v_input_index].Caption = ip_dt_samples.Columns[v_input_index].ColumnName;
 
-                    if (v_column_details.Format == ColumnFormat.Categorical)
+                    if (v_column_details.Format == DataColumnFormat.Categorical)
                     {
                         ip_gird_c1flex.Cols[v_input_index].ComboList = v_column_details.GetCateComboList();
                         ip_gird_c1flex.Cols[v_input_index][2] = "max: n/a";
                         ip_gird_c1flex.Cols[v_input_index][3] = "min: n/a";
                     }
-                    else if (v_column_details.Format == ColumnFormat.Numerical)
+                    else if (v_column_details.Format == DataColumnFormat.Numerical)
                     {
                         // Chưa có chế độ cảnh báo người dùng nhập quá giới hạn min max
                         ip_gird_c1flex.Cols[v_input_index][2] = "max: " + v_column_details.MaxValue;
@@ -84,16 +84,16 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 // Duyệt cột vào sau cột ra
                 for (v_input_index = v_output_index + v_output_count; v_input_index < v_input_count; v_input_index++)
                 {
-                    var v_column_details = ip_dt_samples.Columns[v_input_index].ExtendedProperties["Details"] as ColumnDetails;
+                    var v_column_details = ip_dt_samples.Columns[v_input_index].ExtendedProperties["Details"] as DataColumnDetails;
                     ip_gird_c1flex.Cols[v_input_index].Name = ip_dt_samples.Columns[v_input_index].ColumnName;
                     ip_gird_c1flex.Cols[v_input_index].Caption = ip_dt_samples.Columns[v_input_index].Caption;
-                    if (v_column_details.Format == ColumnFormat.Categorical)
+                    if (v_column_details.Format == DataColumnFormat.Categorical)
                     {
                         ip_gird_c1flex.Cols[v_input_index].ComboList = v_column_details.GetCateComboList();
                         ip_gird_c1flex.Cols[v_input_index][2] = "max: n/a";
                         ip_gird_c1flex.Cols[v_input_index][3] = "min: n/a";
                     }
-                    else if (v_column_details.Format == ColumnFormat.Numerical)
+                    else if (v_column_details.Format == DataColumnFormat.Numerical)
                     {
                         // Chưa có chế độ cảnh báo người dùng nhập quá giới hạn min max
                         ip_gird_c1flex.Cols[v_input_index][2] = "max: " + v_column_details.MaxValue;
@@ -158,8 +158,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         private static void ip_gird_c1flex_CellChanged(object sender, C1.Win.C1FlexGrid.RowColEventArgs e)
         {
             var v_c1flex_grid = sender as C1FlexGrid;
-            var v_column_details = v_c1flex_grid.Cols[e.Col].UserData as ColumnDetails;
-            if (v_column_details.Format != ColumnFormat.Numerical)
+            var v_column_details = v_c1flex_grid.Cols[e.Col].UserData as DataColumnDetails;
+            if (v_column_details.Format != DataColumnFormat.Numerical)
                 return;
             var v_user_value = (double)0;
             if (double.TryParse(v_c1flex_grid[e.Row, e.Col].ToString(), out v_user_value) == false)
@@ -202,8 +202,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         {
             for (int i = 0; i < ip_dt_labeled.Count; i++)
             {
-                var v_cdetails = ip_dt_labeled[i].ExtendedProperties["Details"] as ColumnDetails;
-                if (v_cdetails.Type == ColumnType.Ouput)
+                var v_cdetails = ip_dt_labeled[i].ExtendedProperties["Details"] as DataColumnDetails;
+                if (v_cdetails.Type == DataColumnType.Ouput)
                 {
                     continue;
                 }

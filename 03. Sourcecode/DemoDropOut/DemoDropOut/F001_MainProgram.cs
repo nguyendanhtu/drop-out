@@ -170,9 +170,9 @@ namespace DemoDropOut
             try
             {
                 // gặp lỗi cho các thiết lập đầu ra, tạm thời return
-                return;
-                var v_ouput_index = ((ToolStripComboBox)sender).SelectedIndex;
-                m_dAnalysis_obj.SetOutput(v_ouput_index);
+                //return;
+                //var v_ouput_index = ((ToolStripComboBox)sender).SelectedIndex;
+                //m_dAnalysis_obj.SetOutput(v_ouput_index);
             }
             catch (Exception ex)
             {
@@ -363,7 +363,12 @@ namespace DemoDropOut
                 if (m_dAnalysis_obj == null)
                     return; // Người dùng chưa mở dữ liệu, nên return luôn không cần nhắc nhở gì cả
                 var tabControl = (TabControl)sender;
-                if (tabControl.SelectedTab.Name.Equals(tabTestingPage.Name) == true)
+                if (tabControl.SelectedTab.Name.Equals(tabPreprocessingPage.Name) == true && m_dAnalysis_obj != null)
+                {
+                    //if (m_dPreprocessing_obj == null)
+                    //    this.PreprocessData();
+                }
+                else if (tabControl.SelectedTab.Name.Equals(tabTestingPage.Name) == true && m_dropOutForecast != null)
                 {
                     if (m_dPreprocessing_obj.IsProcessedData == false)
                     {
@@ -394,7 +399,7 @@ namespace DemoDropOut
                         btnTestTrainingSet_Click(tsbtnTestTestSet, e);
                     }
                 }
-                else if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true)
+                else if (tabControl.SelectedTab.Name.Equals(tabQueryPage.Name) == true && m_dropOutForecast != null)
                 {
                     if (m_dPreprocessing_obj.IsProcessedData == false)
                     {
@@ -448,7 +453,6 @@ namespace DemoDropOut
                         DataQueryBlo.FormatResultTable(this.c1TableQueryFlexGrid, v_dt_samples);
                     }
                 }
-                // else if
             }
             catch (Exception ex)
             {
@@ -730,7 +734,7 @@ namespace DemoDropOut
                     if (this.tscboTarget.Items.Count > 0)
                         this.tscboTarget.SelectedIndex = this.tscboTarget.Items.Count - 1;
                     this.PartitionDataset(this.m_traing_partition);
-                    this.PreprocessData();
+                    // this.PreprocessData();
                     this.Text = string.Format("{0} - DropOut Forecast", Path.GetFileName(v_openFileDialog.FileName));
                     this.tabControl1.SelectedTab = this.tabAnalysisPage;
                 }
@@ -800,12 +804,16 @@ namespace DemoDropOut
         {
             this.c1RawDataFlexGrid.DrawMode = DrawModeEnum.OwnerDraw;
             this.c1RawDataFlexGrid.OwnerDrawCell += new OwnerDrawCellEventHandler(c1FlexGrid_OwnerDrawCell);
+            this.c1RawDataFlexGrid.MouseClick += new MouseEventHandler(c1RawDataFlexGrid_MouseClick);
             this.chartErrorTraining.AddDataSeries("TrnError", Color.Red, AForge.Controls.Chart.SeriesType.Line, 1);
             this.chartErrorTraining.AddDataSeries("VldError", Color.Green, AForge.Controls.Chart.SeriesType.Line, 1);   // mặc định là true;
             this.chartErrorTraining.AddDataSeries("Overfit", Color.Blue, AForge.Controls.Chart.SeriesType.Line, 1, false);     // dữ liệu này không làm thay đổi hiển thị trên trục Y
 
             // form
             this.FormClosing += new FormClosingEventHandler(F001_MainProgram_FormClosing);
+
+            // analytics
+            this.createHandlerContextMenu();
 
             // Dropout Forecast
             //m_dAnalysis_obj = new DataAnalysisBlo();
@@ -819,11 +827,47 @@ namespace DemoDropOut
             #endregion
         }
 
-        void F001_MainProgram_FormClosing(object sender, FormClosingEventArgs e)
+        private void createHandlerContextMenu()
+        {
+            this.contextColumnType.Items.Clear();
+            var v_mn_1 = new ToolStripMenuItem("Mark as Categorical");
+            var v_mn_2 = new ToolStripMenuItem("Mark as Numerical");
+            var v_mn_3 = new ToolStripMenuItem("Mark as Date");
+            var v_mn_4 = new ToolStripMenuItem("Mark as Time");
+            // tag
+            v_mn_1.Tag = DataColumnFormat.Categorical;
+            v_mn_2.Tag = DataColumnFormat.Numerical;
+            v_mn_3.Tag = DataColumnFormat.Date;
+            v_mn_4.Tag = DataColumnFormat.Time;
+            // click
+            v_mn_1.Click += new EventHandler(tsMenuSetColumnType_Click);
+            v_mn_2.Click += new EventHandler(tsMenuSetColumnType_Click);
+            v_mn_3.Click += new EventHandler(tsMenuSetColumnType_Click);
+            // v_mn_4.Click += new EventHandler(tsMenuSetColumnType_Click);
+            this.contextColumnType.Items.Add(v_mn_1);
+            this.contextColumnType.Items.Add(v_mn_2);
+            this.contextColumnType.Items.Add(v_mn_3);
+            this.contextColumnType.Items.Add(v_mn_4);
+        }
+
+        private void tsMenuSetColumnType_Click(object sender, EventArgs e)
         {
             try
             {
-                btnStop_Click(btnStop, e);
+                if (contextColumnType.Tag == null)
+                    throw new NotImplementedException("Không lấy được thông tin cột dữ liệu");
+                var v_c1_column = (int)contextColumnType.Tag;
+                var v_mn_context = sender as ToolStripMenuItem;
+                var v_data_column_format = (DataColumnFormat)v_mn_context.Tag;
+                m_dAnalysis_obj.SetDataColumnFormat(v_c1_column - 1, v_data_column_format);
+                if (v_data_column_format == DataColumnFormat.Categorical)
+                {
+                    c1RawDataFlexGrid.Cols[v_c1_column].Caption = string.Format("({0}{1}) {2}", v_data_column_format.ToString().Substring(0, 1), ((DataColumnDetails)c1RawDataFlexGrid.Cols[v_c1_column].UserData).Categories.Count, c1RawDataFlexGrid.Cols[v_c1_column].Name);
+                }
+                else
+                {
+                    c1RawDataFlexGrid.Cols[v_c1_column].Caption = string.Format("({0}) {1}", v_data_column_format.ToString().Substring(0, 1), c1RawDataFlexGrid.Cols[v_c1_column].Name);
+                }
             }
             catch (Exception ex)
             {
@@ -831,7 +875,36 @@ namespace DemoDropOut
             }
         }
 
-        public void c1FlexGrid_OwnerDrawCell(object sender, OwnerDrawCellEventArgs e)
+        private void c1RawDataFlexGrid_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                var v_c1 = sender as C1FlexGrid;
+                if (e.Button == MouseButtons.Right && v_c1.MouseCol > 0 && v_c1.MouseRow == 0)
+                {
+                    contextColumnType.Show(v_c1, e.X, e.Y);
+                    contextColumnType.Tag = v_c1.MouseCol;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void F001_MainProgram_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                btnStop_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void c1FlexGrid_OwnerDrawCell(object sender, OwnerDrawCellEventArgs e)
         {
             var flex = (C1FlexGrid)sender;
             if ((e.Row >= flex.Rows.Fixed) & (e.Col == (flex.Cols.Fixed - 1)))

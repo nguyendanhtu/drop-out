@@ -13,6 +13,10 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
 {
     public class DataPreprocessingBlo
     {
+        public DataPreprocessingBlo()
+        {
+
+        }
         /// <summary>
         ///Julian date start
         /// </summary>
@@ -118,7 +122,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var v_col = v_table.Columns.IndexOf(column);
             var v_table_ = new DataTable();
             v_table_.Columns.Add(column.ColumnName);
-            var v_column_details = (ColumnDetails)column.ExtendedProperties["Details"];
+            var v_column_details = (DataColumnDetails)column.ExtendedProperties["Details"];
             var sf = v_column_details.ScalingFactor; // scaling factor
             for (int i = 0; i < v_table.Rows.Count; i++)
             {
@@ -176,7 +180,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         /// <param name="rowsCount"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        private DataTable EncodeDateTime(DataColumn column, ColumnFormat format)
+        private DataTable EncodeDateTime(DataColumn column, DataColumnFormat format)
         {
             var v_table = column.Table;
             var v_col = v_table.Columns.IndexOf(column);
@@ -185,12 +189,12 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             v_table_enc.Columns.Add(column.ColumnName + ": cos"); // cosine column
             // Format column
             var periodicity = 7;
-            if (format == ColumnFormat.Date)
+            if (format == DataColumnFormat.Date)
             {
                 periodicity = 7;
                 //goto lbl_parse_date;
             }
-            else if (format == ColumnFormat.Time)
+            else if (format == DataColumnFormat.Time)
             {
                 periodicity = 24;
                 //goto lbl_parse_time;
@@ -312,7 +316,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             return v_table_enc;
         }
 
-        public DataTable DecodeCategoricalColumnByBinary(double[][] ip_db_outputs, ColumnDetails ip_column_details)
+        public DataTable DecodeCategoricalColumnByBinary(double[][] ip_db_outputs, DataColumnDetails ip_column_details)
         {
             var category = ip_column_details.Categories;
             var v_outputs_count = ip_db_outputs.GetLength(0);
@@ -375,20 +379,20 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             for (int i = 0; i < ip_raw_data.Columns.Count; i++)
             {
                 var v_column_ = ip_raw_data.Columns[i];
-                var v_column_details = (ColumnDetails)v_column_.ExtendedProperties["Details"];
+                var v_column_details = (DataColumnDetails)v_column_.ExtendedProperties["Details"];
                 DataTable v_table_ = null;
                 switch (v_column_details.Format)
                 {
-                    case ColumnFormat.Numerical:
+                    case DataColumnFormat.Numerical:
                         v_table_ = EncodeNumeric(v_column_);
                         break;
-                    case ColumnFormat.Date:
-                        v_table_ = EncodeDateTime(v_column_, ColumnFormat.Date);
+                    case DataColumnFormat.Date:
+                        v_table_ = EncodeDateTime(v_column_, DataColumnFormat.Date);
                         break;
-                    case ColumnFormat.Time:
-                        v_table_ = EncodeDateTime(v_column_, ColumnFormat.Time);
+                    case DataColumnFormat.Time:
+                        v_table_ = EncodeDateTime(v_column_, DataColumnFormat.Time);
                         break;
-                    case ColumnFormat.Categorical:
+                    case DataColumnFormat.Categorical:
                     default:
                         if (this.m_cate_enc == CategoricalEncoding.Binary)
                         {
@@ -402,7 +406,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                 }
                 if (v_table_ == null)
                     continue;
-                if (v_column_details.Type == ColumnType.Ouput)
+                if (v_column_details.Type == DataColumnType.Ouput)
                 {
                     v_enc_data.ExtendedProperties["OutputIndex"] = v_enc_data.Columns.Count;
                     v_enc_data.ExtendedProperties["OutputCount"] = v_table_.Columns.Count;
