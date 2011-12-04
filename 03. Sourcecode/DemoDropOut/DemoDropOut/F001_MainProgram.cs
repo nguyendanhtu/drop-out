@@ -708,7 +708,7 @@ namespace DemoDropOut
 
         #region Analysis Tab Handler: Xử lý các sự kiện phân tích dữ liệu
 
-        private void tsbtnOpenRawData_ButtonClick(object sender, EventArgs e)
+        private void btnOpenRawData_ButtonClick(object sender, EventArgs e)
         {
             try
             {
@@ -745,7 +745,7 @@ namespace DemoDropOut
             }
         }
 
-        private void tsbtnPartition1_ButtonClick(object sender, EventArgs e)
+        private void btnPartition1_ButtonClick(object sender, EventArgs e)
         {
             try
             {
@@ -758,7 +758,7 @@ namespace DemoDropOut
             }
         }
 
-        private void tsbtnOpenRawData_DropDownOpening(object sender, EventArgs e)
+        private void btnOpenRawData_DropDownOpening(object sender, EventArgs e)
         {
             try
             {
@@ -770,7 +770,7 @@ namespace DemoDropOut
             }
         }
 
-        private void tsbtnOpenRawData_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void btnOpenRawData_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             try
             {

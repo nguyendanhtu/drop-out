@@ -23,6 +23,7 @@ namespace DemoDropOut.Apps.DataAccessLayer
                 v_reader = new StreamReader(v_fstream);
                 var v_str_line = string.Empty;
                 // Khởi tạo bảng thông tin
+                #region Tạo header
                 if ((v_str_line = v_reader.ReadLine()) != null)
                 {
                     var v_str_tokens = v_str_line.Split(',');
@@ -48,7 +49,7 @@ namespace DemoDropOut.Apps.DataAccessLayer
                             var v_dataRow = v_dataTable.NewRow();
                             for (j = 0; j < v_str_tokens.Length; j++)
                             {
-                                v_dataRow[j] = double.Parse(v_str_tokens[j]);
+                                v_dataRow[j] = v_str_tokens[j];
                             }
 
                             // thêm được 1 mẫu mới: v_dataRow
@@ -63,6 +64,8 @@ namespace DemoDropOut.Apps.DataAccessLayer
                         v_dataTable.Columns.Add(v_dataCol);
                     }
                 }
+                #endregion
+
                 while ((v_str_line = v_reader.ReadLine()) != null)
                 {
                     // Chỉ đọc định dạng được ngăn cách bởi dấu ',' ở mỗi dòng

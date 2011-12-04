@@ -1800,9 +1800,9 @@
             this.tsbtnOpenRawData.Name = "tsbtnOpenRawData";
             this.tsbtnOpenRawData.Size = new System.Drawing.Size(32, 22);
             this.tsbtnOpenRawData.Text = "Open";
-            this.tsbtnOpenRawData.ButtonClick += new System.EventHandler(this.tsbtnOpenRawData_ButtonClick);
-            this.tsbtnOpenRawData.DropDownOpening += new System.EventHandler(this.tsbtnOpenRawData_DropDownOpening);
-            this.tsbtnOpenRawData.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsbtnOpenRawData_DropDownItemClicked);
+            this.tsbtnOpenRawData.ButtonClick += new System.EventHandler(this.btnOpenRawData_ButtonClick);
+            this.tsbtnOpenRawData.DropDownOpening += new System.EventHandler(this.btnOpenRawData_DropDownOpening);
+            this.tsbtnOpenRawData.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.btnOpenRawData_DropDownItemClicked);
             // 
             // tsbtnSave
             // 
@@ -1845,7 +1845,7 @@
             this.tsbtnPartition1.Name = "tsbtnPartition1";
             this.tsbtnPartition1.Size = new System.Drawing.Size(84, 22);
             this.tsbtnPartition1.Text = "Partition";
-            this.tsbtnPartition1.ButtonClick += new System.EventHandler(this.tsbtnPartition1_ButtonClick);
+            this.tsbtnPartition1.ButtonClick += new System.EventHandler(this.btnPartition1_ButtonClick);
             // 
             // btnPartitionOptions
             // 
