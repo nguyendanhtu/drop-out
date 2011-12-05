@@ -250,6 +250,7 @@
             // 
             // txtQuickPropagationCoefficientBox
             // 
+            this.txtQuickPropagationCoefficientBox.Enabled = false;
             this.txtQuickPropagationCoefficientBox.Location = new System.Drawing.Point(200, 24);
             this.txtQuickPropagationCoefficientBox.Name = "txtQuickPropagationCoefficientBox";
             this.txtQuickPropagationCoefficientBox.Size = new System.Drawing.Size(101, 21);

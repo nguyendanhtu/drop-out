@@ -38,6 +38,11 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         //private DataTable m_dt_validation_set;
         //private DataTable m_dt_test_set;
 
+        public int TotalSamplesCount
+        {
+            get { return m_dt_analyzed_set == null ? 0 : m_dt_analyzed_set.Rows.Count; }
+        }
+
         public DataTable AnalyzedDataSet
         {
             get
