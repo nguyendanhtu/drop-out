@@ -112,9 +112,9 @@
             this.lbNetArchitectureRecommend.AutoSize = true;
             this.lbNetArchitectureRecommend.Location = new System.Drawing.Point(12, 97);
             this.lbNetArchitectureRecommend.Name = "lbNetArchitectureRecommend";
-            this.lbNetArchitectureRecommend.Size = new System.Drawing.Size(207, 13);
+            this.lbNetArchitectureRecommend.Size = new System.Drawing.Size(215, 13);
             this.lbNetArchitectureRecommend.TabIndex = 0;
-            this.lbNetArchitectureRecommend.Text = "Network Architecture Recomend: 0 - 0 - 0";
+            this.lbNetArchitectureRecommend.Text = "Network Architecture Recommend: 0 - 0 - 0";
             // 
             // txtInputNeurons
             // 
@@ -148,9 +148,9 @@
             this.chkDesignNet.AutoSize = true;
             this.chkDesignNet.Location = new System.Drawing.Point(15, 118);
             this.chkDesignNet.Name = "chkDesignNet";
-            this.chkDesignNet.Size = new System.Drawing.Size(120, 17);
+            this.chkDesignNet.Size = new System.Drawing.Size(95, 17);
             this.chkDesignNet.TabIndex = 3;
-            this.chkDesignNet.Text = "Design Architecture";
+            this.chkDesignNet.Text = "Manual Design";
             this.chkDesignNet.UseVisualStyleBackColor = true;
             this.chkDesignNet.CheckedChanged += new System.EventHandler(this.chkDesignNet_CheckedChanged);
             // 

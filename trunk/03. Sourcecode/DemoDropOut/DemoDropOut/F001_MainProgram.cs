@@ -472,7 +472,7 @@ namespace DemoDropOut
             var ouput = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input.ToDoubles()) : m_dropOutForecast.ComputeOutputs(input);
 
             var v_output_details = m_dAnalysis_obj.GetOuput();
-            var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumnByBinary(ouput, v_output_details);
+            var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumn(ouput, v_output_details, m_dPreprocessing_obj.CategoricalEncoding);
 
             var v_dt_result = DataTestingBlo.CompareResultTable(v_dt_output, ip_dt_dataset);
             var v_db_ccr = (double)v_dt_result.ExtendedProperties["CCR"];
@@ -917,10 +917,12 @@ namespace DemoDropOut
 
         #region Preprocessing Tab Handler: Tiền xử lý dữ liệu
 
+        private CategoricalEncoding m_cate_enc;
+
         private void PreprocessData()
         {
             m_dPreprocessing_obj = new DataPreprocessingBlo();
-            m_dPreprocessing_obj.CategoricalEncoding = CategoricalEncoding.Binary;
+            m_dPreprocessing_obj.CategoricalEncoding = m_cate_enc;//CategoricalEncoding.OneOfN;// CategoricalEncoding.Binary;
             m_dPreprocessing_obj.DateEncoding = DateEncoding.Weekly;
             m_dPreprocessing_obj.TrainingSet = m_dAnalysis_obj.TrainingSet;
             m_dPreprocessing_obj.ValidationSet = m_dAnalysis_obj.ValidationSet;
@@ -966,14 +968,15 @@ namespace DemoDropOut
         {
             try
             {
+                if (m_dAnalysis_obj == null)
+                    return;
+                m_traing_partition.Total = m_dAnalysis_obj.TotalSamplesCount;
                 var frmPartitionOptions = new F004_DataPartitionOptions();
                 frmPartitionOptions.LoadPartition(m_traing_partition);
                 var v_dr_result = frmPartitionOptions.ShowDialog(this);
                 if (v_dr_result == DialogResult.OK)
                 {
-                    this.m_traing_partition.TrainPcent = frmPartitionOptions.TrainingPercentage;
-                    this.m_traing_partition.ValidPcent = frmPartitionOptions.ValidtionPercentage;
-                    this.m_traing_partition.TestPcent = frmPartitionOptions.TestPercentage;
+                    this.m_traing_partition = frmPartitionOptions.DataPartition;
                 }
             }
             catch (Exception ex)
@@ -1009,6 +1012,27 @@ namespace DemoDropOut
                         this.lbNetArchitecture.Text = m_dropOutForecast.ToString();
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnPreprocessingOptions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (m_dPreprocessing_obj == null)
+                //    return;
+                var frmPreprocessingOption = new F005_PreprocessingOptions();
+                frmPreprocessingOption.SetCategoricalEnc(m_cate_enc);
+                var v_dr_result = frmPreprocessingOption.ShowDialog();
+                if (v_dr_result == DialogResult.OK)
+                {
+                    m_cate_enc = frmPreprocessingOption.CategoricalEncoding;
+                }
+
             }
             catch (Exception ex)
             {

@@ -198,7 +198,6 @@
             this.tsbtnOpenRawData = new System.Windows.Forms.ToolStripSplitButton();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsbtnAnalyze1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.datasetOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featureSelectionToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbtnPartition1 = new System.Windows.Forms.ToolStripSplitButton();
             this.btnPartitionOptions = new System.Windows.Forms.ToolStripMenuItem();
@@ -1031,7 +1030,7 @@
             this.chartErrorTraining.Location = new System.Drawing.Point(0, 45);
             this.chartErrorTraining.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.chartErrorTraining.Name = "chartErrorTraining";
-            this.chartErrorTraining.Size = new System.Drawing.Size(620, 353);
+            this.chartErrorTraining.Size = new System.Drawing.Size(625, 353);
             this.chartErrorTraining.TabIndex = 2;
             this.chartErrorTraining.Text = "Error Chart";
             // 
@@ -1047,7 +1046,7 @@
             this.lbNetArchitecture});
             this.tsTrainingControl.Location = new System.Drawing.Point(0, 20);
             this.tsTrainingControl.Name = "tsTrainingControl";
-            this.tsTrainingControl.Size = new System.Drawing.Size(620, 25);
+            this.tsTrainingControl.Size = new System.Drawing.Size(625, 25);
             this.tsTrainingControl.TabIndex = 1;
             this.tsTrainingControl.Text = "toolStrip5";
             // 
@@ -1103,7 +1102,7 @@
             this.controlTitle6.Dock = System.Windows.Forms.DockStyle.Top;
             this.controlTitle6.Location = new System.Drawing.Point(0, 0);
             this.controlTitle6.Name = "controlTitle6";
-            this.controlTitle6.Size = new System.Drawing.Size(620, 20);
+            this.controlTitle6.Size = new System.Drawing.Size(625, 20);
             this.controlTitle6.TabIndex = 0;
             this.controlTitle6.Title = "Graph Visualize Error";
             // 
@@ -1115,7 +1114,7 @@
             this.collapsibleSplitter3.ControlToHide = this.panelTrainingReport;
             this.collapsibleSplitter3.Dock = System.Windows.Forms.DockStyle.Right;
             this.collapsibleSplitter3.ExpandParentForm = false;
-            this.collapsibleSplitter3.Location = new System.Drawing.Point(620, 0);
+            this.collapsibleSplitter3.Location = new System.Drawing.Point(625, 0);
             this.collapsibleSplitter3.Name = "collapsibleSplitter3";
             this.collapsibleSplitter3.TabIndex = 4;
             this.collapsibleSplitter3.TabStop = false;
@@ -1816,19 +1815,12 @@
             // tsbtnAnalyze1
             // 
             this.tsbtnAnalyze1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.datasetOptionsToolStripMenuItem,
             this.featureSelectionToolStripMenuItem2});
             this.tsbtnAnalyze1.Image = global::DemoDropOut.Properties.Resources.analyze_icon_1;
             this.tsbtnAnalyze1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnAnalyze1.Name = "tsbtnAnalyze1";
             this.tsbtnAnalyze1.Size = new System.Drawing.Size(80, 22);
             this.tsbtnAnalyze1.Text = "Analyze";
-            // 
-            // datasetOptionsToolStripMenuItem
-            // 
-            this.datasetOptionsToolStripMenuItem.Name = "datasetOptionsToolStripMenuItem";
-            this.datasetOptionsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.datasetOptionsToolStripMenuItem.Text = "Dataset Options...";
             // 
             // featureSelectionToolStripMenuItem2
             // 
@@ -1873,8 +1865,9 @@
             // datasetOptionsToolStripMenuItem1
             // 
             this.datasetOptionsToolStripMenuItem1.Name = "datasetOptionsToolStripMenuItem1";
-            this.datasetOptionsToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
-            this.datasetOptionsToolStripMenuItem1.Text = "Dataset Options...";
+            this.datasetOptionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.datasetOptionsToolStripMenuItem1.Text = "Options...";
+            this.datasetOptionsToolStripMenuItem1.Click += new System.EventHandler(this.btnPreprocessingOptions_Click);
             // 
             // toolStripSeparator3
             // 
@@ -2131,7 +2124,6 @@
         private System.Windows.Forms.ToolStripSplitButton tsbtnTrain1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSplitButton tsbtnAnalyze1;
-        private System.Windows.Forms.ToolStripMenuItem datasetOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem featureSelectionToolStripMenuItem2;
         private System.Windows.Forms.ToolStripButton tsbtnSave;
         private System.Windows.Forms.ToolStripSplitButton tsbtnOpenRawData;

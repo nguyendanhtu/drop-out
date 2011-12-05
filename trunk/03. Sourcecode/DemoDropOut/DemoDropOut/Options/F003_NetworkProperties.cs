@@ -94,7 +94,7 @@ namespace DemoDropOut.Options
                 this.txtHiddenNeurons.Text = m_net_parameters.HiddenNeurons.ToString();
                 this.txtOutputNeurons.Text = m_net_parameters.OutputNeurons.ToString();
 
-                this.lbNetArchitectureRecommend.Text = string.Format("Network Architecture Recomend: {0} - {1} - {2}", m_net_parameters.InputNeurons, m_net_parameters.GenerateHiddenNeurons(), m_net_parameters.OutputFunction);
+                this.lbNetArchitectureRecommend.Text = string.Format("Network Architecture Recommend: {0} - {1} - {2}", m_net_parameters.InputNeurons, m_net_parameters.GenerateHiddenNeurons(), m_net_parameters.OutputNeurons);
             }
             catch (Exception ex)
             {

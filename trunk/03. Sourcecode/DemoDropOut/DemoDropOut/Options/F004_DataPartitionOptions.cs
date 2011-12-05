@@ -6,34 +6,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DemoDropOut.Apps.Objects;
 
 namespace DemoDropOut.Options
 {
     public partial class F004_DataPartitionOptions : Form
     {
-        private double m_db_TrnPercent;
-        private double m_db_VldPercent;
-        private double m_db_TstPercent;
+        /// <summary>
+        /// Tùy chỉnh phân tập dữ liệu
+        /// </summary>
+        private DataPartitionOptions m_dt_partition;
 
-        public double TrainingPercentage
+        public DataPartitionOptions DataPartition
         {
-            get { return m_db_TrnPercent; }
-        }
-
-        public double ValidtionPercentage
-        {
-            get { return m_db_VldPercent; }
-        }
-
-        public double TestPercentage
-        {
-            get { return m_db_TstPercent; }
+            get { return m_dt_partition; }
+            set { m_dt_partition = value; }
         }
 
         public F004_DataPartitionOptions()
         {
             InitializeComponent();
-            this.btnOK.DialogResult = DialogResult.OK;
         }
 
         private void btnDefault_Click(object sender, EventArgs e)
@@ -52,7 +44,14 @@ namespace DemoDropOut.Options
         {
             try
             {
-                SetParameters();
+                this.m_dt_partition.TrainPcent = double.Parse(this.txtPercentOfTrnSet.Text.Trim());
+                this.m_dt_partition.ValidPcent = double.Parse(this.txtPercentOfVldSet.Text.Trim());
+                this.m_dt_partition.TestPcent = double.Parse(this.txtPercentOfTstSet.Text.Trim());
+                if (m_dt_partition.IsOne() == false)
+                {
+                    throw new Exception("Invalid partition.\r\nSum is not equals to One!");
+                }
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -67,22 +66,37 @@ namespace DemoDropOut.Options
             this.txtPercentOfTstSet.Text = "0.16";
         }
 
-        private void SetParameters()
-        {
-            this.m_db_TrnPercent = double.Parse(this.txtPercentOfTrnSet.Text.Trim());
-            this.m_db_VldPercent = double.Parse(this.txtPercentOfVldSet.Text.Trim());
-            this.m_db_TstPercent = double.Parse(this.txtPercentOfTstSet.Text.Trim());
-            if ((m_db_TrnPercent + m_db_VldPercent + m_db_TstPercent) != 1)
-            {
-                throw new Exception("Sum is not equals to One");
-            }
-        }
-
-        internal void LoadPartition(DemoDropOut.Apps.Objects.DataPartitionOptions ip_pOptions)
+        internal void LoadPartition(DataPartitionOptions ip_pOptions)
         {
             this.txtPercentOfTrnSet.Text = ip_pOptions.TrainPcent.ToString();
             this.txtPercentOfVldSet.Text = ip_pOptions.ValidPcent.ToString();
             this.txtPercentOfTstSet.Text = ip_pOptions.TestPcent.ToString();
+            this.lbTrainingCount.Text = ip_pOptions.GetTrainCount().ToString();
+            this.lbValidationCount.Text = ip_pOptions.GetValidCount().ToString();
+            this.lbTestCount.Text = ip_pOptions.GetTestCount().ToString();
+            this.lbTotalCount.Text = ip_pOptions.Total.ToString();
+            this.Tag = ip_pOptions;
+            m_dt_partition = ip_pOptions;
+        }
+
+        private void txtPercentOfDataSet_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var txtPercentBox = sender as TextBox;
+                    this.m_dt_partition.TrainPcent = double.Parse(this.txtPercentOfTrnSet.Text.Trim());
+                    this.m_dt_partition.ValidPcent = double.Parse(this.txtPercentOfVldSet.Text.Trim());
+                    this.m_dt_partition.TestPcent = double.Parse(this.txtPercentOfTstSet.Text.Trim());
+                    if (m_dt_partition.IsOne() == true)
+                    {
+                        this.lbTrainingCount.Text = m_dt_partition.GetTrainCount().ToString();
+                        this.lbValidationCount.Text = m_dt_partition.GetValidCount().ToString();
+                        this.lbTestCount.Text = m_dt_partition.GetTestCount().ToString();
+                    }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

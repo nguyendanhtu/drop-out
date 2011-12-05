@@ -33,6 +33,7 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
         public CategoricalEncoding CategoricalEncoding
         {
             set { m_cate_enc = value; }
+            get { return m_cate_enc; }
         }
         /// <summary>
         /// Date Encoding
@@ -237,7 +238,6 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             var v_table = column.Table;
             var v_col = v_table.Columns.IndexOf(column);
             var v_cat_count = category.Count;
-            // var v_enc_cols = new ColumnCollection(v_cat_count, 0, 10, 500, 150, "Chưa biết là gì?");
             var v_table_enc = new DataTable(column.ColumnName);
 
             // Đặt tên cột
@@ -262,14 +262,44 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                         v_new_row[j] = 0;
                     }
                 }
+                v_table_enc.Rows.Add(v_new_row);
             }
 
             return v_table_enc;
         }
-
-        private DataTable DecodeCategoricalColumnByOneOfN(DataColumnCollection columnCollection, int rowsCount, params string[] category)
+        /// <summary>
+        /// Khuyến cáo sử dụng mã hóa dạng One-Of-N
+        /// Bởi vì tính tự do của mạng
+        /// Và quá trính giải mã không bị mất dữ liệu
+        /// ( Không giống như trường hợp Binary chỉ số vượt khỏi danh sách
+        /// </summary>
+        /// <param name="ip_db_outputs"></param>
+        /// <param name="ip_column_details"></param>
+        /// <returns></returns>
+        private DataTable DecodeCategoricalColumnByOneOfN(double[][] ip_db_outputs, DataColumnDetails ip_column_details)
         {
-            throw new NotImplementedException();
+            var category = ip_column_details.Categories;
+            var v_ouputs_count = ip_db_outputs.GetLength(0);
+            var v_cat_count = category.Count;
+
+            var v_dt_table = new DataTable();
+            v_dt_table.Columns.Add(ip_column_details.ColumnName);
+            for (int i = 0; i < v_ouputs_count; i++)
+            {
+                for (int j = 0; j < v_cat_count; j++)
+                {
+                    var v_db_ouput = (int)Math.Round(ip_db_outputs[i][j]);
+                    if (v_db_ouput == 1)
+                    {
+                        var v_new_row = v_dt_table.NewRow();
+                        v_new_row[0] = category[j];
+                        v_dt_table.Rows.Add(v_new_row);
+                        break;
+                    }
+                }
+            }
+
+            return v_dt_table;
         }
 
         private DataTable EncodeCategoricalComlumnByBinary(DataColumn column, IList<string> category)
@@ -314,6 +344,22 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             }
 
             return v_table_enc;
+        }
+
+        public DataTable DecodeCategoricalColumn(double[][] ip_db_ouputs, DataColumnDetails ip_column_details, CategoricalEncoding enc)
+        {
+            if (enc == CategoricalEncoding.OneOfN)
+            {
+                return DecodeCategoricalColumnByOneOfN(ip_db_ouputs, ip_column_details);
+            }
+            else if (enc == CategoricalEncoding.Binary)
+            {
+                return DecodeCategoricalColumnByBinary(ip_db_ouputs, ip_column_details);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public DataTable DecodeCategoricalColumnByBinary(double[][] ip_db_outputs, DataColumnDetails ip_column_details)
