@@ -375,7 +375,7 @@ namespace DemoDropOut
                         var v_dr_result = MessageBox.Show("Dataset has not preprocessed!\r\rWould you like automate them", "Preprocess Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (v_dr_result == DialogResult.Yes)
                         {
-                            tsbtnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
+                            btnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
                         }
                         else
                         {
@@ -406,7 +406,7 @@ namespace DemoDropOut
                         var v_dr_result = MessageBox.Show("Dataset has not preprocessed!\r\rWould you like automate them", "Preprocess Now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (v_dr_result == DialogResult.Yes)
                         {
-                            tsbtnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
+                            btnPreprocess1_ButtonClick(tsbtnPreprocess1, e);
                         }
                         else
                         {
@@ -947,7 +947,7 @@ namespace DemoDropOut
             C1Helper.LoadDataTableToC1Grid(c1ProcessedDataFlexGrid, v_table);
         }
 
-        private void tsbtnPreprocess1_ButtonClick(object sender, EventArgs e)
+        private void btnPreprocess1_ButtonClick(object sender, EventArgs e)
         {
             try
             {
