@@ -286,17 +286,37 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
             v_dt_table.Columns.Add(ip_column_details.ColumnName);
             for (int i = 0; i < v_ouputs_count; i++)
             {
-                for (int j = 0; j < v_cat_count; j++)
+                var v_new_row = v_dt_table.NewRow();
+
+                #region Version 1: Có thể không tìm được lời giải
+                //for (int j = 0; j < v_cat_count; j++)
+                //{
+                //    var v_db_ouput = (int)Math.Round(ip_db_outputs[i][j]);
+                //    if (v_db_ouput == 1)
+                //    {
+                //        v_new_row[0] = category[j];
+                //        break;
+                //    }
+                //}
+                #endregion
+
+                #region Version 2: Chắc chắn là tìm được lời giải
+                // Tìm thằng có chỉ số lớn nhất trong category. :D (One Of N)
+                var index = 0;    // Chỉ số có giá trị lớn nhất
+                var max_value = ip_db_outputs[i][index];    // Gán giá trị lớn nhất (giả sử)
+
+                for (int j = index + 1; j < v_cat_count; j++)
                 {
-                    var v_db_ouput = (int)Math.Round(ip_db_outputs[i][j]);
-                    if (v_db_ouput == 1)
+                    if (ip_db_outputs[i][j] > max_value)
                     {
-                        var v_new_row = v_dt_table.NewRow();
-                        v_new_row[0] = category[j];
-                        v_dt_table.Rows.Add(v_new_row);
-                        break;
+                        index = j;
+                        max_value = ip_db_outputs[i][j];
                     }
                 }
+                v_new_row[0] = category[index];
+                #endregion
+                // Add row was decoded.
+                v_dt_table.Rows.Add(v_new_row);
             }
 
             return v_dt_table;
@@ -385,6 +405,8 @@ namespace DemoDropOut.Apps.BussinessLogicLayer
                     v_cate_index = (v_cate_index << 1) | v_binary_value;
                     if (v_cate_index >= category.Count)
                     {
+                        // Không tìm được lời giải
+                        // --> Sử dụng hàm Predict()
                     }
                 }
                 var v_dt_row = v_dt_table.NewRow();

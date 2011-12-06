@@ -468,8 +468,9 @@ namespace DemoDropOut
             var v_output_index = (int)v_dt_copy.ExtendedProperties["OutputIndex"];
             v_dt_copy.Columns.RemoveAt(v_output_index);
 
-            var input = m_dPreprocessing_obj.Preprocessing(v_dt_copy);
-            var ouput = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input.ToDoubles()) : m_dropOutForecast.ComputeOutputs(input);
+            var dataset = m_dPreprocessing_obj.Preprocessing(v_dt_copy);
+            var input = dataset.ToDoubles();
+            var ouput = chkUseBestNetwork.Checked == true ? m_best_forecast.ComputeOutput(input) : m_dropOutForecast.ComputeOutputs(input);
 
             var v_output_details = m_dAnalysis_obj.GetOuput();
             var v_dt_output = m_dPreprocessing_obj.DecodeCategoricalColumn(ouput, v_output_details, m_dPreprocessing_obj.CategoricalEncoding);
@@ -489,7 +490,8 @@ namespace DemoDropOut
                 this.tsbtnTestValidationSet.Checked = false;
 
                 var v_dt_training_set = m_dAnalysis_obj.TrainingSet;
-                tsLabelMeanCCR.Text = string.Format("Mean CCR: {0}", TestDataset(v_dt_training_set));
+                var ccr = TestDataset(v_dt_training_set);
+                tsLabelMeanCCR.Text = string.Format("Mean CCR: {0}", ccr);
             }
             catch (Exception ex)
             {
