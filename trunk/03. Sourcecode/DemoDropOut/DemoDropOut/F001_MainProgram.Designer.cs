@@ -1860,7 +1860,7 @@
             this.tsbtnPreprocess1.Name = "tsbtnPreprocess1";
             this.tsbtnPreprocess1.Size = new System.Drawing.Size(96, 22);
             this.tsbtnPreprocess1.Text = "Preprocess";
-            this.tsbtnPreprocess1.ButtonClick += new System.EventHandler(this.tsbtnPreprocess1_ButtonClick);
+            this.tsbtnPreprocess1.ButtonClick += new System.EventHandler(this.btnPreprocess1_ButtonClick);
             // 
             // datasetOptionsToolStripMenuItem1
             // 
