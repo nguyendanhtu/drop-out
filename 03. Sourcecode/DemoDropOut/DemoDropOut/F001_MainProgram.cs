@@ -919,7 +919,7 @@ namespace DemoDropOut
 
         #region Preprocessing Tab Handler: Tiền xử lý dữ liệu
 
-        private CategoricalEncoding m_cate_enc;
+        private CategoricalEncoding m_cate_enc = CategoricalEncoding.Binary;
 
         private void PreprocessData()
         {
