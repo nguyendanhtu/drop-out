@@ -1,0 +1,175 @@
+
+        #region Thông báo
+        public delegate void SetTextHandler(Control control, string text);
+
+        private void notifyMessage(Control control, string message)
+        {
+            if (control.InvokeRequired == true)
+            {
+                control.Invoke(new SetTextHandler(notifyMessage), control, message);
+            }
+            else
+            {
+                control.Text = message;
+            }
+        }
+
+        #endregion
+
+        private void startTraining()
+        {
+            try
+            {
+                variables = m_dt_samples.Columns.Count - classes;
+                samples = m_dt_samples.Rows.Count;
+
+                var input = new double[samples][];  // training set
+                var output = new double[samples][]; // ideal output
+
+                // set sample dataset
+                for (int i = 0; i < samples; i++)
+                {
+                    input[i] = new double[variables];
+                    output[i] = new double[classes];
+
+                    // set input
+                    for (int j = 0; j < variables; j++)
+                    {
+                        var value = m_dt_samples.Rows[i][j].ToString();
+                        input[i][j] = double.Parse(value);
+                    }
+                    for (int j = 0; j < classes; j++)
+                    {
+                        var value = m_dt_samples.Rows[i][variables + j].ToString();
+                        output[i][j] = double.Parse(value);
+                    }
+                }
+
+
+                var neuronsCount = variables > 3 ? variables / 2 : 2;
+                var v_str_current_net = string.Format("{0}-{1}-{2}", variables, neuronsCount, classes);
+                notifyMessage(txtCurrentNetBox, v_str_current_net);
+
+                // Kh?i t?o m?ng 1 l?p ?n: lu?t h?c perceptron
+                SigmoidFunction function = new SigmoidFunction(momentumValue);
+                ActivationNetwork network = new ActivationNetwork(function, variables, neuronsCount);
+                var layer = network[0]; // Perceptron has one hidden layer
+
+                // H?c có th?y: qui t?c delta
+                DeltaRuleLearning teacher = new DeltaRuleLearning(network);
+                teacher.LearningRate = learningRate;
+
+                // l?p
+                int iteration = 1;
+                // b?ng l?i
+                //var errorsList = new ArrayList();
+                var currentError = 0.0;
+                // b?ng tr?ng: new double[l?p ?n][no ron][nút vào];
+                // b?ng tr?ng cho perceptron: new double[no ron][bi?n nh?p]
+                var weightsOfPerceptron = new double[neuronsCount][];
+
+                while (signalStop == false)
+                {
+                    #region Luu tr?ng thái c?a m?ng h?c
+                    //for (int i = 0; i < neuronsCount; i++)
+                    //{
+                    //    weightsOfPerceptron[i] = new double[variables];
+                    //    for (int j = 0; j < variables; j++)
+                    //    {
+                    //        weightsOfPerceptron[i][j] = layer[i][j];
+                    //    }
+                    //}
+                    #endregion
+
+                    double error = teacher.RunEpoch(input, output) / samples;
+                    //errorsList.Add(error);
+
+                    // notify message
+                    notifyMessage(txtCurrentIterationBox, iteration.ToString());
+                    notifyMessage(txtCurrentErrorBox, error.ToString());
+                    iteration++;
+
+                    // stop ??
+                    if (useErrorLimit == true)
+                    {
+                        if (error <= learningErrorLimit)
+                            break;
+                    }
+                    else if (iteration > iterationLimit)
+                    {
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex);
+            }
+        }
+
+        /// <summary>
+        /// S? d?ng m?ng truy?n th?ng k?t h?p phuong pháp lan truy?n ngu?c
+        /// </summary>
+        private void runTraining()
+        {
+            variables = m_dt_samples.Columns.Count - classes;
+            samples = m_dt_samples.Rows.Count;
+
+            var input = new double[samples][];  // training set
+            var output = new double[samples][]; // ideal output
+
+            // set sample dataset
+            for (int i = 0; i < samples; i++)
+            {
+                input[i] = new double[variables];
+                output[i] = new double[classes];
+
+                // set input
+                for (int j = 0; j < variables; j++)
+                {
+                    var value = m_dt_samples.Rows[i][j].ToString();
+                    input[i][j] = double.Parse(value);
+                }
+                for (int j = 0; j < classes; j++)
+                {
+                    var value = m_dt_samples.Rows[i][variables + j].ToString();
+                    output[i][j] = double.Parse(value);
+                }
+            }
+
+
+            var neuronsCount = (variables >> 1) + 1;  // (variables << 1) / 3 + 1;
+            var v_str_current_net = string.Format("{0}-{1}-{2}", variables, neuronsCount, classes);
+            notifyMessage(txtCurrentNetBox, v_str_current_net);
+
+            FeedforwardNetwork network = new FeedforwardNetwork();
+            network.AddLayer(new FeedforwardLayer(variables));
+            network.AddLayer(new FeedforwardLayer(neuronsCount));
+            network.AddLayer(new FeedforwardLayer(classes));
+            network.Reset(); // randomize Weights & Threshold
+
+            Train teacher = new Backpropagation(network, input, output, learningRate, momentumValue); // 0.7, 0.9); //0.7 0.9
+            int epoch = 0;
+
+            do
+            {
+                teacher.Iteration();
+                epoch++;
+
+                // notify message
+                notifyMessage(txtCurrentErrorBox, teacher.Error.ToString("0.###########"));
+                notifyMessage(txtCurrentIterationBox, epoch.ToString());
+
+                // stop ??
+                if (useErrorLimit == true)
+                {
+                    if (teacher.Error <= learningErrorLimit)
+                        break;
+                }
+                else if (epoch > iterationLimit)
+                {
+                    break;
+                }
+            } while (signalStop == false);
+        }
