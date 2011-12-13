@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5203FEDF-B240-4A03-9610-96E553D9F512}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DemoDropOut</RootNamespace>
+    <AssemblyName>DemoDropOut</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.1.4.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLLs\Aforge\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=2.1.4.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLLs\Aforge\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Common, Version=1.0.20031.116, Culture=neutral, PublicKeyToken=e272bb32d11b1948">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLLs\C1 Controls\C1.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Win.C1FlexGrid, Version=2.5.20044.189, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLLs\C1 Controls\C1.Win.C1FlexGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\BussinessLogicLayer\DataAnalysisBlo.cs" />
+    <Compile Include="Apps\BussinessLogicLayer\DataPreprocessingBlo.cs" />
+    <Compile Include="Apps\BussinessLogicLayer\DataQueryBlo.cs" />
+    <Compile Include="Apps\BussinessLogicLayer\DataTestingBlo.cs" />
+    <Compile Include="Apps\DataAccessLayer\CsvDataAccess.cs" />
+    <Compile Include="Apps\BussinessLogicLayer\DropOutForecast.cs" />
+    <Compile Include="Apps\Objects\ActivationFunctionEnum.cs" />
+    <Compile Include="Apps\Objects\CategoricalEncoding.cs" />
+    <Compile Include="Apps\Objects\DataPartitionOptions.cs" />
+    <Compile Include="Apps\Objects\DataSamples.cs" />
+    <Compile Include="Apps\Objects\DatasetEnum.cs" />
+    <Compile Include="Apps\Objects\DateEncoding.cs" />
+    <Compile Include="Apps\Objects\NetworkParameters.cs" />
+    <Compile Include="Apps\Objects\TrainingAlgorithmEnum.cs" />
+    <Compile Include="Apps\Objects\TrainingAlgorithmParameters.cs" />
+    <Compile Include="Common\C1Styles.cs" />
+    <Compile Include="Common\C1Helper.cs" />
+    <Compile Include="Common\DataHelper.cs" />
+    <Compile Include="Options\F002_NetworkTrainingOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F002_NetworkTrainingOptions.Designer.cs">
+      <DependentUpon>F002_NetworkTrainingOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\F003_NetworkProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F003_NetworkProperties.Designer.cs">
+      <DependentUpon>F003_NetworkProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\F004_DataPartitionOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F004_DataPartitionOptions.Designer.cs">
+      <DependentUpon>F004_DataPartitionOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\F005_PreprocessingOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F005_PreprocessingOptions.Designer.cs">
+      <DependentUpon>F005_PreprocessingOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uc\CollapsibleSplitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Uc\ControlTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="F001_MainProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F001_MainProgram.Designer.cs">
+      <DependentUpon>F001_MainProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options\F001_NetworkSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options\F001_NetworkSet.Designer.cs">
+      <DependentUpon>F001_NetworkSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Objects\ColumnDetails.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="F001_MainProgram.resx">
+      <DependentUpon>F001_MainProgram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F001_NetworkSet.resx">
+      <DependentUpon>F001_NetworkSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F002_NetworkTrainingOptions.resx">
+      <DependentUpon>F002_NetworkTrainingOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F003_NetworkProperties.resx">
+      <DependentUpon>F003_NetworkProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F004_DataPartitionOptions.resx">
+      <DependentUpon>F004_DataPartitionOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options\F005_PreprocessingOptions.resx">
+      <DependentUpon>F005_PreprocessingOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel-csv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open-file-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analyze-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\partition-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preprocess-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\train-start-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\train-stop-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-icon-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\networkset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dataset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-file-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-table-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\query-manual-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trainingset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trainingset-icon-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\validationset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testset-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptRow-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rejectRow-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training-options-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training-options-icon-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\networkProperties-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testing-trn-icon-1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testing-vld-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\testing-tst-icon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table-row-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table-row-delete-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vux.Neuro\Vux.Neuro.csproj">
+      <Project>{8C69201A-6FC2-4AE6-8E8E-D13FF33DB4F8}</Project>
+      <Name>Vux.Neuro</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

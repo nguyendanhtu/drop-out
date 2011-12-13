@@ -1,0 +1,5 @@
+D:\15. App Development\CNet\drop-out\03. Sourcecode\DemoDropOut\Vux.Neuro\obj\Debug\ResolveAssemblyReference.cache
+D:\15. App Development\CNet\drop-out\03. Sourcecode\DemoDropOut\Vux.Neuro\bin\Debug\Vux.Neuro.dll
+D:\15. App Development\CNet\drop-out\03. Sourcecode\DemoDropOut\Vux.Neuro\bin\Debug\Vux.Neuro.pdb
+D:\15. App Development\CNet\drop-out\03. Sourcecode\DemoDropOut\Vux.Neuro\obj\Debug\Vux.Neuro.dll
+D:\15. App Development\CNet\drop-out\03. Sourcecode\DemoDropOut\Vux.Neuro\obj\Debug\Vux.Neuro.pdb
